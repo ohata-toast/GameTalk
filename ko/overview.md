@@ -11,7 +11,7 @@
 * 채널에서 유저를 검색하고 관리할 수 있습니다.
 
 ## Key Features
-
+![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_01.png)
 ### 채널 관리
 유저 간 소통할 수 있는 채팅 채널을 생성할 수 있습니다. 대규모 인원이 참여하는 전체 채널부터 작은 단위의 길드나 파티 채널, 1:1 채널까지 다양하게 생성하고 관리할 수 있습니다.
 
