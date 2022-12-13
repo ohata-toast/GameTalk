@@ -47,7 +47,7 @@ API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니�
 
 ### Debug Mode
 
-* GameTalk는 경고(warning)와 오류 로그만을 표시합니다.
+* GameTalk는 경고와 오류 로그만을 표시합니다.
 * 개발에 참고할 수 있는 시스템 로그를 켜려면 GameTalk.SetDebugMode(true)를 호출하십시오.
 
 > <font color="red">**[주의]**</font><br/>
@@ -109,6 +109,69 @@ public void IsSucceeded(GameTalkError error)
 }
 ```
 
+### Initialize
+
+GameTalk SDK를 초기화 합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void Initialize(
+    GameTalkParams.Config config,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Config
+    * appKey
+        * 콜솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)입니다.
+    * languageCode
+        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드입니다.
+* GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
+    * GameTalkData.ServiceInfo
+        * maxMessageLength
+            * 콘솔에 등록된 최대 메시지 길이입니다.
+        * gameTalkState
+            * GameTalk 상태입니다.
+            * **GameTalkState**를 참고하십시오.
+                * ACTIVATED
+                    * 활성화되었습니다.
+                * DEACTIVATED
+                    * 비활성화되었습니다.
+                * DELETED
+                    * 삭제되었습니다.
+
+**Example**
+
+```cs
+public void Initialize()
+{
+    var config = new GameTalkParams.Config
+    {
+        appKey = "appKey",
+        languageCode = LanguageCode.Korean
+    };
+    
+    GameTalk.Initialize(config, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("Initialize succeeded. maxMessageLength:{0}, gameTalkState:{1}", data.maxMessageLength, data.gameTalkState));
+        }
+        else
+        {
+            Debug.Log(string.Format("Initialize failed. error:{0}", error));
+        }
+    });
+}
+```
+
 ### IsInitialized
 
 GameTalk SDK의 초기화 여부를 확인합니다.
@@ -140,64 +203,9 @@ public void IsInitialized()
 }
 ```
 
-### Initialize
-
-GameTalk SDK를 초기화 합니다.
-
-**API**
-
-Supported Platforms
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-
-```cs
-static void Initialize(
-    GameTalkParams.Config config,
-    GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback)
-```
-
-**Parameter**
-
-* GameTalkParams.Config
-    * appKey
-        * 앱 키
-    * languageCode
-        * 언어 코드
-
-**Example**
-
-```cs
-public void Initialize()
-{
-    var config = new GameTalkParams.Config
-    {
-        appKey = "appKey",
-        languageCode = LanguageCode.Korean
-    };
-    
-    GameTalk.Initialize(config, (data, error) =>
-    {
-        if (GameTalk.IsSucceeded(error) == true)
-        {
-            Debug.Log(string.Format("Initialize succeeded. maxMessageLength:{0}, gameTalkStatus:{1}", data.maxMessageLength, data.gameTalkStatus));
-        }
-        else
-        {
-            Debug.Log(string.Format("Initialize failed. error:{0}", error));
-        }
-    });
-}
-```
-
 ### AddEvent
 
 서버 이벤트를 수신할 핸들러를 등록합니다.
-
-* 이벤트로 전달되는 데이터의 타입은 다음과 같습니다.
-    * PUSH_MESSAGE
-        * 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출됩니다.
-        * EventDataParser의 GetPushMessageData API를 사용하여 데이터를 객체화하여 사용해야합니다.
 
 **API**
 
@@ -213,6 +221,14 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 **Parameter**
 
 * GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> eventHandler
+    * GameTalkData.AddEvent
+        * type
+            * **EventType**을 참고하십시오.
+            * PUSH_MESSAGE
+                * 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출됩니다.
+                * EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용해야합니다.
+        * data
+            * 이벤트 타입에 따라 달라지는 데이터입니다.
 
 **Example**
 
@@ -244,7 +260,7 @@ public void AddEvent()
                         {
                             sb.AppendFormat("content:{0}, ", message.content);
                             sb.AppendFormat("languageCode:{0}, ", message.languageCode);
-                            sb.AppendFormat("status:{0}, ", message.status);
+                            sb.AppendFormat("state:{0}, ", message.state);
                         }
                         sb.AppendLine("==========");
                     }
@@ -284,6 +300,206 @@ public void RemoveEvent()
     GameTalk.RemoveEvent();
 }
 ```
+
+### Login
+
+GameTalk 로그인을 실행합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void Login(
+    GameTalkParams.Auth.Login param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Auth.Login
+    * idPType
+        * **EventType**을 참고하십시오.
+        * ID 제공자입니다.
+            * Gamebase를 사용중이라면 IdPType.GAMEBASE를 입력하십시오.
+    * userId
+        * 사용자 ID입니다.
+            * Gamebase를 사용중이라면 Gamebase User ID를 입력하십시오.
+    * token
+        * 사용자 인증 토큰입니다.
+            * Gamebase를 사용중이라면 Gamebase 인증 토큰을 입력하십시오.
+* GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback
+    * GameTalkData.Auth.Login
+        * user
+            * userId
+                * 사용자 ID입니다.
+            * valid
+                * **UserState**을 참고하십시오.
+                * 사용자 상태입니다.
+                    * Y
+                        * 정상입니다.
+                    * D
+                        * 삭제된 유저입니다.
+            * regDate
+                * 사용자 가입 일시입니다.
+            * lastLoginDate
+                * 마지막 로그인 일시입니다.
+
+**Example**
+
+```cs
+public void Login()
+{
+    var loginParams = new GameTalkParams.Auth.Login
+    {
+        idPType = IdPType.XX,
+        token = "token",
+        userId = "userId"
+    };
+
+    GameTalk.Auth.Login(loginParams, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("Login succeeded. userId:{0}", data.user.userId));
+        }
+        else
+        {
+            Debug.Log(string.Format("Login failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Logout
+
+GameTalk 로그아웃을 실행합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void Logout(GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+* GameTalkCallback.ErrorDelegate callback
+
+**Example**
+
+```cs
+public void Logout()
+{
+    GameTalk.Auth.Logout((error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log("Logout succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("Logout failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### UpdateUserInfo
+
+유저 정보를 갱신합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void UpdateUserInfo(
+    GameTalkParams.Auth.UpdateUserInfo param,
+    GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Auth.UpdateUserInfo
+    * languageCode
+        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드입니다.
+* GameTalkCallback.ErrorDelegate callback
+
+**Example**
+
+```cs
+public void UpdateUserInfo()
+{
+    var updateUserInfoParams = new GameTalkParams.Auth.UpdateUserInfo
+    {
+        languageCode = LanguageCode.English
+    };
+
+    GameTalk.Auth.UpdateUserInfo(updateUserInfoParams, (error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log("UpdateUserInfo succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("UpdateUserInfo failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### Withdraw
+
+유저 정보를 삭제합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void Withdraw(GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+* GameTalkCallback.ErrorDelegate callback
+
+**Example**
+
+```cs
+public void Withdraw()
+{
+    GameTalk.Auth.Withdraw((error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log("Withdraw succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("Withdraw failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### GetChannelList
+
 
 
 
