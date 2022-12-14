@@ -45,10 +45,10 @@ API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니�
 
 ## API
 
-### Debug Mode
+### SetDebugMode
 
 * GameTalk는 경고와 오류 로그만을 표시합니다.
-* 개발에 참고할 수 있는 시스템 로그를 켜려면 GameTalk.SetDebugMode(true)를 호출하십시오.
+* 개발에 참고할 수 있는 GameTalk 로그를 켜려면 GameTalk.SetDebugMode(true)를 호출하십시오.
 
 > <font color="red">**[주의]**</font><br/>
 >  
@@ -64,6 +64,11 @@ Supported Platforms
 ```cs
 static void SetDebugMode(bool isDebugMode)
 ```
+
+**Parameter**
+
+* bool isDebugMode
+    * 디버그 모드 활성화 여부
 
 **Example**
 
@@ -92,6 +97,7 @@ static bool IsSucceeded(GameTalkError error)
 **Parameter**
 
 * GameTalkError error
+    * GameTalkError 객체
 
 **Example**
 
@@ -128,24 +134,24 @@ static void Initialize(
 
 **Parameter**
 
-* GameTalkParams.Config
+* GameTalkParams.Config config
     * appKey
-        * 콜솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)입니다.
+        * 콜솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)
     * languageCode
-        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드입니다.
+        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드
 * GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
     * GameTalkData.ServiceInfo
         * maxMessageLength
-            * 콘솔에 등록된 최대 메시지 길이입니다.
+            * 콘솔에 등록된 최대 메시지 길이
         * gameTalkState
-            * GameTalk 상태입니다.
-            * **GameTalkState**를 참고하십시오.
+            * **GameTalkState.cs** 참조
+            * GameTalk 상태
                 * ACTIVATED
-                    * 활성화되었습니다.
+                    * 활성화
                 * DEACTIVATED
-                    * 비활성화되었습니다.
+                    * 비활성화
                 * DELETED
-                    * 삭제되었습니다.
+                    * 삭제
 
 **Example**
 
@@ -223,12 +229,13 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 * GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> eventHandler
     * GameTalkData.AddEvent
         * type
-            * **EventType**을 참고하십시오.
-            * PUSH_MESSAGE
-                * 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출됩니다.
-                * EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용해야합니다.
+            * **EventType.cs** 참조
+            * 이벤트 타입
+                * PUSH_MESSAGE
+                    * 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출
+                    * EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용
         * data
-            * 이벤트 타입에 따라 달라지는 데이터입니다.
+            * 이벤트 타입에 따라 달라지는 데이터
 
 **Example**
 
@@ -320,33 +327,33 @@ static void Login(
 
 **Parameter**
 
-* GameTalkParams.Auth.Login
+* GameTalkParams.Auth.Login param
     * idPType
-        * **EventType**을 참고하십시오.
-        * ID 제공자입니다.
-            * Gamebase를 사용중이라면 IdPType.GAMEBASE를 입력하십시오.
+        * **IdPType.cs** 참조
+        * IdP(identity provider) 타입
+            * Gamebase를 사용중이라면 IdPType.GAMEBASE를 입력
     * userId
-        * 사용자 ID입니다.
-            * Gamebase를 사용중이라면 Gamebase User ID를 입력하십시오.
+        * 사용자 ID
+            * Gamebase를 사용중이라면 Gamebase User ID를 입력
     * token
-        * 사용자 인증 토큰입니다.
-            * Gamebase를 사용중이라면 Gamebase 인증 토큰을 입력하십시오.
+        * 사용자 인증 토큰
+            * Gamebase를 사용중이라면 Gamebase 인증 토큰을 입력
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback
     * GameTalkData.Auth.Login
         * user
             * userId
-                * 사용자 ID입니다.
+                * 사용자 ID
             * valid
-                * **UserState**을 참고하십시오.
-                * 사용자 상태입니다.
+                * **UserState.cs** 참조
+                * 사용자 상태
                     * Y
-                        * 정상입니다.
+                        * 정상
                     * D
-                        * 삭제된 유저입니다.
+                        * 삭제된 유저
             * regDate
-                * 사용자 가입 일시입니다.
+                * 사용자 가입 일시
             * lastLoginDate
-                * 마지막 로그인 일시입니다.
+                * 마지막 로그인 일시
 
 **Example**
 
@@ -431,9 +438,9 @@ static void UpdateUserInfo(
 
 **Parameter**
 
-* GameTalkParams.Auth.UpdateUserInfo
+* GameTalkParams.Auth.UpdateUserInfo param
     * languageCode
-        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드입니다.
+        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
@@ -500,11 +507,7 @@ public void Withdraw()
 
 ### GetChannelList
 
-
-
-
-
-
+채널 정보를 조회합니다.
 
 
 **API**
@@ -515,15 +518,484 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 
 ```cs
-static void RemoveEvent()
+static void GetChannelList(
+    GameTalkParams.Channel.GetChannelList param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> callback)
 ```
 
 **Parameter**
 
+* GameTalkParams.Channel.GetChannelList param
+    * page
+        * 페이지 인덱스
+        * 시작 값은 0
+    * size
+        * 페이지 사이즈
+    * tagType
+        * **TagType.cs** 참조
+        * 태그 검색 조건
+        * 기본 값은 OR
+            * OR
+                * tagList에 입력된 tag 정보를 OR 연산으로 검색
+            * AND 
+                * tagList에 입력된 tag 정보를 AND 연산으로 검색
+    * tagList
+        * 검색 태그 리스트
+* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> callback
+    * GameTalkData.Channel.GetChannelList
+        * pagingInfo
+            * first
+                * 첫 페이지 여부
+            * last
+                * 마지막 페이지 여부
+            * numberOfElements
+                * 현재 페이지의 채널 수
+            * page
+                * 페이지 인덱스
+                * 시작 값은 0
+            * size
+                * 페이지 사이즈
+            * totalElements
+                * 총 채널 수
+            * totalPages
+                * 총 페이지 수
+        * channelList
+            * id
+                * 채널 아이디
+            * type
+                * **ChannelType.cs** 참조
+                * 채널 타입
+                    * public
+                        * 오픈 채널
+                    * private
+                        * 시스템 채널, 1:1 채널
+            * name
+                * 채널 명
+            * subscriberCount
+                * 채널 구독자 수
+            * tagList
+                * id
+                    * 태그 아이디
+                * name
+                    * 태그 명
+**Example**
+
+```cs
+public void GetChannelList()
+{
+    var getChannelListParams = new GameTalkParams.Channel.GetChannelList
+    {
+        page = 0,
+        size = 10,
+        tagType = TagType.OR,
+        tagList = new List<int> { 0, 1 }
+    };
+
+    GameTalk.Channel.GetChannelList(getChannelListParams, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("GetChannelList succeeded. channelList:{0}", data));
+        }
+        else
+        {
+            Debug.Log(string.Format("GetChannelList failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### SubscribeChannel
+
+채널을 구독합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void SubscribeChannel(
+    GameTalkParams.Channel.SubscribeChannel param,
+    GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Channel.SubscribeChannel param
+    * channelId
+        * 채널 아이디
+* GameTalkCallback.ErrorDelegate callback
+
+**Example**
+
+```cs
+public void SubscribeChannel()
+{
+    var subscribeChannelParams = new GameTalkParams.Channel.SubscribeChannel
+    {
+        channelId = "channelId"
+    };
+
+    GameTalk.Channel.SubscribeChannel(subscribeChannelParams, (error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log("SubscribeChannel succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("SubscribeChannel failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### UnsubscribeChannel
+
+구독 중인 채널을 해제합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void UnsubscribeChannel(
+    GameTalkParams.Channel.UnsubscribeChannel param,
+    GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Channel.UnsubscribeChannel param
+    * channelId
+        * 채널 아이디
+* GameTalkCallback.ErrorDelegate callback
 
 
 **Example**
 
 ```cs
+public void UnsubscribeChannel()
+{
+    var subscribeChannelParams = new GameTalkParams.Channel.UnsubscribeChannel
+    {
+        channelId = "channelId"
+    };
 
+    GameTalk.Channel.UnsubscribeChannel(subscribeChannelParams, (error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log("UnsubscribeChannel succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("UnsubscribeChannel failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### GetSubscriber
+
+구독중인 유저를 조회합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetSubscriber(
+    GameTalkParams.Channel.GetSubscriber param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Channel.GetSubscriber param
+    * channelId
+        * 채널 아이디
+    * page
+        * 페이지 인덱스
+        * 시작 값은 0
+    * size
+        * 페이지 사이즈
+* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> callback
+    * GameTalkData.Channel.GetSubscriber
+        * pagingInfo
+            * first
+                * 첫 페이지 여부
+            * last
+                * 마지막 페이지 여부
+            * numberOfElements
+                * 현재 페이지의 채널 수
+            * page
+                * 페이지 인덱스
+                * 시작 값은 0
+            * size
+                * 페이지 사이즈
+            * totalElements
+                * 총 채널 수
+            * totalPages
+                * 총 페이지 수
+        * userList
+            * id
+                * 유저 아이디
+
+**Example**
+
+```cs
+public void GetSubscriber()
+{
+    var getSubscriberParams = new GameTalkParams.Channel.GetSubscriber
+    {
+        channelId = "channelId",
+        page = 0,
+        size = 10
+    };
+
+    GameTalk.Channel.GetSubscriber(getSubscriberParams, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("GetSubscriber succeeded. data:{0}", data));
+        }
+        else
+        {
+            Debug.Log(string.Format("GetSubscriber failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### GetChannelTagList
+
+채널의 태그 리스트를 조회합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetChannelTagList(
+    GameTalkParams.Channel.GetChannelTagList param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelTagList> callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Channel.GetChannelTagList param
+    * page
+        * 페이지 인덱스
+        * 시작 값은 0
+    * size
+        * 페이지 사이즈
+* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelTagList> callback
+    * GameTalkData.Channel.GetChannelTagList
+        * pagingInfo
+            * first
+                * 첫 페이지 여부
+            * last
+                * 마지막 페이지 여부
+            * numberOfElements
+                * 현재 페이지의 채널 수
+            * page
+                * 페이지 인덱스
+                * 시작 값은 0
+            * size
+                * 페이지 사이즈
+            * totalElements
+                * 총 채널 수
+            * totalPages
+                * 총 페이지 수
+        * tagList
+            * id
+                * 태그 아이디
+            * name
+                * 태그 명
+
+**Example**
+
+```cs
+public void GetChannelTagList()
+{
+    var getChannelTagListParams = new GameTalkParams.Channel.GetChannelTagList
+    {
+        page = 0,
+        size = 10
+    };
+
+    GameTalk.Channel.GetChannelTagList(getChannelTagListParams, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("GetChannelTagList succeeded. data:{0}", data));
+        }
+        else
+        {
+            Debug.Log(string.Format("GetChannelTagList failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### GetSubscribedChannelList
+
+구독중인 채널을 조회합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void GetSubscribedChannelList(
+    GameTalkParams.Channel.GetSubscribedChannelList param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Channel.GetSubscribedChannelList param
+    * page
+        * 페이지 인덱스
+        * 시작 값은 0
+    * size
+        * 페이지 사이즈
+* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> callback)
+    * GameTalkData.Channel.GetSubscribedChannelList
+        * pagingInfo
+            * first
+                * 첫 페이지 여부
+            * last
+                * 마지막 페이지 여부
+            * numberOfElements
+                * 현재 페이지의 채널 수
+            * page
+                * 페이지 인덱스
+                * 시작 값은 0
+            * size
+                * 페이지 사이즈
+            * totalElements
+                * 총 채널 수
+            * totalPages
+                * 총 페이지 수
+        * channelList
+            * id
+                * 채널 아이디
+            * type
+                * **ChannelType.cs** 참조
+                * 채널 타입
+                    * public
+                        * 오픈 채널
+                    * private
+                        * 시스템 채널, 1:1 채널
+            * name
+                * 채널 명
+            * subscriberCount
+                * 채널 구독자 수
+            * tagList
+                * id
+                    * 태그 아이디
+                * name
+                    * 태그 명
+
+**Example**
+
+```cs
+public void GetSubscribedChannelList()
+{
+    var getSubscribedChannelListParams = new GameTalkParams.Channel.GetSubscribedChannelList
+    {
+        page = 0,
+        size = 10
+    };
+
+    GameTalk.Channel.GetSubscribedChannelList(getSubscribedChannelListParams, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("GetSubscribedChannelList succeeded. channelList:{0}", data));
+        }
+        else
+        {
+            Debug.Log(string.Format("GetSubscribedChannelList failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### SendMessage
+
+메시지를 전송합니다.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void SendMessage(
+    GameTalkParams.Message.SendMessage param,
+    GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+* GameTalkParams.Message.SendMessage param
+    * senderNickname
+        * 송신자 닉네임 (없을경우 senderId 로 셋팅)
+    * channelId
+        * 채널 아이디
+    * contentType
+        * **MessageContentType.cs** 참조
+        * 데이터 타입
+            * TEXT
+                * 텍스트 타입의 메시지
+    * content
+        * 메시지 데이터
+        * contentType에 따라 데이터 형식이 변경
+* GameTalkCallback.ErrorDelegate callback
+
+**Example**
+
+```cs
+public void SendPublicMessageToChannel()
+{
+    var sendMessageParams = new GameTalkParams.Message.SendMessage
+    {
+        channelId = "channelId",
+        contentType = text,
+        content = "message",
+        languageCode = LanguageCode.Korean
+    };
+
+    GameTalk.Message.SendMessage(sendMessageParams, (error) =>
+    {
+        if (GameTalk.IsSucceeded(error) == true)
+        {
+            Debug.Log(string.Format("SendPublicMessageToChannel succeeded."));
+        }
+        else
+        {
+            Debug.Log(string.Format("SendPublicMessageToChannel failed. error:{0}", error));
+        }
+    });
+}
 ```
