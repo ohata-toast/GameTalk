@@ -509,8 +509,8 @@ static void GetChannelList(
     * size: 페이지 사이즈
     * tagType: 태그 검색 조건 (**TagType.cs** 참조)
         * 기본 값은 OR
-        * OR: tagList에 입력된 tag 정보를 OR 연산으로 검색
-        * AND: tagList에 입력된 tag 정보를 AND 연산으로 검색
+        * OR: 선택한 채널 태그를 하나라도 포함한 채널을 검색
+        * AND: 선택한 채널 태그를 모두 포함한 채널을 검색
     * tagList: 검색 태그 리스트
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> callback
     * GameTalkData.Channel.GetChannelList
@@ -528,7 +528,7 @@ static void GetChannelList(
             * type: 채널 타입 (**ChannelType.cs** 참조)
                 * public: 오픈 채널
                 * private: 시스템 채널, 1:1 채널
-            * name: 채널 명
+            * name: 채널 생성 시 입력한 채널명
             * subscriberCount: 채널 구독자 수
             * tagList
                 * id: 태그 아이디
@@ -580,7 +580,7 @@ static void SubscribeChannel(
 **Parameter**
 
 * GameTalkParams.Channel.SubscribeChannel param
-    * channelId: 채널 아이디
+    * channelId: 채널 생성 시 부여된 고유 ID
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
@@ -627,7 +627,7 @@ static void UnsubscribeChannel(
 **Parameter**
 
 * GameTalkParams.Channel.UnsubscribeChannel param
-    * channelId: 채널 아이디
+    * channelId: 채널 생성 시 부여된 고유 ID
 * GameTalkCallback.ErrorDelegate callback
 
 
@@ -675,7 +675,7 @@ static void GetSubscriber(
 **Parameter**
 
 * GameTalkParams.Channel.GetSubscriber param
-    * channelId: 채널 아이디
+    * channelId: 채널 생성 시 부여된 고유 ID
     * page: 페이지 인덱스
         * 시작 값은 0
     * size: 페이지 사이즈
@@ -821,7 +821,7 @@ static void GetSubscribedChannelList(
             * type: 채널 타입 (**ChannelType.cs** 참조)
                 * public: 오픈 채널
                 * private: 시스템 채널, 1:1 채널
-            * name: 채널 명
+            * name: 채널 생성 시 입력한 채널명
             * subscriberCount: 채널 구독자 수
             * tagList
                 * id: 태그 아이디
@@ -873,7 +873,7 @@ static void SendMessage(
 
 * GameTalkParams.Message.SendMessage param
     * senderNickname: 송신자 닉네임 (없을경우 senderId 로 셋팅)
-    * channelId: 채널 아이디
+    * channelId: 채널 생성 시 부여된 고유 ID
     * contentType: 데이터 타입 (**MessageContentType.cs** 참조)
         * TEXT: 텍스트 타입의 메시지
     * content: 메시지 데이터
