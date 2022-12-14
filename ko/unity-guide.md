@@ -1,4 +1,4 @@
-# Game > GameTalk > Unity SDK 사용 가이드
+## Game > GameTalk > Unity SDK 사용 가이드
 
 GameTalk SDK for Unity 환경 및 사용 방법을 설명합니다.
 
@@ -12,7 +12,7 @@ GameTalk SDK for Unity 환경 및 사용 방법을 설명합니다.
 
 > <font color="red">**[주의]**</font><br/>
 >  
-> 2019년 8월 1일부터 Google Play에 게시되는 신규 앱에서는 64비트 아키텍처를 지원해야 합니다.<br/>
+> 2019년 8월 1일부터 Google Play에 게시되는 신규 앱에서는 64비트 아키텍처를 지원해야 합니다.
 > [Google Play 정책 및 64비트 지원 Unity 버전 확인](https://developer.android.com/games/optimize/64-bit#unity-developers)
 
 ### Android
@@ -37,7 +37,7 @@ GameTalk SDK for Unity 환경 및 사용 방법을 설명합니다.
 
 API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
-**API**
+#### API
 
 <span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
 <span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
@@ -136,9 +136,9 @@ static void Initialize(
 
 * GameTalkParams.Config config
     * appKey
-        * 콜솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)
+        * 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)
     * languageCode
-        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드
+        * 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어코드
 * GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
     * GameTalkData.ServiceInfo
         * maxMessageLength
@@ -440,7 +440,7 @@ static void UpdateUserInfo(
 
 * GameTalkParams.Auth.UpdateUserInfo param
     * languageCode
-        * 콘솔에 등록된 다국어 변역 대상 코드 중, 기준이 되는 언어코드
+        * 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어코드
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
@@ -704,7 +704,7 @@ public void UnsubscribeChannel()
 
 ### GetSubscriber
 
-구독중인 유저를 조회합니다.
+구독 중인 유저를 조회합니다.
 
 **API**
 
@@ -853,7 +853,7 @@ public void GetChannelTagList()
 
 ### GetSubscribedChannelList
 
-구독중인 채널을 조회합니다.
+구독 중인 채널을 조회합니다.
 
 **API**
 
