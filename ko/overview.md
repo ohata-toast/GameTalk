@@ -54,10 +54,6 @@
 
 * [Unity SDK 사용 가이드](./unity-guide)
 
-**Server Developer's Guide**
-
-* [API 가이드](./server-guide)
-
 **Operator's Guide**
 
 * [콘솔 사용 가이드](./console-user-guide)
