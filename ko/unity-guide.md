@@ -68,7 +68,7 @@ static void SetDebugMode(bool isDebugMode)
 
 **Parameter**
 
-* isDebugMode 디버그 모드 활성화 여부
+* bool isDebugMode: 디버그 모드 활성화 여부
 
 **Example**
 
@@ -96,8 +96,7 @@ static bool IsSucceeded(GameTalkError error)
 
 **Parameter**
 
-* GameTalkError error
-    * GameTalkError 객체
+* GameTalkError error: GameTalkError 객체
 
 **Example**
 
