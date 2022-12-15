@@ -18,8 +18,8 @@
 | Android, iOS | SERVER_INTERNAL_ERROR | 201 | 서버 오류가 발생하였습니다. |
 | Android, iOS | INVALID_SERVER_RESPONSE | 202 | 서버에서 잘못된 응답이 전달되었습니다. |
 | Android, iOS | API_ID_IS_EMPTY | 203 | 서버 응답에 API ID가 누락되어 있습니다. |
-| Android, iOS | HEADER_IS_NULL | 204 | 서버 응답에 헤더가 누락되어 있습니다. |
-| Android, iOS | TRANSACTION_ID_IS_EMPTY | 서버 응답에 Transaction ID가 누락되어 있습니다. |  |
+| Android, iOS | HEADER_IS_NULL | 204 | 서버 응답에 Header가 누락되어 있습니다. |
+| Android, iOS | TRANSACTION_ID_IS_EMPTY | 205 | 서버 응답에 Transaction ID가 누락되어 있습니다. |
 | Android, iOS | UNKNOWN_ERROR | 999 | 알 수 없는 오류가 발생하였습니다. |
 
 ## Server
