@@ -32,8 +32,8 @@ GameTalk SDK for Unity 환경 및 사용 방법을 설명합니다.
 
 선택한 플랫폼에서 지원하지 않는 GameTalk API를 호출하면 아래와 같은 오류가 콜백으로 반환되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
 
-* GameTalkErrorCode.NOT_SUPPORTED_IOS
 * GameTalkErrorCode.NOT_SUPPORTED_ANDROID
+* GameTalkErrorCode.NOT_SUPPORTED_IOS
 
 API 별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
