@@ -52,7 +52,8 @@ API 별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니�
 
 > <font color="red">**[주의]**</font><br/>
 >  
->  게임을 **릴리스**할 때는 반드시 소스 코드에서 SetDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하십시오.
+> * GameTalk 개발자 지원이 필요한 경우에는 반드시 디버그 모드를 활성화한 후, 로그를 함께 전달해야 합니다.
+> * 게임을 **릴리스**할 때는 반드시 소스 코드에서 SetDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하십시오.
 
 **API**
 
@@ -67,7 +68,7 @@ static void SetDebugMode(bool isDebugMode)
 
 **Parameter**
 
-* bool isDebugMode: 디버그 모드 활성화 여부
+* isDebugMode 디버그 모드 활성화 여부
 
 **Example**
 
