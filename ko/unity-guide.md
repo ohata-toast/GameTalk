@@ -139,12 +139,10 @@ static void Initialize(
 * GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
     * GameTalkData.ServiceInfo
         * maxMessageLength: 콘솔에 등록된 최대 메시지 길이
-        * gameTalkState
-            * **GameTalkState.cs** 참조
-            * GameTalk 상태
-                * ACTIVATED: 활성화
-                * DEACTIVATED: 비활성화
-                * DELETED: 삭제
+        * gameTalkState: GameTalk 상태 (**GameTalkState.cs** 참조)
+            * ACTIVATED: 활성화
+            * DEACTIVATED: 비활성화
+            * DELETED: 삭제
 
 **Example**
 
@@ -504,8 +502,7 @@ static void GetChannelList(
 **Parameter**
 
 * GameTalkParams.Channel.GetChannelList param
-    * page: 페이지 인덱스
-        * 시작 값은 0
+    * page: 페이지 인덱스 (시작 값은 0)
     * size: 페이지 사이즈
     * tagType: 태그 검색 조건 (**TagType.cs** 참조)
         * 기본 값은 OR
@@ -518,8 +515,7 @@ static void GetChannelList(
             * first: 첫 페이지 여부
             * last: 마지막 페이지 여부
             * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스
-                * 시작 값은 0
+            * page: 페이지 인덱스 (시작 값은 0)
             * size: 페이지 사이즈
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
@@ -677,8 +673,7 @@ static void GetSubscriber(
 
 * GameTalkParams.Channel.GetSubscriber param
     * channelId: 채널 생성 시 부여된 고유 ID
-    * page: 페이지 인덱스
-        * 시작 값은 0
+    * page: 페이지 인덱스 (시작 값은 0)
     * size: 페이지 사이즈
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> callback
     * GameTalkData.Channel.GetSubscriber
@@ -686,8 +681,7 @@ static void GetSubscriber(
             * first: 첫 페이지 여부
             * last: 마지막 페이지 여부
             * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스
-                * 시작 값은 0
+            * page: 페이지 인덱스 (시작 값은 0)
             * size: 페이지 사이즈
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
@@ -740,8 +734,7 @@ static void GetChannelTagList(
 **Parameter**
 
 * GameTalkParams.Channel.GetChannelTagList param
-    * page: 페이지 인덱스
-        * 시작 값은 0
+    * page: 페이지 인덱스 (시작 값은 0)
     * size: 페이지 사이즈
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelTagList> callback
     * GameTalkData.Channel.GetChannelTagList
@@ -749,8 +742,7 @@ static void GetChannelTagList(
             * first: 첫 페이지 여부
             * last: 마지막 페이지 여부
             * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스
-                * 시작 값은 0
+            * page: 페이지 인덱스 (시작 값은 0)
             * size: 페이지 사이즈
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
@@ -803,8 +795,7 @@ static void GetSubscribedChannelList(
 **Parameter**
 
 * GameTalkParams.Channel.GetSubscribedChannelList param
-    * page: 페이지 인덱스
-        * 시작 값은 0
+    * page: 페이지 인덱스 (시작 값은 0)
     * size: 페이지 사이즈
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> callback)
     * GameTalkData.Channel.GetSubscribedChannelList
@@ -812,8 +803,7 @@ static void GetSubscribedChannelList(
             * first: 첫 페이지 여부
             * last: 마지막 페이지 여부
             * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스
-                * 시작 값은 0
+            * page: 페이지 인덱스 (시작 값은 0)
             * size: 페이지 사이즈
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
