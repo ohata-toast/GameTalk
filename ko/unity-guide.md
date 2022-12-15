@@ -134,7 +134,7 @@ static void Initialize(
 **Parameter**
 
 * GameTalkParams.Config config
-    * appKey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)
+    * appKey: 콘솔에서 GameTalk 프로젝트 활성화 시, 자동 생성되는 앱 키(Appkey)
     * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어 코드
 * GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
     * GameTalkData.ServiceInfo
@@ -520,15 +520,17 @@ static void GetChannelList(
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
         * channelList
-            * id: 채널 아이디
-            * type: 채널 타입 (**ChannelType.cs** 참조)
-                * public: 오픈 채널
-                * private: 시스템 채널, 1:1 채널
-            * name: 채널 생성 시 입력한 채널명
-            * subscriberCount: 채널 구독자 수
-            * tagList
-                * id: 태그 아이디
-                * name: 태그 명
+            * channelInfo
+                * id: 채널 아이디
+                * type: 채널 타입 (**ChannelType.cs** 참조)
+                    * public: 오픈 채널
+                    * private: 시스템 채널, 1:1 채널
+                * name: 채널 생성 시 입력한 채널명
+                * subscriberCount: 채널 구독자 수
+                * tagList
+                    * tag
+                        * id: 태그 아이디
+                        * name: 태그 명
 
 **Example**
 
@@ -686,7 +688,8 @@ static void GetSubscriber(
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
         * userList
-            * id: 유저 아이디
+            * user
+                * id: 유저 아이디
 
 **Example**
 
@@ -747,8 +750,9 @@ static void GetChannelTagList(
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
         * tagList
-            * id: 태그 아이디
-            * name: 태그 명
+            * tag
+                * id: 태그 아이디
+                * name: 태그 명
 
 **Example**
 
@@ -808,15 +812,17 @@ static void GetSubscribedChannelList(
             * totalElements: 총 채널 수
             * totalPages: 총 페이지 수
         * channelList
-            * id: 채널 아이디
-            * type: 채널 타입 (**ChannelType.cs** 참조)
-                * public: 오픈 채널
-                * private: 시스템 채널, 1:1 채널
-            * name: 채널 생성 시 입력한 채널명
-            * subscriberCount: 채널 구독자 수
-            * tagList
-                * id: 태그 아이디
-                * name: 태그 명
+            * channelInfo
+                * id: 채널 아이디
+                * type: 채널 타입 (**ChannelType.cs** 참조)
+                    * public: 오픈 채널
+                    * private: 시스템 채널, 1:1 채널
+                * name: 채널 생성 시 입력한 채널명
+                * subscriberCount: 채널 구독자 수
+                * tagList
+                    * tag
+                        * id: 태그 아이디
+                        * name: 태그 명
 
 **Example**
 
