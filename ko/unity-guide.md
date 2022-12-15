@@ -35,7 +35,7 @@ GameTalk SDK for Unity 환경 및 사용 방법을 설명합니다.
 * GameTalkErrorCode.NOT_SUPPORTED_IOS
 * GameTalkErrorCode.NOT_SUPPORTED_ANDROID
 
-API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
+API 별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
 
 #### API
 
@@ -116,7 +116,7 @@ public void IsSucceeded(GameTalkError error)
 
 ### Initialize
 
-GameTalk SDK를 초기화 합니다.
+GameTalk SDK를 초기화합니다.
 
 **API**
 
@@ -135,7 +135,7 @@ static void Initialize(
 
 * GameTalkParams.Config config
     * appKey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱 키(Appkey)
-    * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어코드
+    * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어 코드
 * GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
     * GameTalkData.ServiceInfo
         * maxMessageLength: 콘솔에 등록된 최대 메시지 길이
@@ -319,11 +319,11 @@ static void Login(
 
 * GameTalkParams.Auth.Login param
     * idPType: IdP(identity provider) 타입 (**IdPType.cs** 참조)
-        * Gamebase를 사용중이라면 IdPType.GAMEBASE를 입력
+        * Gamebase를 사용 중이라면 IdPType.GAMEBASE를 입력
     * userId: 사용자 ID
-        * Gamebase를 사용중이라면 Gamebase User ID를 입력
+        * Gamebase를 사용 중이라면 Gamebase User ID를 입력
     * token: 사용자 인증 토큰
-        * Gamebase를 사용중이라면 Gamebase 인증 토큰을 입력
+        * Gamebase를 사용 중이라면 Gamebase 인증 토큰을 입력
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback
     * GameTalkData.Auth.Login
         * user
@@ -418,7 +418,7 @@ static void UpdateUserInfo(
 **Parameter**
 
 * GameTalkParams.Auth.UpdateUserInfo param
-    * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어코드
+    * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중, 기준이 되는 언어 코드
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
@@ -533,6 +533,7 @@ static void GetChannelList(
             * tagList
                 * id: 태그 아이디
                 * name: 태그 명
+
 **Example**
 
 ```cs
@@ -872,7 +873,7 @@ static void SendMessage(
 **Parameter**
 
 * GameTalkParams.Message.SendMessage param
-    * senderNickname: 송신자 닉네임 (없을경우 senderId 로 셋팅)
+    * senderNickname: 송신자 닉네임 (없을 경우 senderId로 세팅)
     * channelId: 채널 생성 시 부여된 고유 ID
     * contentType: 데이터 타입 (**MessageContentType.cs** 참조)
         * TEXT: 텍스트 타입의 메시지
