@@ -224,6 +224,28 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
                 * 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출
                 * EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용
         * data: 이벤트 타입에 따라 달라지는 데이터
+            * PUSH_MESSAGE                
+* 이벤트 타입 별 데이터
+    * data(PUSH_MESSAGE)
+        * messageInfoList
+            * messageInfo
+                * messageId: 메시지 아이디
+                * channelId: 채널 생성 시 부여된 고유 ID
+                * senderType: 송신자 타입 (**MessageSenderType.cs** 참조)
+                    * USER: 일반 사용자
+                    * ADMIN: 관리자
+                    * SYSTEM: 시스템
+                * senderId: 송신자 아이디
+                * senderNickname: 송신자 닉네임 (없을 경우 senderId로 자동 설정)
+                * regDate: 메시지 전송 일시
+                * contentType: 메시지 데이터 타입
+                    * TEXT: 텍스트
+                * messageList: 송신자가 입력한 메시지와 LanguageCode를 기준으로 번역된 메시지가 함께 전달됩니다. (LanguageCode는 Initialize, UpdateUserInfo API에서 변경 가능)
+                    * message
+                        * content: 메시지
+                        * state: 메시지 상태 (**MessageState.cs** 참조)
+                            * NORMAL: 정상 메시지
+                            * FILTER: 비속어로 인해 필터링된 메시지
 
 **Example**
 
@@ -869,7 +891,7 @@ static void SendMessage(
 **Parameter**
 
 * GameTalkParams.Message.SendMessage param
-    * senderNickname: 송신자 닉네임 (없을 경우 senderId로 세팅)
+    * senderNickname: 송신자 닉네임 (없을 경우 senderId로 자동 설정)
     * channelId: 채널 생성 시 부여된 고유 ID
     * contentType: 데이터 타입 (**MessageContentType.cs** 참조)
         * TEXT: 텍스트 타입의 메시지
