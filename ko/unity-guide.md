@@ -238,7 +238,7 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
                 * senderId: 송신자 아이디
                 * senderNickname: 송신자 닉네임 (없을 경우 senderId로 자동 설정)
                 * regDate: 메시지 전송 일시
-                * contentType: 메시지 데이터 타입
+                * contentType: 메시지 데이터 타입 (**MessageContentType.cs** 참조)
                     * TEXT: 텍스트
                 * messageList: 송신자가 입력한 메시지와 LanguageCode를 기준으로 번역된 메시지가 함께 전달됩니다. (LanguageCode는 Initialize, UpdateUserInfo API에서 변경 가능)
                     * message
