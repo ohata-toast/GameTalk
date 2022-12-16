@@ -22,5 +22,5 @@
 | Android, iOS | TRANSACTION_ID_IS_EMPTY | 205 | 서버 응답에 Transaction ID가 누락되어 있습니다. |
 | Android, iOS | UNKNOWN_ERROR | 999 | 알 수 없는 오류가 발생하였습니다. |
 
-## Server
+
 
