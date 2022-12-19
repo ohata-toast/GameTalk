@@ -302,7 +302,7 @@ GameTalk에서 지원하는 언어를 설정할 수 있습니다.
 ![gametalk_banned_word_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_1_221213.png)
 
 ### 금칙어 등록
-![gametalk_banned_word_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_221213.png)
+![gametalk_banned_word_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_221219.png)
 
 #### (1) 이름
 금칙어의 이름입니다.
@@ -323,10 +323,14 @@ GameTalk에서 지원하는 언어를 설정할 수 있습니다.
 콤마(,)로 구분되며 최대 5,000byte, 1,000개까지 등록 가능합니다.
 콤마를 포함한 금칙어는 사용할 수 없습니다.
 
-- **업로드** 버튼을 클릭하여 엑셀 문서를 첨부할 수 있습니다. 기입력 내용이 있을 경우 업로드한 파일 내용으로 교체합니다.
+#### (6) 업로드
+엑셀 문서를 첨부할 수 있습니다. 기입력 내용이 있을 경우 업로드한 파일 내용으로 교체합니다.
 
-- **기본값 적용**버튼을 클릭하여 GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니다.
-- **Excel 저장** 버튼을 클릭하여 현재 입력된 금칙어 리스트를 엑셀 파일 형태로 다운로드할 수 있습니다.
+#### (7) 기본값 적용
+GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니다.
+
+#### (8) Excel 저장
+현재 입력된 금칙어 리스트를 엑셀 파일 형태로 다운로드할 수 있습니다.
 
 ### 금칙어 정보 조회
 ![gametalk_banned_word_3_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_221213.png)
