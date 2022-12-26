@@ -20,6 +20,7 @@
 | Android, iOS | API_ID_IS_EMPTY | 203 | 서버 응답에 API ID가 누락되어 있습니다. |
 | Android, iOS | HEADER_IS_NULL | 204 | 서버 응답에 Header가 누락되어 있습니다. |
 | Android, iOS | TRANSACTION_ID_IS_EMPTY | 205 | 서버 응답에 Transaction ID가 누락되어 있습니다. |
+| Android, iOS | MESSAGE_LIMIT_EXCEEDED | 301 | 메시지의 길이가 한도를 초과하였습니다.  |
 | Android, iOS | UNKNOWN_ERROR | 999 | 알 수 없는 오류가 발생하였습니다. |
 
 
