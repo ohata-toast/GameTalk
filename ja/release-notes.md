@@ -2,7 +2,7 @@
 
 ### 1.0.0(2022.12.27)
 
-[SDK Download](http://static.toastoven.net/toastcloud/sdk_download/gametalk/GameTalkSDK_Unity.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/GameTalkSDK_Unity.zip)
 
 * 신규 상품 출시
     * 손쉽게 게임 내 채팅 기능을 구현할 수 있는 솔루션 서비스입니다. GameTalk 서비스를 이용해 실시간 채팅, 1:1 대화, 길드 채팅 등 다양한 채팅 환경을 게임 내에 구현할 수 있습니다.
