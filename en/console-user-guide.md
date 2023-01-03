@@ -13,7 +13,7 @@ Channel is a connection window that enables chats among users in GameTalk.
 Channels can be created in the console and all created channels have their own channel ID. 
 Users can subscribe to channels with an unique channel ID. Users can freely subscribe to and unsubscribe from multiple Channels.
 
-## Channel
+## Channel List
 You can retrieve/create/delete channels.
 
 ### Retrieve Channel List
@@ -194,7 +194,7 @@ You can send announcement message immediately or can choose the time you want to
 
 - **All**: search Announcements that contain any value entered in Announcement message and Announcement memo.
 - **Announcement Message**: search Announcements that contain the value entered in the Announcement message.
-- ** Announcement Memo**: search Announcements that contain the value entered in the Announcement memo.
+- **Announcement Memo**: search Announcements that contain the value entered in the Announcement memo.
 
 
 #### (3) Send Time

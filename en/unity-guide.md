@@ -23,7 +23,7 @@ This document explains GameTalk SDK for Unity environment and how to use it.
 
 * iOS 11 or higher
 
-### Spported Platforms
+### Supported Platforms
 
 * UnityEditor
     * Support several features.
@@ -551,7 +551,7 @@ static void GetChannelList(
                 * subscriberCount: Number of channel subscribers
                 * tagList
                     * tag
-                        * iid: Tag ID
+                        * id: Tag ID
                         * name: Tag name
 
 **Example**
@@ -773,7 +773,7 @@ static void GetChannelTagList(
             * totalPages: The total number of pages
         * tagList
             * tag
-                * iid: Tag ID
+                * id: Tag ID
                 * name: Tag name
 
 **Example**
@@ -843,7 +843,7 @@ static void GetSubscribedChannelList(
                 * subscriberCount: Number of channel subscribers
                 * tagList
                     * tag
-                        * iid: Tag ID
+                        * id: Tag ID
                         * name: Tag name
 
 **Example**
