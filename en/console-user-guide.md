@@ -1,387 +1,387 @@
-## Game > GameTalk > 콘솔 사용 가이드
+## Game > GameTalk > Console User Guide
 
-이 문서는 GameTalk 콘솔을 이용해 채널 및 멤버를 관리하고 언어, 금칙어, 인증 정보 등을 설정하는 방법을 설명합니다.
+This document explains how to manage channels, members and set languages, forbidden words, and authentication information by using the GameTalk console.
 
-GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
+GameTalk console consists of the following menus. 
 
-- **채널**: GameTalk에서 유저 간 채팅을 지원하는 채널 관리, 공지 메시지 발송 및 조회
-- **멤버**: GameTalk을 사용하는 유저 관리
-- **설정**: 글자 수 제한, 언어 설정, 금칙어 관리, 인증 정보 관리
+- **Channel**: Manage channels that allow users to chat, send and retrieve announcements in GameTalk
+- **Member**: Manage GameTalk users
+- **Settings**: Limitation on the number of characters, language settings, forbidden word management,authentication management
 
-## 채널
-채널은 GameTalk에서 유저 간 채팅을 지원하는 연결 창구입니다.
-채널은 콘솔에서 생성 가능하며, 생성된 모든 채널은 고유의 채널 ID가 존재합니다.
-유저는 고유한 채널 ID를 가진 채널을 구독할 수 있습니다. 여러 개의 채널을 자유롭게 구독/해지할 수 있습니다.
+## Channel
+Channel is a connection window that enables chats among users in GameTalk. 
+Channels can be created in the console and all created channels have their own channel ID. 
+Users can subscribe to channels with an unique channel ID. Users can freely subscribe to and unsubscribe from multiple Channels.
 
-## 채널 목록
-채널을 조회·생성·수정·삭제할 수 있습니다.
+## Channel List
+You can retrieve/create/delete channels.
 
-### 채널 목록 조회
+### Retrieve Channel List
 ![gametalk_channel_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_1_221213.png)
 
 
-#### (1) 검색 조건
+#### (1) Search Conditions
 
-검색 조건을 선택합니다.
+Select Search Conditions
 
-- **채널명**: 채널 생성 시 입력한 채널명으로 검색합니다. 입력한 문자열이 채널명에 포함된 채널을 검색합니다.
-- **채널 ID**: 채널 생성 시 부여된 고유 ID로 검색합니다. 입력한 문자열이 채널 ID에 포함된 채널을 검색합니다.
+- **Channel Name**: Search by channel name entered when creating the Channel. Search for the Channel whose entered string contains the channel name.
+- **Channel ID**: Search by the unique ID given during Channel creation. Search for the Channel whose entered string is in the Channel ID.
 
-#### (2) 채널 태그
-채널 태그로 검색할 수 있습니다.
+#### (2) Channel Tag
+You can search by Channel Tag
 
-- **AND**: 선택한 채널 태그를 모두 포함한 채널을 검색합니다.
-- **OR**: 선택한 채널 태그를 하나라도 포함한 채널을 검색합니다.
-
-
-#### (3) 채널 유저 수
-채널의 구독자 수가 입력한 범위에 포함된 채널을 검색합니다.
-
-#### (4) 유저 ID
-입력한 유저 ID가 구독하고 있는 채널을 검색합니다.
-
-#### (5) 채널 생성일
-채널 생성일이 입력한 범위에 포함된 채널을 검색합니다.
-
-#### (6) 마지막 메시지
-채널에 마지막으로 전달된 메시지의 전송 시간이 입력한 범위에 포함된 채널을 검색합니다.
+- **AND**: Search for Channels that contain all selected Channel Tags.
+- **OR**: Search for Channels that contain any of the selected Channel Tags.
 
 
-### 채널 생성
+#### (3) Number of Channel Users
+Search for Channels that contain the number of subscribers to the Channel in the range entered.
+
+#### (4) User ID
+Search for the Channel that the user ID you entered is subscribed to.
+
+#### (5) Channel Created Date
+Search for Channels whose channel creation date is in the range you entered.
+
+#### (6) Last Message
+Search for channel whose delivery time of the last message passed to the Channel is within the range you entered.
+
+
+### Channel Creation
 ![gametalk_channel_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_2_221213.png)
 
-#### (1) 채널명
-사용할 채널명을 입력합니다. 
-채널명은 중복이 가능하며 한글, 영어, 일부 특수 기호(-, _, :, .)만 사용할 수 있습니다.
-공백은 사용할 수 없습니다. 최대 20자까지 입력할 수 있습니다.
+#### (1) Channel Name
+Enter the channel name to use. 
+It can be duplicated and only used in Korean, English and special characters (-_:). 
+Spaces are not allowed. You can enter up to 20 characters.
 
 
-#### (2) 채널 태그
-등록된 채널 태그를 추가할 수 있습니다.
-채널에 추가된 태그는 채널을 검색할 때 사용할 수 있습니다.
+#### (2) Channel Tag
+You can add registered Channel Tag. 
+Tags added to Channels can be used to search for Channels.
 
-채널 태그는 최대 10개까지 등록할 수 있으며, 동일한 태그를 중복 설정할 수 없습니다.
+Maximum 10 Channel Tags can be registered and the same Tag cannot be duplicated.
 
-#### (3) 태그 등록
-태그를 등록할 수 있습니다.
+#### (3) Register Tag
+You can register a tag. 
 
 ![gametalk_channel_3_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_3_221213.png)
 
-### 채널 정보 조회
+### Retrieve Channel Information
 ![gametalk_channel_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_4_221213.png)
 
-#### (1) 채널 ID
-채널이 생성될 때 자동으로 부여되는 채널 고유 ID입니다.
+#### (1) Channel ID
+Channel’s own ID automatically granted when the Channel is created.
 
-#### (2) 채널명
-채널을 생성할 때 입력한 채널명입니다.
+#### (2) Channel Name
+Channel name you entered when creating the Channel.
 
-#### (3) 채널 태그
-채널을 생성할 때 추가한 채널 태그입니다.
+#### (3) Channel Tag
+Channel Tag added when creating the Channel.
 
-#### (4) 채널 유저 수
-현재 채널을 구독하고 있는 유저 수입니다.
-
-
-#### (5) 마지막 메시지 전달일
-현재 채널에 마지막으로 메시지가 전달된 시간입니다.
-
-#### (6) 수정자/수정일
-채널 정보를 수정한 사용자의 Email과 수정한 날짜가 표시됩니다.
-
-#### (7) 생성자/생성일
-채널을 생성한 사용자의 Email과 생성한 날짜가 표시됩니다.
+#### (4) Number of Channel users
+The number of users who are currently subscribing to the Channel. 
 
 
-#### (8) 수정
+#### (5) Last Message Delivered Date
+Time at which the last message was delivered to the current Channel.
+
+#### (6) Modified By / Modified Date
+Email of the user who modified the Channel information, the date and time of modification.
+
+#### (7) Created By / Created Date
+Email of the user who created the Channel, date and time of creation.
+
+
+#### (8) Modify
 ![gametalk_channel_5_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_221213.png)
 
-**수정**을 클릭하면 채널 정보를 수정할 수 있는 화면으로 이동합니다.
-채널명, 채널 태그를 수정할 수 있습니다.
+Proceed to the screen to modify channel information. 
+You can modify Channel name and Channel Tag.
 
 
-#### (9) 삭제
-채널을 삭제할 수 있습니다.
-채널은 삭제되면 다시 되돌릴 수 없습니다.
+#### (9) Delete
+You can delete Channel. 
+Once Channel is deleted, it cannot be reverted.
 
 
 
-## 채널 태그
-채널 태그를 조회·생성·수정·삭제할 수 있습니다.
-채널 조회 및 공지 메시지 전달에 도움을 주기 위해 채널 태그를 사용합니다.
+## Channel Tag
+You can retrieve/create/modify/delete Channel Tags. 
+Use Channel Tags to assist in Retrieve Channel and delivery of announcement messages.
 
-각 채널별로 사용자가 직접 채널 태그를 등록할 수 있습니다.
-채널 태그는 기본 제공되지 않으며, 원하는 태그를 만들어 설정해야 합니다.
+For each Channel, users can register their own Channel Tags. 
+Channel Tags are not provided by default and users have to  create and set the desired tags.
 
-채널당 10개의 채널 태그를 설정할 수 있으며, 중복으로 설정할 수 없습니다. 하나의 채널 태그를 여러 개의 채널에서 사용할 수 있습니다.
+You can set maximum 10 Channel Tags per Channel and cannot set duplicate Channel Tags. Single tag can be used on multiple channels.
 
-### 태그 목록 조회
+### Retrieve Tag List
 
 ![gametalk_tag_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_1_221213.png)
 
-등록한 태그를 조회할 수 있습니다.
+You can retrieve registered Tag.
 
-#### (1) 태그 검색
-태그명으로 태그를 검색할 수 있습니다.
-입력한 값이 태그명에 포함된 태그를 검색합니다.
+#### (1) Search Tag
+You can search tags by Tag name. 
+Search for Tags that contain the values you enter in Tag name.
 
 
-### 태그 등록
+### Register Tag
 ![gametalk_tag_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_2_221213.png)
 
-태그를 등록할 수 있습니다.
+You can register a tag. 
 
-#### (1) 채널 태그명
+#### (1) Channel Tag name
 
-사용할 태그명을 입력합니다.
+Enter Tag name to use.
 
-채널 태그명은 영문 대/소문자, 숫자, 일부 특수 기호(-, _, :, .)만 사용할 수 있으며, 최대 20자까지 입력할 수 있습니다.
+Channel Tag names can only contain alphabet uppercase/ lowercase and number and permissible characters (-_:). You can enter a maximum of 20 characters.
 
-태그명은 중복될 수 없습니다.
+Tag names cannot be duplicated.
 
-#### (2) 태그 설명
+#### (2) Tag Description
 
-사용할 태그 설명을 입력합니다.
+Enter description of the Tag to use. 
 
-태그 설명은 최대 100자까지 입력할 수 있습니다.
+No characters are unable to be used and can enter a maximum of 100 characters.
 
-#### (3) [+] 버튼
-[+] 버튼을 클릭하여 태그를 추가로 등록할 수 있습니다.
+#### (3) [+] Button
+You can register additional tags by clicking on Button.
 
-### 태그 정보 조회
+### Retrieve Tag Information
 
 ![gametalk_tag_3_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_3_221213.png)
 
-#### (1) 채널 태그명
-채널 태그를 등록할 때 입력한 채널 태그명입니다.
+#### (1) Channel Tag name
+Channel Tag name entered when registering Channel Tag.
 
-#### (2) 태그 설명
-채널 태그를 등록할 때 입력한 태그 설명입니다.
+#### (2) Tag Description
+Tag Description entered when registering Channel Tag.
 
-#### (3) 수정자/수정일
-채널 태그를 수정한 사용자의 Email과 수정한 날짜가 표시됩니다.
+#### (3) Modified By / Modified Date
+Email of the user who modified the Channel Tag, the date and time of modification.
 
-#### (4) 생성자/생성일
-채널 태그를 생성한 사용자의 Email과 생성한 날짜가 표시됩니다.
+#### (4) Created By / Created Date
+Email of the user who created the Channel Tag, the date and time of modification.
 
-#### (5) 수정
-![gametalk_tag_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_4_221213.png)
-채널 태그명과 태그 설명을 수정할 수 있습니다.
+#### (5) Modify
+![gametalk_tag_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_4_221213.png) 
+Can modify Channel Tag and Channel descriptions. 
 
-#### (6) 삭제
+#### (6) Delete
 
-채널 태그를 삭제할 수 있습니다.
-채널 태그는 삭제하면 다시 되돌릴 수 없습니다.
-
-
-## 공지
-원하는 채널에 공지 메시지를 전송할 수 있습니다.
-공지 메시지는 여러 개의 언어로 전송할 수 있으며, 번역이 제공됩니다.
-즉시 발송하거나 원하는 시간을 지정하여 발송할 수도 있습니다.
+You can delete Channel Tag. 
+Once Channel Tag is deleted, it cannot be reverted.
 
 
-### 공지 목록 조회
+## Announcement
+You can send announcement message to desired Channel. 
+Announcement messages can be sent in multiple languages and translation is provided. 
+You can send announcement message immediately or can choose the time you want to send.
+
+
+### Retrieve Announcements
 ![gametalk_notice_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_notice_1_221219.png)
 
-#### (1) 발송 타입
+#### (1) Send Type
 
-- **전체 발송**: 전체 발송한 공지를 검색합니다.
-- **채널 태그**: 발송 타입을 채널 태그로 설정한 공지 중 태그 조건에 맞는 채널에 발송한 항목을 검색합니다.
-- **채널명**: 발송 대상을 채널명으로 설정한 공지 중 채널명에 입력한 값이 포함된 채널에 발송한 항목을 검색합니다.
-
-
-#### (2) 내용
-
-- **전체**: 공지 메시지 또는 공지 메모에 입력한 값이 포함된 공지를 검색합니다.
-- **공지 메시지**: 공지 메시지에 입력한 값이 포함된 공지를 검색합니다.
-- **공지 메모**: 공지 메모에 입력한 값이 포함된 공지를 검색합니다.
+- **Send All**: Search for Send All Type in Send Type
+- **Channel Tag**: Search for Channel that sending type of announcement is Channel Tag and that matches the Tag search criteria you set.
+- **Channel Name**: searches for Sent Announcements that sending type of announcement is the Channel Name and that contains the Channel value that you entered.
 
 
-#### (3) 발송 시간
-- 공지를 발송한 시간이 입력한 시간 범위에 포함된 공지를 검색합니다.
+#### (2) Content
 
-#### (4) 공지 상태
-
-- **대기 중**: 발송 예약 시간 전 대기 상태입니다.
-- **취소**: 예약 공지가 발송되기 전에 사용자가 취소한 상태입니다.
-- **실패**: 공지 발송에 실패한 상태입니다.
-- **완료**: 공지 발송에 성공한 상태입니다.
+- **All**: search Announcements that contain any value entered in Announcement message and Announcement memo.
+- **Announcement Message**: search Announcements that contain the value entered in the Announcement message.
+- **Announcement Memo**: search Announcements that contain the value entered in the Announcement memo.
 
 
-#### (5) 조회 결과
-조회된 공지 결과입니다. 내용에 마우스 포인터를 올리면 전체 내용을 확인할 수 있습니다.
+#### (3) Send Time
+- Search Announcements whose time sent in the Announcements falls within the time range you entered.
+
+#### (4) Announcement Status
+
+- **Waiting**: announcement is in a waiting state because the scheduled time hasn’t come yet.
+- **Cancel**: User canceled the scheduled announcement before it was sent.
+- **Failed**: Announcement has failed to be sent.
+- **Completed**: Announcement was successfully sent.
 
 
-### 공지 발송
+#### (5) Retrieval Result
+Results of the retrieved announcement. Put the mouse cursor over the content to see the whole content.
+
+
+### Send Announcement
 ![gametalk_notice_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_notice_2_221213.png)
 
-#### (1) 발송 타입
-공지 대상 타입이 될 채널을 선택할 수 있습니다.
+#### (1) Send Type
+You can select a channel to be an announcement target type.
 
-- **전체 발송**: 모든 유저가 공지를 받을 수 있도록 전송합니다.
-- **채널 태그**: 채널 태그 조건에 맞는 채널을 구독한 유저가 공지를 받을 수 있도록 전송합니다.
-- **채널명**: 선택한 채널을 구독한 유저가 공지를 받을 수 있도록 전송합니다.
-
-
-#### (2) 공지 내용
-
-- 유저에게 전달할 공지 내용입니다.
-- **선택 언어로 번역**을 클릭하여 원하는 언어로 공지 내용을 번역할 수 있습니다.
-
-#### (3) 발송 시간
-
-- **즉시 발송**: 공지를 즉시 발송합니다.
-- **예약 발송**: 시간과 표준 시간대를 선택하여 원하는 시간에 공지를 발송합니다.
+- **Send All**: Send to all users to receive announcements.
+- **Channel Tag**: Send announcements to users who subscribed to the Channel that meets the Channel Tag criteria.
+- **Channel Name**: Send announcements to users who subscribed to the selected Channel.
 
 
-#### (4) 공지 미리보기
+#### (2) Announcement Content
+
+- Announcement Content to send to users. 
+- Click **Translate to Selected Language** button to fill the contents of the remaining languages with the selected language.
+
+#### (3) Send Time
+
+- **Send Immediately**: Send announcements immediately.
+- **Scheduled Send**: Send announcements on the desired time. Select time and time zone to send announcements at the selected time of the selected time zone.
+
+
+#### (4) Preview Announcement.
 ![gametalk_notice_3_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_notice_3_221213.png)
 
-- 작성한 공지를 확인한 후 전송합니다.
+- Check and send the created announcement.
 
 
-### 공지 상세 정보 조회
-![gametalk_notice_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_notice_4_221213.png)
-조회된 공지 목록을 선택하여 상세 정보를 조회할 수 있습니다.
+### Retrieve Announcement in Detail
+![gametalk_notice_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_notice_4_221213.png) 
+You can retrieve detailed announcement by selecting retrieved announcements.
 
-#### 공지 수정
-아직 발송되지 않은 공지는 공지 내용과 대상, 발송 시간을 수정할 수 있습니다.
+#### Modify Announcement
+Announcements that have not yet been sent can be modified for the content, target and time of sending.
 
-#### 공지 삭제
-공지를 삭제할 수 있습니다.
-삭제한 공지는 되돌릴 수 없습니다.
+#### Delete Announcement
+You can delete Announcement. 
+Once Announcement is deleted, it cannot be reverted.
 
 ---
 
-## 멤버
-GameTalk을 사용하는 유저의 정보와 접속 이력 조회, 유저 삭제 등 유저를 관리하는 기능을 제공합니다.
+## Member
+It provides managing features of users such as GameTalk user information, retrieval of access history and user deletion.
 
 
-## 멤버 조회
+## View Member
 
-GameTalk에 로그인한 유저의 정보, 접속 이력 등을 확인할 수 있습니다.
+You can check user information, connection history of users who logged in to GameTalk.
 
 ![gametalk_member_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_member_1_221213.png)
 
-### 멤버 조회
-채팅 서비스를 이용 중인 멤버의 정보를 조회합니다.
+### View Member
+Retrieve member’s information who are using the chatting service. 
 
-유저 ID로 멤버 정보를 검색할 수 있습니다.
-입력한 값과 동일한 멤버의 정보가 검색됩니다.
+You can retrieve member information by user ID. 
+Member information that is the same as the value entered is to be retrieved.
 
-#### (1) 유저 ID
-유저가 로그인한 ID입니다.
-
-
-#### (2) 언어 코드
-유저가 로그인할 때 등록한 언어 코드입니다.
-
-#### (3) 마지막 로그인
-해당 유저가 마지막으로 로그인한 일시입니다.
-
-#### (4) 유저 생성일
-해당 유저가 최초로 로그인한 일시입니다.
+#### (1) User ID
+ID the user logged in. 
 
 
-### 접속 이력
+#### (2) Language Code
+The language code the user used when logged in. 
 
-검색한 멤버의 접속 이력을 조회할 수 있습니다.
-3개월간의 접속 이력을 조회할 수 있습니다.
-접속 일시, SDK 버전, 디바이스 정보, 네트워크 타입 등을 확인할 수 있습니다.
+#### (3) Last Logged In
+The date and time that the user logged in last time. 
 
-### 멤버 상세 정보 조회
+#### (4) User Created Date
+The date and time the user first logged in. 
+
+
+### Access History
+
+You can retrieve access history of a searched member. 
+You can retrieve 3 months of access history. 
+You can check the access date and time, SDK version, device information, network type, etc.
+
+### Retrieve Member information in Detail
 ![gametalk_member_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_member_2_221213.png)
 
-조회한 멤버를 선택하여 상세 정보를 조회할 수 있습니다.
+You can select retrieved member and retrieve information in detail. 
 
 
 ---
 
-## 설정
-메시지 글자 수 제한, 공지 메시지의 언어, 금칙어, 인증 정보 등 GameTalk 설정을 관리할 수 있습니다.
+## Settings
+Limitation of the number of characters, language of announcement message, forbidden word, credentials management.
 
-## 일반
+## General
 ![gametalk_common_setting_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_common_setting_1_221213.png)
-### 메시지
-메시지 관련 설정을 할 수 있습니다.
+### Message
+You can do settings about message
 
-#### 글자 수 제한
-전송할 수 있는 메시지 글자 수를 제한할 수 있습니다.
-10~100 사이의 숫자만 입력할 수 있습니다.
+#### Character Limit
+You can limit the number of message characters that can be sent. 
+You can only enter numbers between 10 and 100.
 
-### 언어 설정
-GameTalk에서 지원하는 언어를 설정할 수 있습니다.
-언어를 설정하면 공지 메시지를 전송할 때 설정한 언어가 기본값으로 설정됩니다.
+### Language Settings
+You can set the languages supported by GameTalk. 
+When setting language, set the language you set when sending announcement message to default value. 
 
-## 금칙어 관리
+## Manage Forbidden Word
 
-메시지에 적용되는 금칙어를 관리할 수 있습니다.
+You can manage forbidden words applying to message. 
 
-### 금칙어 목록 조회
+### Retrieve Forbidden Word List
 ![gametalk_banned_word_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_1_221213.png)
 
-### 금칙어 등록
+### Register Forbidden Word
 ![gametalk_banned_word_2_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_221219.png)
 
-#### (1) 이름
-금칙어의 이름입니다.
+#### (1) Name
+Name of Forbidden Word
 
-#### (2) 적용 상태
-금칙어의 적용 여부입니다.
+#### (2) Application Status
+Whether the forbidden word is applied or not. 
 
-#### (3) 포함 규칙
+#### (3) Include Rule
 
-- **단독(Exact)**: 입력된 단어와 정확히 일치한 단어만 금칙어 처리합니다.
-- **포함(Like)**: 띄어쓰기를 기준으로 입력된 단어를 포함하고 있으면 금칙어 처리합니다.
+- **Single (Exact)**: Only words that exactly match the words entered are to be banned.
+- **Collective (Like)**: If it contains words entered based on spacing, it will be banned.
 
-#### (4) 적용 방식
+#### (4) Application Method
 
-- **\*로 치환**: 금칙어 처리된 단어를 *로 대체합니다.
-- **메시지 차단**: 메시지에 금칙어 처리된 단어가 있을 경우 메시지를 차단합니다.
+- **Replace with \***: Replace forbidden words with \*.
+- **Block Message**: Block messages if they contain forbidden words.
 
-#### (5) 금칙어
-적용할 금칙어입니다.
-쉼표(,)로 구분하며 최대 5,000바이트로 1,000개까지 등록할 수 있습니다.
-쉼표를 포함한 금칙어는 사용할 수 없습니다.
+#### (5) Forbidden Words
+It is a forbidden word to apply. 
+It is separated with commas (,) and can be registered up to 5,000 byte and 1,000 units. 
+You cannot use forbidden words including commas.
 
-#### (6) 업로드
-엑셀 문서를 첨부할 수 있습니다. 이미 입력한 내용이 있을 경우 업로드한 파일의 내용으로 교체합니다.
+#### (6) Upload
+You can attach an Excel document. If there is any content previously entered, replace it with the contents of the uploaded file.
 
-#### (7) 기본값 적용
-GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니다.
+#### (7) Apply Defaults
+You can apply Default Forbidden Word List provided by GameTalk.
 
-#### (8) Excel 저장
-현재 입력된 금칙어 목록을 엑셀 파일로 다운로드할 수 있습니다.
+#### (8) Save Excel 
+You can download the currently registered forbidden word list as an Excel file. 
 
-### 금칙어 정보 조회
+### Retrieve Forbidden Word List 
 ![gametalk_banned_word_3_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_221213.png)
 
-#### (1) 삭제
-금칙어를 삭제할 수 있습니다.
-삭제된 금칙어는 되돌릴 수 없습니다.
+#### (1) Delete
+You can delete a forbidden word. 
+Once forbidden word is deleted, it cannot be reverted.
 
-#### (2) 수정
+#### (2) Modify
 ![gametalk_banned_word_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_4_221213.png)
 
-등록된 금칙어를 수정할 수 있습니다.
+You can modify the registered banned word. 
 
 
 
-## 인증 정보
+## Authentication Information
 
-GameTalk에서 사용하는 로그인 인증 정보입니다.
-인증을 통해 허용된 사용자만 채팅을 이용할 수 있도록 합니다.
+It is login credentials used by GameTalk. 
+Make the chat available only to users who are authorized with credentials.
 
 ![gametalk_auth_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_1_221213.png)
 
 #### (1) APP ID
-활성화된 Gamebase 앱 ID입니다.
+It is activated GameBase App ID. 
 
 #### (2) Secret Key
-활성화된 Gamebase 앱의 Secret Key입니다
+It is activated GameBase App Secret Key. 
 
 
-> **[참고]**<br />
+> **[Note]**<br />
 >
-> 현재는 Gamebase 인증만 제공합니다.
+> Currently only provides Game Base Credentials. 
 
