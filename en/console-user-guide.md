@@ -40,10 +40,10 @@ Search for Channels that contain the number of subscribers to the Channel in the
 #### (4) User ID
 Search for the Channel that the user ID you entered is subscribed to.
 
-#### (5) Date of Channel Creation
+#### (5) Channel Created Date
 Search for Channels whose channel creation date is in the range you entered.
 
-#### (6) Channel Message
+#### (6) Last Message
 Search for channel whose delivery time of the last message passed to the Channel is within the range you entered.
 
 
@@ -71,29 +71,29 @@ You can register a tag.
 ![gametalk_channel_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_4_221213.png)
 
 #### (1) Channel ID
-Channel’s own ID is automatically granted when the Channel is created.
+Channel’s own ID automatically granted when the Channel is created.
 
-#### (2) Channel ID
+#### (2) Channel Name
 Channel name you entered when creating the Channel.
 
 #### (3) Channel Tag
-Channel Tag added when you created the Channel.
+Channel Tag added when creating the Channel.
 
 #### (4) Number of Channel users
 The number of users who are currently subscribing to the Channel. 
 
 
-#### (5) Last Message Delivery Date
+#### (5) Last Message Delivered Date
 Time at which the last message was delivered to the current Channel.
 
-#### (6) Modifier / Date of Modification
+#### (6) Modified By / Modified Date
 Email of the user who modified the Channel information, the date and time of modification.
 
-#### (7) Creator / Date of Creation
+#### (7) Created By / Created Date
 Email of the user who created the Channel, date and time of creation.
 
 
-#### (8) Modification
+#### (8) Modify
 ![gametalk_channel_5_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_221213.png)
 
 Proceed to the screen to modify channel information. 
@@ -106,7 +106,7 @@ Once Channel is deleted, it cannot be reverted.
 
 
 
-## Tag 
+## Channel Tag
 You can retrieve/create/modify/delete Channel Tags. 
 Use Channel Tags to assist in Retrieve Channel and delivery of announcement messages.
 
@@ -158,13 +158,13 @@ Channel Tag name entered when registering Channel Tag.
 #### (2) Tag Description
 Tag Description entered when registering Channel Tag.
 
-#### (3) Modifier / Date of Modification
+#### (3) Modified By / Modified Date
 Email of the user who modified the Channel Tag, the date and time of modification.
 
-#### (4) Creator / Date of Creation
+#### (4) Created By / Created Date
 Email of the user who created the Channel Tag, the date and time of modification.
 
-#### (5) Modification
+#### (5) Modify
 ![gametalk_tag_4_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_4_221213.png) 
 Can modify Channel Tag and Channel descriptions. 
 
@@ -190,7 +190,7 @@ You can send announcement message immediately or can choose the time you want to
 - **Channel Name**: searches for Sent Announcements that sending type of announcement is the Channel Name and that contains the Channel value that you entered.
 
 
-#### (2) Contents
+#### (2) Content
 
 - **All**: search Announcements that contain any value entered in Announcement message and Announcement memo.
 - **Announcement Message**: search Announcements that contain the value entered in the Announcement message.
@@ -253,17 +253,17 @@ Once Announcement is deleted, it cannot be reverted.
 
 ---
 
-## Members
+## Member
 It provides managing features of users such as GameTalk user information, retrieval of access history and user deletion.
 
 
-## Retrieve Members
+## View Member
 
 You can check user information, connection history of users who logged in to GameTalk.
 
 ![gametalk_member_1_221213](https://static.toastoven.net/prod_gametalk/console/gametalk_member_1_221213.png)
 
-### Retrieve Members
+### View Member
 Retrieve member’s information who are using the chatting service. 
 
 You can retrieve member information by user ID. 
@@ -276,10 +276,10 @@ ID the user logged in.
 #### (2) Language Code
 The language code the user used when logged in. 
 
-#### (3) Last Login
+#### (3) Last Logged In
 The date and time that the user logged in last time. 
 
-#### (4) Date of User creation
+#### (4) User Created Date
 The date and time the user first logged in. 
 
 
@@ -305,7 +305,7 @@ Limitation of the number of characters, language of announcement message, forbid
 ### Message
 You can do settings about message
 
-#### Limitation of the number of characters
+#### Character Limit
 You can limit the number of message characters that can be sent. 
 You can only enter numbers between 10 and 100.
 
@@ -329,7 +329,7 @@ Name of Forbidden Word
 #### (2) Application Status
 Whether the forbidden word is applied or not. 
 
-#### (3) Inclusion Rule
+#### (3) Include Rule
 
 - **Single (Exact)**: Only words that exactly match the words entered are to be banned.
 - **Collective (Like)**: If it contains words entered based on spacing, it will be banned.
@@ -347,7 +347,7 @@ You cannot use forbidden words including commas.
 #### (6) Upload
 You can attach an Excel document. If there is any content previously entered, replace it with the contents of the uploaded file.
 
-#### (7) Applying Default Value
+#### (7) Apply Defaults
 You can apply Default Forbidden Word List provided by GameTalk.
 
 #### (8) Save Excel 
