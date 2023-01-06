@@ -1,41 +1,41 @@
-## Game > GameTalk > Unity SDK 사용 가이드
+## Game > GameTalk > Unity SDK Guide
 
-GameTalk SDK for Unity 환경 및 사용 방법을 설명합니다.
+This document explains GameTalk SDK for Unity environment and how to use it.
 
 ## Environments
 
 ### Unity
 
-* 2018.4.0 이상
-    * .NET 4.x 이상
-* 하위 버전의 Unity 지원이 필요하면 [고객 센터](https://www.toast.com/kr/support/inquiry)로 문의하십시오.
+* 2018.4.0 or later
+    * .NET 4.x or later
+* Please contact [Customer Service](https://www.toast.com/kr/support/inquiry) if you need support for an earlier version of Unity.
 
-> <font color="red">**[주의]**</font><br/>
+> <font color="red">**[Caution]**</font><br/>
 >  
-> 2019년 8월 1일부터 Google Play에 게시되는 신규 앱에서는 64비트 아키텍처를 지원해야 합니다.
-> [Google Play 정책 및 64비트 지원 Unity 버전 확인](https://developer.android.com/games/optimize/64-bit#unity-developers)
+> new apps published on Google Play since August 1, 2019 must support 64-bit architecture.
+[Check Unity version supporting Google Play policy and 64 bit](https://developer.android.com/games/optimize/64-bit#unity-developers)
 
 ### Android
 
-* Android 4.4 (API 19) 이상
+* Android 4.4 (API 19) or higher
 
 ### iOS
 
-* iOS 11 이상
+* iOS 11 or higher
 
 ### Supported Platforms
 
 * UnityEditor
-    * 일부 기능만 지원합니다.
+    * Support several features.
 * Android
 * iOS
 
-선택한 플랫폼에서 지원하지 않는 GameTalk API를 호출하면 아래와 같은 오류가 콜백으로 반환되며 콜백이 없는 경우에는 Warning 로그가 출력됩니다.
+If you call a GameTalk API that is not supported by the selected platform, an error below is returned as a callback. If there is no callback, a warning log is output.
 
 * GameTalkErrorCode.NOT_SUPPORTED_ANDROID
 * GameTalkErrorCode.NOT_SUPPORTED_IOS
 
-API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니다.
+Platforms supported for each API are separated by the following icons.
 
 #### API
 
@@ -47,13 +47,13 @@ API별 지원하는 플랫폼은 아래와 같은 아이콘으로 구분합니�
 
 ### SetDebugMode
 
-* GameTalk은 경고와 오류 로그만을 표시합니다.
-* 개발에 참고할 수 있는 GameTalk 로그를 켜려면 GameTalk.SetDebugMode(true)를 호출하십시오.
+* GameTalk only displays error logs such as warning.
+* To turn on GameTalk logs for development reference, please call GameTalk.SetDebugMode(true).
 
-> <font color="red">**[주의]**</font><br/>
+> <font color="red">**[Caution]**</font><br/>
 >  
-> * GameTalk 문의 지원이 필요한 경우에는 반드시 디버그 모드를 활성화한 후, 로그를 함께 전달해야 합니다.
-> * 게임을 **릴리스**할 때는 반드시 소스 코드에서 SetDebugMode 호출을 제거하거나 파라미터를 false로 바꿔서 빌드하십시오.
+> * If you need inquiry support for GameTalk, you must enable debug mode and send logs together.
+> * Before **releasing** a game, make sure to delete SetDebugMode call from the source code or change the parameter to false before building.
 
 **API**
 
@@ -68,7 +68,7 @@ static void SetDebugMode(bool isDebugMode)
 
 **Parameter**
 
-* bool isDebugMode: 디버그 모드 활성화 여부
+* bool isDebugMode: Whether the debug mode is enabled
 
 **Example**
 
@@ -81,7 +81,7 @@ public void SetDebugModeSample(bool isDebugMode)
 
 ### IsSucceeded
 
-GameTalkError를 사용하여 API 성공 여부를 확인합니다.
+Use GameTalkError to check whether the API is succeeded.
 
 **API**
 
@@ -96,7 +96,7 @@ static bool IsSucceeded(GameTalkError error)
 
 **Parameter**
 
-* GameTalkError error: GameTalkError 객체
+* GameTalkError error: GameTalkError object
 
 **Example**
 
@@ -116,7 +116,7 @@ public void IsSucceeded(GameTalkError error)
 
 ### Initialize
 
-GameTalk SDK를 초기화합니다.
+Initalize GameTalk SDK.
 
 **API**
 
@@ -134,15 +134,15 @@ static void Initialize(
 **Parameter**
 
 * GameTalkParams.Config config
-    * appKey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱키(Appkey)
-    * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중 기준이 되는 언어 코드
+    * appKey: Appkey automatically generated when GameTalk project is activated in the console
+    * languageCode: The standard language code among multilingual translation target codes registered in the console
 * GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
     * GameTalkData.ServiceInfo
-        * maxMessageLength: 콘솔에 등록된 최대 메시지 길이
-        * gameTalkState: GameTalk 상태(**GameTalkState.cs** 참조)
-            * ACTIVATED: 활성화
-            * DEACTIVATED: 비활성화
-            * DELETED: 삭제
+        * maxMessageLength: The largest message length registered in the conosle
+        * gameTalkState: GameTalk status (Refer to**GameTalkState.cs** )
+            * ACTIVATED: Enabled
+            * DEACTIVATED: Disabled
+            * DELETED: Deleted
 
 **Example**
 
@@ -171,7 +171,7 @@ public void Initialize()
 
 ### IsInitialized
 
-GameTalk SDK의 초기화 여부를 확인합니다.
+Check whether the GameTalk SDK is initialized.
 
 **API**
 
@@ -202,7 +202,7 @@ public void IsInitialized()
 
 ### AddEvent
 
-서버 이벤트를 수신할 핸들러를 등록합니다.
+Register a handler to receive the server evnets.
 
 **API**
 
@@ -219,33 +219,33 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 
 * GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> eventHandler
     * GameTalkData.AddEvent
-        * type: 이벤트 타입(**EventType.cs** 참조)
+        * type: Event type ( Refer to**EventType.cs** )
             * PUSH_MESSAGE
-                * 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출
-                * EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용
-        * data: 이벤트 타입에 따라 달라지는 데이터
+                * It is called when a new message is received on the subscribed open channel
+                * Use EventDataParser's GetPushMessageData API to objectify and use data
+        * Data that changes according to the event type
             * PUSH_MESSAGE                
-* 이벤트 타입별 데이터
+* Data by event type
     * data(PUSH_MESSAGE)
         * messageInfoList
             * messageInfo
-                * messageId: 메시지 아이디
-                * channelId: 채널 생성 시 부여된 고유 ID
-                * senderType: 송신자 타입(**MessageSenderType.cs** 참조)
-                    * USER: 일반 사용자
-                    * ADMIN: 관리자
-                    * SYSTEM: 시스템
-                * senderId: 송신자 아이디
-                * senderNickname: 송신자 닉네임(없을 경우 senderId로 자동 설정)
-                * regDate: 메시지 전송 일시
-                * contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)
-                    * TEXT: 텍스트
-                * messageList: 송신자가 입력한 메시지와 LanguageCode를 기준으로 번역된 메시지가 함께 전달됩니다(LanguageCode는 Initialize, UpdateUserInfo API에서 변경 가능).
+                * messageId: Message ID
+                * channelId: Unique ID assigned when a channel is created
+                * senderType: Sender type ( Refer to **MessageSenderType.cs** )
+                    * USER: General user
+                    * ADMIN: Administrator
+                    * SYSTEM: System
+                * senderId: Sender ID
+                * senderNickname: Sender nicknme (If not, automatically set to senderId)
+                * regDate: Message sent date
+                * contentType: Message data type (Refer to **MessageContentType.cs**)
+                    * TEXT: Text
+                * messageList: The message entered by the sender and the translated message based on the LanguageCode are delivered together (LanguageCode can be changed in the Initialize and UpdateUserInfo APIs).
                     * message
-                        * content: 메시지
-                        * state: 메시지 상태(**MessageState.cs** 참조)
-                            * NORMAL: 정상 메시지
-                            * FILTER: 비속어로 인해 필터링된 메시지
+                        * content: Message
+                        * state: Message status ( Refer to **MessageState.cs**)
+                            * NORMAL: Normal message
+                            * FILTER: Messages filtered for profanity
 
 **Example**
 
@@ -296,7 +296,7 @@ public void AddEvent()
 
 ### RemoveEvent
 
-등록된 핸들러를 제거합니다.
+Remove a registered handler.
 
 **API**
 
@@ -320,7 +320,7 @@ public void RemoveEvent()
 
 ### Login
 
-GameTalk 로그인을 실행합니다.
+Run GameTalk login.
 
 **API**
 
@@ -338,21 +338,21 @@ static void Login(
 **Parameter**
 
 * GameTalkParams.Auth.Login param
-    * idPType: IdP (identity provider) 타입(**IdPType.cs** 참조)
-        * Gamebase를 사용 중이라면 IdPType.GAMEBASE를 입력
-    * userId: 사용자 ID
-        * Gamebase를 사용 중이라면 Gamebase User ID를 입력
-    * token: 사용자 인증 토큰
-        * Gamebase를 사용 중이라면 Gamebase 인증 토큰을 입력
+    * idPType: IdP (identity provider) type ( Refer to**IdPType.cs**)
+        * Enter IdPType.GAMEBASE when Gamebase is in use.
+    * userId: User ID
+        * Enter Gamebase User ID when Gamebase is in use
+    * token: User authenticated token
+        * Enter Gamebase-authenticated token when Gamebase is in use
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback
     * GameTalkData.Auth.Login
         * user
-            * userId: 사용자 ID
-            * valid: 사용자 상태(**UserState.cs** 참조)
-                * Y: 정상
-                * D: 삭제된 유저
-            * regDate: 사용자 가입 일시
-            * lastLoginDate: 마지막 로그인 일시
+            * userId: User ID
+            * valid: User Status ( Refer to**UserState.cs**)
+                * Y: Normal
+                * D: Deleted user
+            * regDate: User’s subscription date
+            * lastLoginDate: Last login date
 
 **Example**
 
@@ -382,7 +382,7 @@ public void Login()
 
 ### Logout
 
-GameTalk 로그아웃을 실행합니다.
+Log out of GameTalk
 
 **API**
 
@@ -420,7 +420,7 @@ public void Logout()
 
 ### UpdateUserInfo
 
-유저 정보를 갱신합니다.
+Update user information.
 
 **API**
 
@@ -438,7 +438,7 @@ static void UpdateUserInfo(
 **Parameter**
 
 * GameTalkParams.Auth.UpdateUserInfo param
-    * languageCode: 콘솔에 등록된 다국어 번역 대상 코드 중 기준이 되는 언어 코드
+    * languageCode: The standard language code among multilingual translation target codes registered in the console
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
@@ -467,7 +467,7 @@ public void UpdateUserInfo()
 
 ### Withdraw
 
-유저 정보를 삭제합니다.
+Delete the user information.
 
 **API**
 
@@ -505,7 +505,7 @@ public void Withdraw()
 
 ### GetChannelList
 
-채널 정보를 조회합니다.
+Retrieve the channel information.
 
 
 **API**
@@ -524,35 +524,35 @@ static void GetChannelList(
 **Parameter**
 
 * GameTalkParams.Channel.GetChannelList param
-    * page: 페이지 인덱스(시작 값은 0)
-    * size: 페이지 사이즈
-    * tagType: 태그 검색 조건(**TagType.cs** 참조)
-        * 기본값은 OR
-        * OR: 선택한 채널 태그를 하나라도 포함한 채널을 검색
-        * AND: 선택한 채널 태그를 모두 포함한 채널을 검색
-    * tagList: 검색 태그 리스트
+    * page: Page index (start value is 0)
+    * size: Page size
+    * tagType: Tag search condition ( Refer to **TagType.cs**)
+        * The default is OR
+        * OR: Search for channels that contain at least one selected channel tag
+        * AND: Search for channels that contain all selected channel tags
+    * tagList: Search tag list
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> callback
     * GameTalkData.Channel.GetChannelList
         * pagingInfo
-            * first: 첫 페이지 여부
-            * last: 마지막 페이지 여부
-            * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스(시작 값은 0)
-            * size: 페이지 사이즈
-            * totalElements: 총 채널 수
-            * totalPages: 총 페이지 수
+            * first: Whether it is the first page
+            * last: Whether it is the last page
+            * numberOfElements: Number of channels on the current page
+            * page: Page index (start value is 0)
+            * size: Page size
+            * totalElements: The total number of channels
+            * totalPages: The total number of pages
         * channelList
             * channelInfo
-                * id: 채널 아이디
-                * type: 채널 타입(**ChannelType.cs** 참조)
-                    * public: 오픈 채널
-                    * private: 시스템 채널, 1:1 채널
-                * name: 채널 생성 시 입력한 채널명
-                * subscriberCount: 채널 구독자 수
+                * id: Channel ID
+                * type: Channel type (Refer to**ChannelType.cs**)
+                    * public: Open channel
+                    * private: System channel, 1:1 channel
+                * name: Channel name entered when creating a channel
+                * subscriberCount: Number of channel subscribers
                 * tagList
                     * tag
-                        * id: 태그 아이디
-                        * name: 태그 명
+                        * id: Tag ID
+                        * name: Tag name
 
 **Example**
 
@@ -583,7 +583,7 @@ public void GetChannelList()
 
 ### SubscribeChannel
 
-채널을 구독합니다.
+Subscribe to a channel.
 
 **API**
 
@@ -601,7 +601,7 @@ static void SubscribeChannel(
 **Parameter**
 
 * GameTalkParams.Channel.SubscribeChannel param
-    * channelId: 채널 생성 시 부여된 고유 ID
+    * channelId: Unique ID assigned when a channel is created
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
@@ -630,7 +630,7 @@ public void SubscribeChannel()
 
 ### UnsubscribeChannel
 
-구독 중인 채널을 해제합니다.
+Unsubscribe channels in subscription.
 
 **API**
 
@@ -648,7 +648,7 @@ static void UnsubscribeChannel(
 **Parameter**
 
 * GameTalkParams.Channel.UnsubscribeChannel param
-    * channelId: 채널 생성 시 부여된 고유 ID
+    * channelId: Unique ID assigned when a channel is created
 * GameTalkCallback.ErrorDelegate callback
 
 
@@ -678,7 +678,7 @@ public void UnsubscribeChannel()
 
 ### GetSubscriber
 
-구독 중인 유저를 조회합니다.
+Retrieve users in subscription.
 
 **API**
 
@@ -696,22 +696,22 @@ static void GetSubscriber(
 **Parameter**
 
 * GameTalkParams.Channel.GetSubscriber param
-    * channelId: 채널 생성 시 부여된 고유 ID
-    * page: 페이지 인덱스(시작 값은 0)
-    * size: 페이지 사이즈
+    * channelId: Unique ID assigned when a channel is created
+    * page: Page index (start value is 0)
+    * size: Page size
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> callback
     * GameTalkData.Channel.GetSubscriber
         * pagingInfo
-            * first: 첫 페이지 여부
-            * last: 마지막 페이지 여부
-            * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스(시작 값은 0)
-            * size: 페이지 사이즈
-            * totalElements: 총 채널 수
-            * totalPages: 총 페이지 수
+            * first: Whether it is the first page
+            * last: Whether it is the last page
+            * numberOfElements: Number of channels on the current page
+            * page: Page index (start value is 0)
+            * size: Page size
+            * totalElements: The total number of channels
+            * totalPages: The total number of pages
         * userList
             * user
-                * id: 유저 아이디
+                * id: User ID
 
 **Example**
 
@@ -741,7 +741,7 @@ public void GetSubscriber()
 
 ### GetChannelTagList
 
-채널의 태그 리스트를 조회합니다.
+Retrieve the channel’s tag list.
 
 **API**
 
@@ -759,22 +759,22 @@ static void GetChannelTagList(
 **Parameter**
 
 * GameTalkParams.Channel.GetChannelTagList param
-    * page: 페이지 인덱스(시작 값은 0)
-    * size: 페이지 사이즈
+    * page: Page index (start value is 0)
+    * size: Page size
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelTagList> callback
     * GameTalkData.Channel.GetChannelTagList
         * pagingInfo
-            * first: 첫 페이지 여부
-            * last: 마지막 페이지 여부
-            * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스(시작 값은 0)
-            * size: 페이지 사이즈
-            * totalElements: 총 채널 수
-            * totalPages: 총 페이지 수
+            * first: Whether it is the first page
+            * last: Whether it is the last page
+            * numberOfElements: Number of channels on the current page
+            * page: Page index (start value is 0)
+            * size: Page size
+            * totalElements: The total number of channels
+            * totalPages: The total number of pages
         * tagList
             * tag
-                * id: 태그 아이디
-                * name: 태그 명
+                * id: Tag ID
+                * name: Tag name
 
 **Example**
 
@@ -803,7 +803,7 @@ public void GetChannelTagList()
 
 ### GetSubscribedChannelList
 
-구독 중인 채널을 조회합니다.
+Retrieve channels in subscription.
 
 **API**
 
@@ -821,30 +821,30 @@ static void GetSubscribedChannelList(
 **Parameter**
 
 * GameTalkParams.Channel.GetSubscribedChannelList param
-    * page: 페이지 인덱스(시작 값은 0)
-    * size: 페이지 사이즈
+    * page: Page index (start value is 0)
+    * size: Page size
 * GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> callback)
     * GameTalkData.Channel.GetSubscribedChannelList
         * pagingInfo
-            * first: 첫 페이지 여부
-            * last: 마지막 페이지 여부
-            * numberOfElements: 현재 페이지의 채널 수
-            * page: 페이지 인덱스(시작 값은 0)
-            * size: 페이지 사이즈
-            * totalElements: 총 채널 수
-            * totalPages: 총 페이지 수
+            * first: Whether it is the first page
+            * last: Whether it is the last page
+            * numberOfElements: Number of channels on the current page
+            * page: Page index (start value is 0)
+            * size: Page size
+            * totalElements: The total number of channels
+            * totalPages: The total number of pages
         * channelList
             * channelInfo
-                * id: 채널 아이디
-                * type: 채널 타입(**ChannelType.cs** 참조)
-                    * public: 오픈 채널
-                    * private: 시스템 채널, 1:1 채널
-                * name: 채널 생성 시 입력한 채널명
-                * subscriberCount: 채널 구독자 수
+                * id: Channel ID
+                * type: Channel type (Refer to**ChannelType.cs**)
+                    * public: Open channel
+                    * private: System channel, 1:1 channel
+                * name: Channel name entered when creating a channel
+                * subscriberCount: Number of channel subscribers
                 * tagList
                     * tag
-                        * id: 태그 아이디
-                        * name: 태그 명
+                        * id: Tag ID
+                        * name: Tag name
 
 **Example**
 
@@ -873,7 +873,7 @@ public void GetSubscribedChannelList()
 
 ### SendMessage
 
-메시지를 전송합니다.
+Send a message.
 
 **API**
 
@@ -891,11 +891,11 @@ static void SendMessage(
 **Parameter**
 
 * GameTalkParams.Message.SendMessage param
-    * senderNickname: 송신자 닉네임(없을 경우 senderId로 자동 설정)
-    * channelId: 채널 생성 시 부여된 고유 ID
-    * contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)
-        * TEXT: 텍스트
-    * content: 메시지
+    * senderNickname: Sender nicknme (If not, automatically set to senderId)
+    * channelId: Unique ID assigned when a channel is created
+    * contentType: Message data type (Refer to **MessageContentType.cs**)
+        * TEXT: Text
+    * content: Message
 * GameTalkCallback.ErrorDelegate callback
 
 **Example**
