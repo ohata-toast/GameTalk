@@ -1,6 +1,6 @@
 ## Game > GameTalk > リリースノート
 
-### 1.0.0(2022.12.27)
+### 1.0.0 (2022. 12. 27.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/GameTalkSDK_Unity.zip)
 
