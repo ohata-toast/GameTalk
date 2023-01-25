@@ -1,25 +1,24 @@
-## Game > GameTalk > 오류 코드
+## Game > GameTalk > Error Code
 
 ## Client SDK
 
 | Platform           | Error                                    | Error Code | Description                              |
 | ------------------ | ---------------------------------------- | ---------- | ---------------------------------------- |
-| Android, iOS | NOT_INITIALIZED | 1 | GameTalk SDK가 초기화되어 있지 않습니다. |
-| Android, iOS | NOT_LOGGED_IN | 2 | 로그인이 되어 있지 않습니다. |
-| Android, iOS | ALREADY_INITIALIZED | 3 | GameTalk SDK가 이미 초기화되어 있습니다.  |
-| Android, iOS | ALREADY_LOGGED_IN | 4 | 이미 로그인이 되어 있습니다. |
-| Android, iOS | INVALID_PARAMETER | 5 | 잘못된 파라미터입니다. |
-| Android, iOS | RESPONSE_TIMEOUT | 11 | 네트워크 상태가 불안정하여 응답이 없습니다. |
-| Android, iOS | NOT_SUPPORTED | 91 | 지원하지 않는 기능입니다. |
-| Android, iOS | NOT_SUPPORTED_ANDROID | 92 | Android에서 지원하지 않는 기능입니다. |
-| Android, iOS | NOT_SUPPORTED_IOS | 93 | iOS에서 지원하지 않는 기능입니다. |
-| Android, iOS | SOCKET_CONNECTION_FAILED | 101 | 소켓 연결에 실패했습니다. |
-| Android, iOS | SOCKET_CONNECTION_TIMEOUT | 102 | 소켓 연결 중 시간 초과가 발생했습니다. |
-| Android, iOS | SERVER_INTERNAL_ERROR | 201 | 서버 오류가 발생했습니다. |
-| Android, iOS | INVALID_SERVER_RESPONSE | 202 | 서버에서 잘못된 응답이 전달되었습니다. |
-| Android, iOS | API_ID_IS_EMPTY | 203 | 서버 응답에 API ID가 누락되어 있습니다. |
-| Android, iOS | HEADER_IS_NULL | 204 | 서버 응답에 Header가 누락되어 있습니다. |
-| Android, iOS | TRANSACTION_ID_IS_EMPTY | 205 | 서버 응답에 Transaction ID가 누락되어 있습니다. |
-| Android, iOS | MESSAGE_LIMIT_EXCEEDED | 301 | 메시지의 길이가 한도를 초과하였습니다.  |
-| Android, iOS | UNKNOWN_ERROR | 999 | 알 수 없는 오류가 발생했습니다. |
-
+| Android, iOS | NOT_INITIALIZED | 1 | GameTalk SDK is not initialized. |
+| Android, iOS | NOT_LOGGED_IN | 2 | You are not logged in. |
+| Android, iOS | ALREADY_INITIALIZED | 3 | GameTalk SDK is already initialized.  |
+| Android, iOS | ALREADY_LOGGED_IN | 4 | You are already logged in. |
+| Android, iOS | INVALID_PARAMETER | 5 | Invalid parameters. |
+| Android, iOS | RESPONSE_TIMEOUT | 11 | No response due to unstable network status. |
+| Android, iOS | NOT_SUPPORTED | 91 | This feature is not supported. |
+| Android, iOS | NOT_SUPPORTED_ANDROID | 92 | This feature is not supported in Android. |
+| Android, iOS | NOT_SUPPORTED_IOS | 93 | This feature is not supported in iOS. |
+| Android, iOS | SOCKET_CONNECTION_FAILED | 101 | Socket failed to connect |
+| Android, iOS | SOCKET_CONNECTION_TIMEOUT | 102 | A timeout occurred while connecting the socket. |
+| Android, iOS | SERVER_INTERNAL_ERROR | 201 | Server error occurred. |
+| Android, iOS | INVALID_SERVER_RESPONSE | 202 | Invalid response sent from the server. |
+| Android, iOS | API_ID_IS_EMPTY | 203 | API ID missing from the server response. |
+| Android, iOS | HEADER_IS_NULL | 204 | Header missing from the server response. |
+| Android, iOS | TRANSACTION_ID_IS_EMPTY | 205 | Transaction ID missing from the server response. |
+| Android, iOS | MESSAGE_LIMIT_EXCEEDED | 301 | The length of the message exceeds the limit.  |
+| Android, iOS | UNKNOWN_ERROR | 999 | Unknown error occurred. |

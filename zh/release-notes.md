@@ -1,15 +1,15 @@
-## Game > GameTalk > 릴리스 노트
+## Game > GameTalk > Release Note
 
-### 1.0.0(2022.12.27)
+### 1.0.0 (2022. 12. 27.)
 
 [SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/GameTalkSDK_Unity.zip)
 
-* 신규 상품 출시
-    * 손쉽게 게임 내 채팅 기능을 구현할 수 있는 솔루션 서비스입니다. GameTalk 서비스를 이용해 실시간 채팅, 1:1 대화, 길드 채팅 등 다양한 채팅 환경을 게임 내에 구현할 수 있습니다.
-        * 유저끼리 자유롭게 대화할 수 있는 채팅 메시지 송수신 기능을 제공합니다.
-        * API, 콘솔에서 자유롭게 채널을 생성/업데이트/삭제할 수 있습니다.
-        * 오픈채팅/그룹채팅/1:1 대화 등 필요에 따라 적합한 형태의 채팅 채널을 구현할 수 있습니다.
-        * 생성된 채널을 검색하고, 관리하고, 태그를 통해 분류할 수 있습니다.
-        * 비속어, 불법 광고를 방지하기 위한 금칙어 설정이 가능합니다.
-        * 관리자를 위한 공지 메시지 기능을 별도로 제공합니다.
-        * 채널에서 유저를 검색하고 관리할 수 있습니다.
+* New Releases
+    * GameTalk is a solution service that allows you to implement an in-app chat feature. The GameTalk service enables you to build real-time chat, one-to-one chat, guild chat, and other chatting environments in games.
+        * Provides a send and receive message feature that allows the user to communicate freely.
+        * Creates, updates, and deletes channels freely in an API or on a console.
+        * Implements a suitable type of chat channel according to your needs, such as open chat / group chat / one-to-one chat.
+        * Searches and manages created channels, and sorts them with tag.
+        * Sets forbidden words to prevent profanity and illegal advertisements.
+        * Provides an announcement message feature for administrators.
+        * Searches and manages users from a channel.

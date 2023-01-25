@@ -1,71 +1,71 @@
-## Game > GameTalk > 개요
+## Game > GameTalk > Overview
 
-손쉽게 게임 내 채팅 기능을 구현할 수 있는 솔루션 서비스입니다. GameTalk 서비스를 이용해 실시간 채팅, 1:1 대화, 길드 채팅 등 다양한 채팅 환경을 게임 내에 구현할 수 있습니다.
+GameTalk is a solution service that allows you to implement an in-app chat feature. The GameTalk service enables you to build real-time chat, one-to-one chat, guild chat, and other chatting environments in games.
 
-* 유저끼리 자유롭게 대화할 수 있는 채팅 메시지 송수신 기능을 제공합니다.
-* API, 콘솔에서 자유롭게 채널을 생성/업데이트/삭제할 수 있습니다.
-* 오픈채팅/그룹채팅/1:1 대화 등 필요에 따라 적합한 형태의 채팅 채널을 구현할 수 있습니다.
-* 생성된 채널을 검색하고, 관리하고, 태그를 통해 분류할 수 있습니다.
-* 비속어, 불법 광고를 방지하기 위한 금칙어 설정이 가능합니다.
-* 관리자를 위한 공지 메시지 기능을 별도로 제공합니다.
-* 채널에서 유저를 검색하고 관리할 수 있습니다.
+* Provides a send and receive message feature that allows the user to communicate freely.
+* Creates, updates, and deletes channels freely in an API or on a console.
+* Implements a suitable type of chat channel according to your needs, such as open chat / group chat / one-to-one chat.
+* Searches and manages created channels, and sorts them with tag.
+* Sets forbidden words to prevent profanity and illegal advertisements.
+* Provides an announcement message feature for administrators.
+* Searches and manages users from a channel.
 
 ## Key Features
 
-![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_01.png)
+![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_en_01.png)
 
-### 채널 관리
+### Channel Management 
 
-유저 간 소통할 수 있는 채팅 채널을 생성할 수 있습니다. 대규모 인원이 참여하는 전체 채널부터 작은 단위의 길드나 파티 채널, 1:1 채널까지 다양하게 생성하고 관리할 수 있습니다.
+You can create chat channels where users can communicate. Also, you can create and manage a wide range of channels, from mass participation to small-scale guild or party channels to one-to-one channel.
 
-### 메시지 송수신
+### Message Transmission and Reception
 
-게임 내 채팅 기능을 제공하여 유저들끼리 자유롭게 소통하고 커뮤니티를 이루도록 도움을 줍니다.
+Provides in-game chat features to help users communicate freely and build a community.
 
-### 유저 관리
+### User Management
 
-유저 목록을 확인하고 관리할 수 있습니다. 
+You can check and manage user lists. 
 
-### 금칙어 관리
+### Manage Forbidden Word
 
-욕설이나 각종 비속어, 서비스에 지장을 주는 광고 단어를 금칙어로 설정하고 방지할 수 있습니다. 쾌적하고 건전하게 대화할 수 있는 환경을 구성할 수 있습니다.
+You can set swear words, various slang words, and advertisements that interfere with the service as forbidden words and prevent them. You can create a pleasant and sound conversation environment.
 
-### 공지 메시지
+### Announcement Message
 
-모든 유저나 특정 채널의 유저를 대상으로 공지 메시지를 보낼 수 있습니다.
+You can send announcement messages to all users or users on a specific channel.
 
 ## Terms
 
-다음은 GameTalk 기본 용어를 정리한 것입니다.
+The following is a summary of the GameTalk basic terms.
 
-| 용어      | 설명                                       |
+| Terms      | Descriptions                                       |
 | ------- | ---------------------------------------- |
-| 채널  | 1:1, 길드, 파티, 로비 등의 타입에 관계없이 유저 간 채팅을 지원하는 연결 창구    |
-| 채널 태그  | 채널 조회 및 공지 메시지 전달에 도움을 주기 위한 태그로, 하나의 채널에 복수의 태그 설정 가능   |
-| 채널 구독    | 구독한 채널에 메시지를 보내거나, 채널에서 발생한 메시지 수신 가능     |
-| 멤버    | 특정 채널을 구독한 유저 |
-| 메시지  | 같은 채널을 구독한 유저 간에 주고받는 텍스트 메시지  |
-| 금칙어 | 콘솔에서 설정 가능한 금지 단어로, 메시지 내 금칙어가 포함된 경우 필터링 처리           |
+| Channel  | Connection window for user-to-user chat regardless of chat types such as one-to-one chat, guild, party, lobby, etc.    |
+| Channel Tag  | Channel Tags to help retrieve Channels and deliver Announcement Messages. Multiple tags can be set in one channel.    |
+| Channel Subscription    | You can send messages to subscribed Channel or receive a message from a subscribed Channel.     |
+| Members    | User who subscribed to a specific channel  |
+| Message  | Text messages exchanged between users who subscribe to the same channel  |
+| Forbidden Words | Forbidden words that can be set on the console, conducting filtering if it contains forbidden words in the message.           |
 
 
 ## Platform Guide
 
 **Client Developer's Guide**
 
-* [Unity SDK 사용 가이드](./unity-guide)
+* [Unity SDK Guide](./unity-guide)
 
 **Operator's Guide**
 
-* [콘솔 사용 가이드](./console-user-guide)
+* [Console Guide](./console-user-guide)
 
-## 서비스 이용에 관한 규제 준수 안내
+## Information on compliance with service use
 
-GameTalk 서비스를 고객의 게임에 적용할 경우 본 서비스가 포함된 게임과 관련하여 정보통신망법을 포함한 관계 법령 준수 의무를 부담하는 주체는 본 서비스를 이용하는 고객입니다. 따라서 관계 법령상의 여러 규제(정보통신망법에 따른 게시판 제공, 광고성 정보 발신 등을 포함하나 이에 한정하지 않습니다.)를 준수하는 방식으로 본 서비스, 내지는 고객의 게임이 제공될 수 있도록 내부 정책을 수립 및 운영하여 주시기 바랍니다.
+When the GameTalk service is applied to customer's game, the person responsible for compliance with the relevant laws, including the Information and Communication Network Act, is the customer who uses the service. Therefore, we ask you to establish and operate internal policy to ensure that this service, or the customer's game, is provided in compliance with various regulations under the relevant laws (including, but not limited to, the provision of bulletin boards and the transmission of advertising information under the Information and Communication Network Act.)
 
-## 개인정보 처리에 대한 안내
+## Information on Processing of Personal Information
 
-GameTalk 서비스를 이용하는 과정에서 고객은 이용자의 개인정보를 수집/이용할 수 있으며, 이 경우 고객은 개인정보보호법 등 관련 법령을 준수할 의무가 있습니다.<br>
-또한, 이 과정에서 고객과 NHN Cloud 간 개인정보 처리에 관한 업무 위수탁 관계가 발생할 수 있습니다. 위탁자의 지위에 있는 고객은 수탁사인 NHN Cloud와 별도 서면에 의한 위탁 계약을 체결할 수 있으며 고객이 운영하는 개인정보처리방침에 아래 내용을 참고하여 고지할 수 있습니다.
+In the process of using GameTalk service, customers can collect and make use of users' personal information, and in this case, customers are obligated to comply with relevant laws and regulations such as the Personal Information Protection Act.<br>
+In addition, during this process, a consignment relationship between the customer and NHN Cloud regarding the processing of personal information may occur. Customers in the position of Consignor may enter into separate written consignment contract with NHN Cloud, the consignee, and may notify the customer by referring to the following information in the personal information processing policy operated by Customer.
 
-* 수탁 업체: 엔에이치엔클라우드(주)
-* 위탁 업무의 내용: GameTalk 서비스 제공
+* Consignee: NHN Cloud Corp.
+* Contents of consigned work: Provision of GameTalk Service 
