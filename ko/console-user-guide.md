@@ -67,6 +67,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 #### (4) 태그 등록
 태그를 등록할 수 있습니다.
+
 ![gametalk_channel_3_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_3_230620.png)
 
 #### (5) 채널 자동 삭제
@@ -322,6 +323,9 @@ GameTalk에 로그인한 유저의 정보, 접속 이력, 구독 중인 채널 �
 
 검색한 멤버의 구독 중인 채널 목록을 조회할 수 있습니다.
 
+#### (8) 멤버 삭제
+
+멤버를 삭제할 수 있습니다. 삭제한 멤버는 되돌릴 수 없습니다.
 
 ---
 
