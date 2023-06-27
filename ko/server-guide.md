@@ -11,13 +11,13 @@ Server API를 사용하려면 다음과 같은 정보들이 필요합니다.
 API를 호출하기 위한 URL(서버 주소)은 다음과 같습니다. 해당 주소는 GameTalk Console 화면에서도 확인할 수 있습니다.
 > https://api-gametalk-back.nhncloudservice.com
 
-![pre_server_url_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_url_v1.0.png)
+![pre_server_url_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_url_v1.0.0.png)
 
 #### AppKey
 
 AppKey는 GameTalk Console에서 확인할 수 있습니다.
 
-![pre_server_appkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_appkey_v1.0.png)
+![pre_server_appkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_appkey_v1.0.0.png)
 
 #### SecretKey
 
@@ -25,7 +25,7 @@ AppKey는 GameTalk Console에서 확인할 수 있습니다.
 > [참고]
 > 비밀 키가 외부에 노출되어 잘못된 호출이 발생할 경우 **재생성**을 클릭해 새 비밀 키를 생성한 뒤 새로 만든 비밀 키를 사용해야 합니다.
 
-![pre_server_secretkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_secretkey_v1.0.png)
+![pre_server_secretkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_secretkey_v1.0.0.png)
 
 #### TransactionId
 
@@ -108,17 +108,19 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "channelName" : "String",
-  "channelTagIds": [1],
-  "translation": false
+  "name" : "String",
+  "nickname" : "String",
+  "tagIdList": [1],
+  "autoDelete": false
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| channelName | String | mandatory | 채널명 |
-| channelTagIds | long[] | optional | 채널 태그 |
-| translation | boolean | optional | 번역 사용 여부<br/>true, false |
+| name | String | mandatory | 채널명 |
+| nickname | String | optional | 채널 별칭 |
+| tagIdList | long[] | optional | 채널 태그 |
+| autoDelete | boolean | optional | 채널 자동 삭제 사용 여부(기본값은 false) |
 
 **[Response Body]**
 
@@ -135,18 +137,19 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     "id": "String",
     "type": "String",
     "name": "String",
-    "regUser": "String",
-    "regDate": "2023-02-23T07:31:52+09:00",
-    "translation": "String",
+    "nickname": "String",
+    "autoDelete": true,
+    "deleted": false,
     "lastMessageId": null,
-    "lastAdminMessageId": null,
     "subscriberCount": 0,
     "tagList": [
       {
         "id": 1,
         "name": "String"
       }
-    ]
+    ],
+    "regUser": "String",
+    "regDate": "2023-01-01T00:00:00+09:00"
   }
 }
 ```
@@ -156,17 +159,18 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result | Object | 채널 정보 |
 | result.appKey | String | NHN Cloud 프로젝트 AppKey |
 | result.id | String | 채널 ID |
-| result.type | String | 채널 타입 |
+| result.type | String | 채널 타입<br/>PUBLIC(일반) |
 | result.name | String | 채널명 |
-| result.regUser | String  | 생성자  |
-| result.regDate | Date  | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름.  |
-| result.translation | String | 번역 사용 여부<br/>Y(사용), N(미사용) |
-| result.lastMessageId | String | 마지막 메시지 ID |
-| result.lastAdminMessageId | String | 마지막 공지 메시지 ID |
+| result.nickname | String | 채널 별칭 |
+| result.autoDelete | boolean | 채널 자동 삭제 사용 여부 |
+| result.deleted | boolean | 채널 삭제 여부 |
+| result.lastMessageId | Long | 마지막 메시지 ID |
 | result.subscriberCount | int | 채널 구독자 수 |
 | result.tagList | Array[Object] | 채널 태그 목록 |
 | result.tagList[].id | long | 채널 태그 ID |
 | result.tagList[].name | String | 채널 태그명 |
+| result.regUser | String | 생성자  |
+| result.regDate | Date | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름.  |
 
 #### Update Channel
 
@@ -193,17 +197,17 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "channelName" : "String",
-  "channelTagIds": [1],
-  "translation": false
+  "name" : "String",
+  "tagIdList": [1],
+  "autoDelete": true
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| channelName | String | optional | 채널명 |
-| channelTagIds | long[] | optional | 채널 태그 |
-| translation | boolean | optional | 번역 사용 여부<br/>true, false |
+| name | String | optional | 채널명 |
+| tagIdList | long[] | optional | 채널 태그 |
+| autoDelete | boolean | optional | 채널 자동 삭제 사용 여부 |
 
 **[Response Body]**
 
@@ -281,9 +285,9 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | page | int | optional | 페이지 번호(기본값은 0) |
-| size | int | optional | 한 페이지 목록 개수(기본값은 10) |
+| size | int | mandatory | 한 페이지 목록 개수(최대 100) |
 | tagType | String | optional | 태그 검색 조건(기본값은 OR)<br/>OR, AND |
-| tagList | String | optional | 태그 ID 목록<br/>각 ID를 쉼표(,)로 구분(1, 2, 3...) |
+| tagIdList | String | optional | 태그 ID 목록<br/>각 ID를 쉼표(,)로 구분(1, 2, 3...) |
 
 **[Request Body]**
 
@@ -314,18 +318,21 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
       "id" : "String",
       "type" : "String",
       "name" : "String",
-      "regUser" : "String",
-      "regDate" : "2022-10-25T20:54:45+09:00",
-      "translation" : "String",
-      "lastMessageId" : null,
-      "lastAdminMessageId" : null,
+      "nickname" : "String",
+      "autoDelete" : true,
+      "deleted" : false,
+      "lastMessageId" : 1282796687576789,
       "subscriberCount" : 0,
       "tagList" : [
         {
           "id" : 1,
           "name" : "String"
         }
-      ]
+      ],
+      "regUser" : "String",
+      "regDate" : "2023-01-01T00:00:00+09:00",
+      "modUser": "String",
+      "modDate": "2023-01-01T00:00:00+09:00"
     }
   ]
 }
@@ -339,22 +346,25 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.numberOfElements | int | 조회된 페이지 목록 개수 |
 | pagingInfo.page | int | 현재 페이지 번호 |
 | pagingInfo.size | int | 페이지 목록 개수 |
-| pagingInfo.totalElements | int | 총 목록 개수 |
+| pagingInfo.totalElements | long | 총 목록 개수 |
 | pagingInfo.totalPages | int | 총 페이지 개수 |
 | channelList | Array[Object] | 채널 목록 정보 |
 | channelList[].appKey | String | NHN Cloud 프로젝트 AppKey |
 | channelList[].id | String | 채널 ID |
-| channelList[].type | String | 채널 타입 |
+| channelList[].type | String | 채널 타입<br/>PUBLIC(일반) |
 | channelList[].name | String | 채널명 |
-| channelList[].regUser | String | 생성자 |
-| channelList[].regDate | Date | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
-| channelList[].translation | String | 자동 번역 사용 여부<br/>Y, N |
-| channelList[].lastMessageId | String | 마지막 메시지 ID |
-| channelList[].lastAdminMessageId | String | 마지막 공지 메시지 ID |
+| channelList[].nickname | String | 채널 별칭 |
+| channelList[].autoDelete | boolean | 채널 자동 삭제 사용 여부 |
+| channelList[].deleted | boolean | 채널 삭제 여부 |
+| channelList[].lastMessageId | Long | 마지막 메시지 ID |
 | channelList[].subscriberCount | int | 채널 구독자 수 |
 | channelList[].tagList | Array[Object] | 채널 태그 목록 |
 | channelList[].tagList[].id | long | 채널 태그 ID |
 | channelList[].tagList[].name | String | 채널 태그명 |
+| channelList[].regUser | String | 생성자 |
+| channelList[].regDate | Date | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
+| channelList[].modUser | String | 수정자 |
+| channelList[].modDate | Date | 수정 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
 
 #### Get Channel
 
@@ -395,26 +405,27 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     "transactionId" : "String",
     "isSuccessful" : true
   },
-  "result" : [
+  "result" : {
+    "appKey" : "String",
+    "id" : "String",
+    "type" : "String",
+    "name" : "String",
+    "nickname" : "String",
+    "autoDelete" : true,
+    "deleted" : false,
+    "lastMessageId" : 1282796687576789,
+    "subscriberCount" : 0,
+    "tagList" : [
     {
-      "appKey" : "String",
-      "id" : "String",
-      "type" : "String",
-      "name" : "String",
-      "regUser" : "String",
-      "regDate" : "2022-10-25T20:54:45+09:00",
-      "translation" : "String",
-      "lastMessageId" : null,
-      "lastAdminMessageId" : null,
-      "subscriberCount" : 0,
-      "tagList" : [
-        {
-          "id" : 1,
-          "name" : "String"
-        }
-      ]
+      "id" : 1,
+      "name" : "String"
     }
-  ]
+    ],
+    "regUser" : "String",
+    "regDate" : "2023-01-01T00:00:00+09:00",
+    "modUser": "String",
+    "modDate": "2023-01-01T00:00:00+09:00"
+  }
 }
 ```
 
@@ -423,17 +434,20 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | result | Object | 채널 목록 정보 |
 | result.appKey | String | NHN Cloud 프로젝트 AppKey |
 | result.id | String | 채널 ID |
-| result.type | String | 채널 타입 |
+| result.type | String | 채널 타입<br/>PUBLIC(일반) |
 | result.name | String | 채널명 |
-| result.regUser | String | 생성자 |
-| result.regDate | Date | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
-| result.translation | String | 번역 사용 여부<br/>Y(사용), N(미사용) |
-| result.lastMessageId | String | 마지막 메시지 ID |
-| result.lastAdminMessageId | String | 마지막 공지 메시지 ID |
+| result.nickname | String | 채널 별칭 |
+| result.autoDelete | boolean | 채널 자동 삭제 사용 여부 |
+| result.deleted | boolean | 채널 삭제 여부 |
+| result.lastMessageId | Long | 마지막 메시지 ID |
 | result.subscriberCount | int | 채널 구독자 수 |
 | result.tagList | Array[Object] | 채널 태그 목록 |
 | result.tagList[].id | long | 채널 태그 ID |
 | result.tagList[].name | String | 채널 태그명 |
+| result.regUser | String | 생성자 |
+| result.regDate | Date | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
+| result.modUser | String | 수정자 |
+| result.modDate | Date | 수정 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
 
 #### Subscribe Channel
 
@@ -553,7 +567,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | page | int | optional | 페이지 번호(기본값은 0) |
-| size | int | optional | 한 페이지 목록 개수(기본값은 10) |
+| size | int | mandatory | 한 페이지 목록 개수(최대 100) |
 
 **[Request Body]**
 
@@ -582,9 +596,11 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     {
       "appKey": "String",
       "userId": "String",
-      "regDate": "2023-02-16T11:53:05+09:00",
+      "nickname": "String",
       "languageCode": "String",
-      "valid": "String"
+      "valid": "String",
+      "lastLoginDate": "2023-01-01T00:00:00+09:00",
+      "regDate": "2023-01-01T00:00:00+09:00"
     }
   ]
 }
@@ -598,14 +614,16 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.numberOfElements | int | 조회된 페이지 목록 개수 |
 | pagingInfo.page | int | 현재 페이지 번호 |
 | pagingInfo.size | int | 페이지 목록 개수 |
-| pagingInfo.totalElements | int | 총 목록 개수 |
+| pagingInfo.totalElements | long | 총 목록 개수 |
 | pagingInfo.totalPages | int  | 총 페이지 개수 |
 | userList | Array[Object] | 구독자 정보 |
 | userList[].appKey | String | NHN Cloud 프로젝트 AppKey |
 | userList[].userId | String | 유저 ID |
-| userList[].regDate | Date | 구독 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
+| userList[].nickname | String | 유저 닉네임 |
 | userList[].languageCode | String | 언어 코드 |
-| userList[].valid | String | 유저 상태<br/>Y(정상), D(탈퇴) |
+| userList[].valid | String | 유저 상태<br/>Y(정상), D(삭제) |
+| userList[].lastLoginDate | Date | 마지막 로그인 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
+| userList[].regDate | Date | 구독 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
 
 ## Tag
 
@@ -634,7 +652,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | page | int | optional | 페이지 번호(기본값은 0) |
-| size | int | optional | 한 페이지 목록 개수(기본값은 10) |
+| size | int | mandatory | 한 페이지 목록 개수(최대 100) |
 
 **[Request Body]**
 
@@ -666,9 +684,9 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
       "name": "String",
       "description": "String",
       "regUser": "String",
-      "regDate": "2023-02-20T16:25:30+09:00",
+      "regDate": "2023-01-01T00:00:00+09:00",
       "modUser": "String",
-      "modDate": "2023-02-21T18:21:02+09:00"
+      "modDate": "2023-01-01T00:00:00+09:00"
     }
   ]
 }
@@ -682,11 +700,11 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.numberOfElements | int | 조회된 페이지 목록 개수 |
 | pagingInfo.page | int | 현재 페이지 번호 |
 | pagingInfo.size | int | 페이지 목록 개수 |
-| pagingInfo.totalElements | int | 총 목록 개수 |
+| pagingInfo.totalElements | long | 총 목록 개수 |
 | pagingInfo.totalPages | int  | 총 페이지 개수 |
 | tagList | Array[Object] | 태그 목록 정보 |
 | tagList[].appKey | String | NHN Cloud 프로젝트 AppKey |
-| tagList[].id | String | 태그 ID |
+| tagList[].id | long | 태그 ID |
 | tagList[].name | String | 태그명 |
 | tagList[].description | String | 태그 설명 |
 | tagList[].regUser | String | 생성자 |
@@ -739,9 +757,9 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
     "name": "String",
     "description": "String",
     "regUser": "String",
-    "regDate": "2023-02-20T16:25:30+09:00",
+    "regDate": "2023-01-01T00:00:00+09:00",
     "modUser": "String",
-    "modDate": "2023-02-21T18:21:02+09:00"
+    "modDate": "2023-01-01T00:00:00+09:00"
   }
 }
 ```
@@ -750,7 +768,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | --- | --- | --- |
 | result | Object | 태그 정보 |
 | result.appKey | String | NHN Cloud 프로젝트 AppKey |
-| result.id | String | 태그 ID |
+| result.id | long | 태그 ID |
 | result.name | String | 태그명 |
 | result.description | String | 태그 설명 |
 | result.regUser | String | 생성자 |
@@ -785,7 +803,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| valid | String | mandatory | 유저 상태<br/>Y(정상), D(탈퇴) |
+| valid | String | optional | 유저 상태<br/>Y(정상), D(삭제) |
 
 **[Request Body]**
 
@@ -804,10 +822,11 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
   "user": {
     "appKey": "String",
     "userId": "String",
+    "nickname": "String",
     "languageCode": "String",
-    "regDate": "2023-02-16T11:53:05+09:00",
-    "lastLoginDate": "2023-02-16T17:47:12+09:00",
-    "valid": "String"
+    "valid": "String",
+    "lastLoginDate": "2023-01-01T00:00:00+09:00",
+    "regDate": "2023-01-01T00:00:00+09:00"
   }
 }
 ```
@@ -817,14 +836,15 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | user | Object | 유저 정보 |
 | user.appKey | String | NHN Cloud 프로젝트 AppKey |
 | user.userId | String | 유저 ID |
+| user.nickname | String | 유저 닉네임 |
 | user.languageCode | String | 언어 코드 |
-| user.regDate | Date | 생성 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
-| user.lastLoginDate | Date | 마지막 접속 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
-| user.valid | String | 유저 상태<br/>Y(정상), D(탈퇴) |
+| user.valid | String | 유저 상태<br/>Y(정상), D(삭제) |
+| user.lastLoginDate | Date | 마지막 로그인 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
+| user.regDate | Date | 구독 일시. 날짜와 시간은 ISO 8601 표준에 따름. |
 
-#### Withdraw
+#### Delete User Info
 
-사용자를 탈퇴시킵니다.
+사용자 정보를 삭제합니다.
 
 **[Method, URI]**
 
@@ -893,13 +913,15 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 ```json
 {
-  "languageCode" : "String"
+  "languageCode" : "String",
+  "nickname" : "String"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | languageCode | String | mandatory | 언어 코드 |
+| nickname | String | mandatory | 유저 닉네임 |
 
 **[Response Body]**
 
