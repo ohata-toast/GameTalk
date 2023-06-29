@@ -18,7 +18,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 채널을 조회·생성·수정·삭제할 수 있습니다.
 
 ### 채널 목록 조회
-![gametalk_channel_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_1_230620.png)
+![gametalk_channel_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_1_230629.png)
 
 #### (1) 검색 조건
 
@@ -49,7 +49,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 
 ### 채널 생성
-![gametalk_channel_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_2_230620.png)
+![gametalk_channel_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_2_230629.png)
 
 #### (1) 채널명
 사용할 채널명을 입력합니다. 
@@ -70,14 +70,14 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 #### (4) 태그 등록
 태그를 등록할 수 있습니다.
 
-![gametalk_channel_3_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_3_230620.png)
+![gametalk_channel_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_3_230629.png)
 
 #### (5) 채널 자동 삭제
 채널의 구독 인원이 0명이 되었을 때, 채널이 자동 삭제됩니다.
 유저의 채널 구독 해제 시점에서 채널 삭제 여부를 검사합니다.
 
 ### 채널 정보 조회
-![gametalk_channel_4_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_4_230620.png)
+![gametalk_channel_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_4_230629.png)
 
 #### (1) 채널명
 채널을 생성할 때 입력한 채널명입니다.
@@ -109,7 +109,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 #### (10) 채널 멤버
 현재 채널을 구독하고 있는 유저 수입니다.
 
-![gametalk_channel_5_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_230620.png)
+![gametalk_channel_5_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_230629.png)
 
 채널의 구독자 정보를 조회할 수 있습니다.
 
@@ -121,7 +121,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 #### (13) 수정
 
-![gametalk_channel_6_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_6_230620.png)
+![gametalk_channel_6_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_6_230629.png)
 
 **수정**을 클릭하면 채널 정보를 수정할 수 있는 화면으로 전환됩니다.
 채널명, 채널 별칭, 채널 태그, 채널 자동 삭제 여부를 수정할 수 있습니다.
@@ -143,7 +143,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 ### 태그 목록 조회
 
-![gametalk_tag_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_1_230620.png)
+![gametalk_tag_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_1_230629.png)
 
 등록한 태그를 조회할 수 있습니다.
 
@@ -153,7 +153,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 
 ### 태그 등록
-![gametalk_tag_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_2_230620.png)
+![gametalk_tag_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_2_230629.png)
 
 태그를 등록할 수 있습니다.
 
@@ -176,7 +176,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 ### 태그 정보 조회
 
-![gametalk_tag_3_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_3_230620.png)
+![gametalk_tag_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_3_230629.png)
 
 #### (1) 채널 태그명
 채널 태그를 등록할 때 입력한 채널 태그명입니다.
@@ -191,7 +191,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 채널 태그를 생성한 사용자의 Email과 생성한 날짜가 표시됩니다.
 
 #### (5) 수정
-![gametalk_tag_4_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_4_230620.png)
+![gametalk_tag_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_4_230629.png)
 채널 태그명과 태그 설명을 수정할 수 있습니다.
 
 #### (6) 삭제
@@ -208,7 +208,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 ### 알림 메시지 목록 조회
 
-![gametalk_announcement_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_1_230620.png)
+![gametalk_announcement_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_1_230629.png)
 
 #### (1) 발송 타입
 
@@ -240,7 +240,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 
 ### 알림 메시지 발송
-![gametalk_announcement_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_2_230620.png)
+![gametalk_announcement_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_2_230629.png)
 
 #### (1) 발송 타입
 채널에 전송될 알림 메시지 발송 타입을 선택할 수 있습니다.
@@ -249,7 +249,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 - **예약 발송**: 시간과 표준 시간대를 선택하여 원하는 시간에 알림 메시지를 발송합니다.
 - **반복 발송**: 시간과 표준 시간대를 선택하여 원하는 시간에 발송 횟수와 발송 간격을 선택하여 알림 메시지를 발송합니다.
 
-![gametalk_announcement_3_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_3_230620.png)
+![gametalk_announcement_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_3_230629.png)
 
 #### (2) 발송 대상
 알림 메시지 대상 타입이 될 채널을 선택할 수 있습니다.
@@ -264,22 +264,25 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 - **선택 언어로 번역**을 클릭하여 원하는 언어로 알림 메시지 내용을 번역할 수 있습니다.
 
 #### (4) 알림 메시지 미리보기
-![gametalk_announcement_4_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_4_230620.png)
+![gametalk_announcement_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_4_230629.png)
 
 - 작성한 알림 메시지를 확인한 후 전송합니다.
 
 ### 알림 메시지 상세 정보 조회
 
-![gametalk_announcement_5_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_5_230620.png)
+![gametalk_announcement_5_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_5_230629.png)
 
 조회된 알림 메시지 목록을 선택하여 상세 정보를 조회할 수 있습니다.
 반복 발송한 알림 메시지의 경우 각 알림 메시지의 발송 상태를 조회할 수 있습니다.
 
-![gametalk_announcement_6_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_6_230620.png)
+![gametalk_announcement_6_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_6_230629.png)
 
 #### 알림 메시지 발송 취소
 준비 상태와 진행 상태의 발송 되지 않은 알림 메시지는 발송 취소할 수 있습니다.
 발송 취소한 알림 메시지는 되돌릴 수 없습니다.
+
+#### 알림 메시지 복사
+등록된 알림 메시지와 동일한 입력값의 신규 알림메시지를 작성할 수 있습니다.
 
 ---
 
@@ -292,7 +295,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 채팅 서비스를 이용중인 유저의 정보, 접속 이력, 구독 중인 채널 목록 등을 확인할 수 있습니다.
 유저 ID, 유저 닉네임으로 유저 정보를 검색할 수 있습니다. 입력한 값과 동일한 유저의 정보가 검색됩니다.
 
-![gametalk_member_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_member_1_230620.png)
+![gametalk_member_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_member_1_230629.png)
 
 ### 멤버 조회
 채팅 서비스를 이용 중인 멤버의 정보를 조회합니다.
@@ -309,7 +312,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 채팅 서비스를 이용하는 유저의 정보, 접속 이력, 구독 중인 채널을 확인할 수 있습니다.
 
-![gametalk_member_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_member_2_230620.png)
+![gametalk_member_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_member_2_230629.png)
 
 #### (1) 유저 ID
 채팅 서비스를 이용중인 유저의 ID입니다.
@@ -346,7 +349,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 채팅 서비스의 메시지를 조회할 수 있습니다.
 
 ### 메시지 목록 조회
-![gametalk_message_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_message_1_230620.png)
+![gametalk_message_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_message_1_230629.png)
 
 #### (1) 검색 조건
 검색 조건을 선택합니다.
@@ -366,7 +369,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 채팅 서비스를 이용하는 유저가 신고한 메시지 정보를 조회, 신고 내역을 삭제하는 기능을 제공합니다.
 
 ### 신고 메시지 목록 조회
-![gametalk_message_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_message_2_230620.png)
+![gametalk_message_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_message_2_230629.png)
 
 #### (1) 검색 조건
 검색 조건을 선택합니다.
@@ -383,7 +386,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 삭제된 채널의 신고 메시지를 포함해서 신고 메시지를 검색합니다.
 
 ### 신고 메시지 상세 조회
-![gametalk_message_3_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_message_3_230620.png)
+![gametalk_message_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_message_3_230629.png)
 
 #### (1) 채널명 (채널 ID)
 신고 메시지의 채널명과 채널 ID입니다.
@@ -418,7 +421,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 메시지 글자 수 제한, 알림 메시지의 언어, 메시지 송신 제한, 금칙어, 인증 정보 등 GameTalk 설정을 관리할 수 있습니다.
 
 ## 일반
-![gametalk_common_setting_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_common_setting_1_230620.png)
+![gametalk_common_setting_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_common_setting_1_230629.png)
 ### 메시지
 메시지 관련 설정을 할 수 있습니다.
 
@@ -441,10 +444,10 @@ GameTalk 서비스 비활성화를 하기 위해 메시지 송신 제한을 설�
 
 ### 금칙어 목록 조회
 
-![gametalk_banned_word_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_1_230620.png)
+![gametalk_banned_word_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_1_230629.png)
 
 ### 금칙어 등록
-![gametalk_banned_word_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_230620.png)
+![gametalk_banned_word_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_230629.png)
 
 #### (1) 이름
 금칙어의 이름입니다.
@@ -464,10 +467,10 @@ GameTalk 서비스 비활성화를 하기 위해 메시지 송신 제한을 설�
 
 #### (5) 금칙어
 적용할 금칙어입니다.
-쉼표(,)로 구분하며 최대 5,000바이트로 1,000개까지 등록할 수 있습니다.
+쉼표(,)로 구분하며 최대 5,000자로 1,000개까지 등록할 수 있습니다.
 쉼표를 포함한 금칙어는 사용할 수 없습니다. 금칙어는 중복될 수 없습니다.
 
-![gametalk_banned_word_3_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_230620.png)
+![gametalk_banned_word_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_230629.png)
 
 #### (6) 업로드
 엑셀 문서를 첨부할 수 있습니다. 이미 입력한 내용이 있을 경우 업로드한 파일의 내용으로 교체합니다.
@@ -480,7 +483,7 @@ GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니�
 
 ### 금칙어 정보 조회
 
-![gametalk_banned_word_4_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_4_230620.png)
+![gametalk_banned_word_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_4_230629.png)
 
 #### (1) 삭제
 금칙어를 삭제할 수 있습니다.
@@ -488,7 +491,7 @@ GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니�
 
 #### (2) 수정
 
-![gametalk_banned_word_5_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_5_230620.png)
+![gametalk_banned_word_5_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_5_230629.png)
 
 등록된 금칙어를 수정할 수 있습니다.
 
@@ -499,7 +502,7 @@ GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니�
 GameTalk에서 사용하는 로그인 인증 정보를 조회·생성·수정·삭제할 수 있습니다.
 로그인 인증 정보를 등록한 경우 Gamebase 인증을 통해 허용된 사용자만 채팅을 이용할 수 있도록 합니다.
 
-![gametalk_auth_1_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_1_230620.png)
+![gametalk_auth_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_1_230629.png)
 
 #### (1) APP ID
 활성화된 Gamebase 앱 ID입니다.
@@ -510,7 +513,7 @@ GameTalk에서 사용하는 로그인 인증 정보를 조회·생성·수정·�
 #### (3) 인증 정보 수정
 인증 정보 App ID와 Secret Key를 수정할 수 있습니다.
 
-![gametalk_auth_2_230620](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_2_230620.png)
+![gametalk_auth_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_2_230629.png)
 
 #### (4) 인증 정보 삭제
 인증 정보를 삭제할 수 있습니다.
