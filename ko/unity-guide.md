@@ -349,7 +349,7 @@ static void MappingUserInfo(
 
 | GameTalkData.MappingUserInfo | 설명 |
 | --- | --- |
-| user | **사용자 정보**<br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- appKey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱키(Appkey)<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어코드<br>- lastLoginDate: 마지막 로그인 일시 |
+| user | **사용자 정보**<br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어코드<br>- lastLoginDate: 마지막 로그인 일시 |
 
 **Example**
 
@@ -584,7 +584,7 @@ static void GetChannelList(
 | GameTalkData.Channel.GetChannelList | 설명 |
 | --- | --- |
 | pagingInfo | **페이징 정보**<br>- first: 첫 페이지 여부<br>- last: 마지막 페이지 여부<br>- numberOfElements: 현재 페이지의 채널 수<br>- page: 페이지 인덱스<br>- size: 페이지 사이즈<br>- totalElements: 총 채널 수<br>- totalPages: 총 페이지 수 |
-| channelList | **채널 리스트**<br>- appkey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱키(Appkey)<br>- id: 채널 아이디<br>- type: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- name: 채널 생성 시 입력한 채널명<br>- nickname: 채널 별칭<br>- subscriberCount: 채널 구독자 수<br>- lastMessageId: 마지막 메시지 아이디<br>- autoDelete: 채널 자동삭제 여부<br>- deleted: 채널 삭제상태(true면 삭제된 채널)<br>- tagList: 태크 리스트<br>    - <span style="color:#222222"></span>id: 태그 아이디<br>    - name: 태그 명 |
+| channelList | **채널 리스트**<br>- id: 채널 아이디<br>- type: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- name: 채널 생성 시 입력한 채널명<br>- nickname: 채널 별칭<br>- subscriberCount: 채널 구독자 수<br>- lastMessageId: 마지막 메시지 아이디<br>- autoDelete: 채널 자동삭제 여부<br>- deleted: 채널 삭제상태(true면 삭제된 채널)<br>- tagList: 태크 리스트<br>    - <span style="color:#222222"></span>id: 태그 아이디<br>    - name: 태그 명 |
 
 **Example**
 
@@ -756,7 +756,7 @@ static void GetSubscriber(
 | GameTalkData.Channel.GetSubscriber | 설명 |
 | --- | --- |
 | pagingInfo | **페이징 정보**<br>- first: 첫 페이지 여부<br>- last: 마지막 페이지 여부<br>- numberOfElements: 현재 페이지의 채널 수<br>- page: 페이지 인덱스<br>- size: 페이지 사이즈<br>- totalElements: 총 채널 수<br>- totalPages: 총 페이지 수 |
-| userList | **사용자 리스트** <br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- appKey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱키(Appkey)<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어코드<br>- lastLoginDate: 마지막 로그인 일시 |
+| userList | **사용자 리스트** <br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어코드<br>- lastLoginDate: 마지막 로그인 일시 |
 
 **Example**
 
@@ -883,7 +883,7 @@ static void GetSubscribedChannelList(
 | GameTalkData.Channel.GetSubscribedChannelList | 설명 |
 | --- | --- |
 | pagingInfo | **페이징 정보**<br>- first: 첫 페이지 여부<br>- last: 마지막 페이지 여부<br>- numberOfElements: 현재 페이지의 채널 수<br>- page: 페이지 인덱스<br>- size: 페이지 사이즈<br>- totalElements: 총 채널 수<br>- totalPages: 총 페이지 수 |
-| channelList | **채널 리스트**<br>- appkey: 콘솔에서 GameTalk 프로젝트 활성화 시 자동 생성되는 앱키(Appkey)<br>- id: 채널 아이디<br>- type: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- name: 채널 생성 시 입력한 채널명<br>- nickname: 채널 별칭<br>- subscriberCount: 채널 구독자 수<br>- lastMessageId: 마지막 메시지 아이디<br>- autoDelete: 채널 자동삭제 여부<br>- deleted: 채널 삭제상태(true면 삭제된 채널)<br>- tagList: 태크 리스트<br>    - <span style="color:#222222"></span>id: 태그 아이디<br>    - name: 태그 명 |
+| channelList | **채널 리스트**<br>- id: 채널 아이디<br>- type: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- name: 채널 생성 시 입력한 채널명<br>- nickname: 채널 별칭<br>- subscriberCount: 채널 구독자 수<br>- lastMessageId: 마지막 메시지 아이디<br>- autoDelete: 채널 자동삭제 여부<br>- deleted: 채널 삭제상태(true면 삭제된 채널)<br>- tagList: 태크 리스트<br>    - <span style="color:#222222"></span>id: 태그 아이디<br>    - name: 태그 명 |
 
 **Example**
 
