@@ -975,7 +975,7 @@ public void SendMessageExample()
 
 > <font color="red">**[주의]**</font><br/>
 > 
-> 최신 메시지를 포함하여,<span>최대 50개</span>의 메시지를 조회할 수 있습니다.
+> 최신 메시지를 포함하여, <span>최대 50개</span>의 메시지를 조회할 수 있습니다.
 
 **API**
 
