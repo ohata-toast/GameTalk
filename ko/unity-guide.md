@@ -238,7 +238,7 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 
 | GameTalkData.AddEvent | 설명 |
 | --- | --- |
-| type | 이벤트 타입(**EventType.cs** 참조)<br>- CHANGE_NETWORK_STATE: 네트워크가 중단되거나, 재연결되었을 때 이벤트를 수신<br>- PUSH_MESSAGE: 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용<br>- PUSH_TO_ALL_USERS: 전체 발송 알림메시지가 수신되면 호출<br>  - EventDataParser의 GetPushToAllUsersData API를 사용하여 data를 객체화하여 사용 |
+| type | 이벤트 타입(**GameTalkEventType.cs** 참조)<br>- CHANGE_NETWORK_STATE: 네트워크가 중단되거나, 재연결되었을 때 이벤트를 수신<br>- PUSH_MESSAGE: 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용<br>- PUSH_TO_ALL_USERS: 전체 발송 알림메시지가 수신되면 호출<br>  - EventDataParser의 GetPushToAllUsersData API를 사용하여 data를 객체화하여 사용 |
 | data | 이벤트 타입에 따라 달라지는 데이터 (아래 세부 데이터 참조) |
 | data(CHANGE_NETWORK_STATE) | 네트워크 상태(**NetworkState.cs** 참조)<br>- DISCONNECTED: 네트워크 연결 해제<br>- RECONNECTED: 네트워크 재연결 |
 | data(PUSH_MESSAGE) | - channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
@@ -255,14 +255,14 @@ public void AddEventExample()
         {
             switch (eventData.type)
             {
-                case EventType.CHANGE_NETWORK_STATE:
+                case GameTalkEventType.CHANGE_NETWORK_STATE:
                 {
                     // NetworkState.DISCONNECTED or NetworkState.RECONNECTED
                     Debug.Log(string.Format("Change networkState:{0}", eventData.data));
 
                     break;
                 }
-                case EventType.PUSH_MESSAGE:
+                case GameTalkEventType.PUSH_MESSAGE:
                 {
                     // It is called when a new message is received on the subscribed open channel
                     // Use EventDataParser's GetPushMessageData API to objectify and use data.
@@ -270,7 +270,7 @@ public void AddEventExample()
 
                     break;
                 }
-                case EventType.PUSH_TO_ALL_USERS:
+                case GameTalkEventType.PUSH_TO_ALL_USERS:
                 {
                     // Use EventDataParser's GetPushToAllUsersData API to objectify and use data
                     Debug.Log(string.Format("An event has been received. data:{0}", EventDataParser.GetPushToAllUsersData(eventData.data)));
