@@ -935,7 +935,6 @@ static void SendMessage(
 
 | GameTalkParams.Message.SendMessage | 필수 | 설명 |
 | --- | --- | --- |
-| senderNickname | X | 송신자 닉네임 |
 | channelId | O | 채널 생성 시 부여된 고유 ID |
 | contentType | O | 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>- TEXT: 텍스트 |
 | content | O | 메시지 |
@@ -953,7 +952,6 @@ public void SendMessageExample()
 {
     var param = new GameTalkParams.Message.SendMessage
     {
-        senderNickname = "[SENDER_NICKNAME]",
         channelId = "[CHANNEL_ID]",
         contentType = MessageContentType.TEXT,
         content = "[MESSAGE]"
