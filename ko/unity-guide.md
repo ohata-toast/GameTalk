@@ -1138,6 +1138,7 @@ static void ReportMessage(
 | GameTalkParams.Message.ReportMessage | 필수 | 설명 |
 | --- | --- | --- |
 | messageId | O | 신고 대상 메세지 아이디 |
+| messageLanguageCode | O | 신고 대상 메세지 언어코드 |
 | channelId | O | 채널 생성 시 부여된 고유 ID |
 | reporterNickname | X | 신고자 별명 |
 | reason | X | 신고 사유 |
@@ -1156,6 +1157,7 @@ public void ReportMessageExample()
     var param = new GameTalkParams.Message.ReportMessage
     {
         channelId = "[CHANNEL_ID]",
+        messageLanguageCode = LanguageCode.Korean,
         messageId = 123456,
         reporterNickname = "[REPORTER_NICKNAME]",
         reason = "[REASON]"
