@@ -339,7 +339,7 @@ static void MappingUserInfo(
 | --- | --- | --- |
 | idPType | X | IdP (identity provider) 타입(**IdPType.cs** 참조)<br>- GAMEBASE: Gamebase<br>Gamebase를 사용 중이라면 IdPType.GAMEBASE를 입력 |
 | userId | O | 사용자 ID<br>Gamebase를 사용 중이라면 Gamebase User ID를 입력 |
-| token | O | 사용자 인증 토큰<br>Gamebase를 사용 중이라면 Gamebase 인증 토큰을 입력 |
+| token | X | 사용자 인증 토큰<br>Gamebase 인증을 사용 중이라면 Gamebase 인증 토큰을 입력(토큰이 생략되면 서버에서 오류가 반환)<br>Gamebase 인증을 사용하지 않는다면 생략 가능 |
 | nickname | X | 사용자 별명 |
 
 **콜백**
