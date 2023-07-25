@@ -1,4 +1,4 @@
-## Game > GameTalk > Unity > 릴리스 노트
+## Game > GameTalk > 릴리스 노트 > Unity
 
 ### 1.1.0 (2023. 08. 17.)
 
