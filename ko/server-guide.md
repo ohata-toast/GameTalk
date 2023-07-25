@@ -1,4 +1,4 @@
-## Game > GameTalk > API v1.0 가이드
+## Game > GameTalk > API v1.1 가이드
 
 GameTalk Server API는 RESTful 형식으로 다음과 같은 API를 제공합니다.
 
@@ -90,9 +90,9 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 **[Method, URI]**
 
-| Method | URI |
-| --- | --- |
-| POST | /game-talk/v1.0/appkeys/{appKey}/channels |
+| Method | URI                                       |
+| --- |-------------------------------------------|
+| POST | /game-talk/v1.1/appkeys/{appKey}/channels |
 
 **[Request Header]**
 
@@ -180,7 +180,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| PUT | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId} |
+| PUT | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId} |
 
 **[Request Header]**
 
@@ -232,7 +232,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| DELETE | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId} |
+| DELETE | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId} |
 
 **[Request Header]**
 
@@ -270,7 +270,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/channels |
+| GET | /game-talk/v1.1/appkeys/{appKey}/channels |
 
 **[Request Header]**
 
@@ -376,7 +376,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId} |
+| GET | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId} |
 
 **[Request Header]**
 
@@ -459,7 +459,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| POST | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId}/subscribes |
+| POST | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId}/subscribes |
 
 **[Request Header]**
 
@@ -505,7 +505,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| DELETE | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId}/subscribes |
+| DELETE | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId}/subscribes |
 
 **[Request Header]**
 
@@ -551,7 +551,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId}/subscribes |
+| GET | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId}/subscribes |
 
 **[Request Header]**
 
@@ -637,7 +637,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/tags |
+| GET | /game-talk/v1.1/appkeys/{appKey}/tags |
 
 **[Request Header]**
 
@@ -722,7 +722,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/tags/{tagId} |
+| GET | /game-talk/v1.1/appkeys/{appKey}/tags/{tagId} |
 
 **[Request Header]**
 
@@ -788,7 +788,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/users/{userId} |
+| GET | /game-talk/v1.1/appkeys/{appKey}/users/{userId} |
 
 **[Request Header]**
 
@@ -850,7 +850,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| DELETE | /game-talk/v1.0/appkeys/{appKey}/users/{userId} |
+| DELETE | /game-talk/v1.1/appkeys/{appKey}/users/{userId} |
 
 **[Request Header]**
 
@@ -892,7 +892,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Method | URI |
 | --- | --- |
-| PUT | /game-talk/v1.0/appkeys/{appKey}/users/{userId} |
+| PUT | /game-talk/v1.1/appkeys/{appKey}/users/{userId} |
 
 **[Request Header]**
 
