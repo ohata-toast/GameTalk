@@ -265,7 +265,7 @@ public void AddEventExample()
                     if (eventData.data.Equals(NetworkState.RECONNECTED) is true)
                     {
                         // 네트워크 문제로 수신하지 못한 메시지를 조회합니다.
-                        CheckUnreceivedMessages();
+                        CheckUnreceivedMessages(lastReceivedMessageId);
                     }
 
                     break;
@@ -309,12 +309,12 @@ public void AddEventExample()
     });
 }
 
-private void CheckUnreceivedMessages()
+private void CheckUnreceivedMessages(long lastReceivedMessageId)
 {
     var param = new GameTalkParams.Message.GetMessage
     {
         // 마지막으로 수신한 메시지의 ID입니다.
-        messageId = 123456789,
+        messageId = lastReceivedMessageId,
         nextCount = 50,
         channelId = "{CURRENT_CHANNEL_ID}"
     };
@@ -326,11 +326,24 @@ private void CheckUnreceivedMessages()
             if (message.nextMessageList.Count == 0)
             {
                 // 수신하지 못한 메시지가 없습니다.
+
+                //------------------------------
+                //  게임 처리 로직
+                //------------------------------
+                // PUSH_MESSAGE 이벤트로 수신된 메시지를 UI에 표시합니다.
             }
             else
             {
                 // 수신하지 못한 메시지가 있습니다.
-                // 게임 UI에 해당 메시지들을 표시합니다.
+                // PUSH_MESSAGE 이벤트로 수신된 메시지를 UI에 표시할 경우에는 메시지의 순서가 맞지 않는 문제가 발생할 수 있으므로,
+                // 해당 처리가 끝날 때까지 수신된 메시지를 보관합니다.
+
+                //------------------------------
+                //  게임 처리 로직
+                //------------------------------
+                // 1. PUSH_MESSAGE 이벤트로 수신된 메시지를 보관합니다. (UI 표시 X)
+                // 2. 게임 UI에 GetMessage API로 조회된 메시지들을 표시합니다.
+                // 3. 수신하지 못한 메시지가 없을 때까지 CheckUnreceivedMessages 메서드를 재귀 호출합니다.
             }
         }
         else
