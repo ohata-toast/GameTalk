@@ -12,7 +12,7 @@
 
 ## Key Features
 
-![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_kr_v1.0.0.png)
+![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_kr_v1.1.0.png)
 
 ### 채널 관리
 
