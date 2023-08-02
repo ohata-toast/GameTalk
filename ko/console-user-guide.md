@@ -109,7 +109,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 #### (10) 채널 멤버
 현재 채널을 구독하고 있는 유저 수입니다.
 
-![gametalk_channel_5_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_230629.png)
+![gametalk_channel_5_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_230731.png)
 
 채널의 구독자 정보를 조회할 수 있습니다.
 
@@ -143,7 +143,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 ### 태그 목록 조회
 
-![gametalk_tag_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_1_230629.png)
+![gametalk_tag_1_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_1_230731.png)
 
 등록한 태그를 조회할 수 있습니다.
 
@@ -161,7 +161,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 사용할 태그명을 입력합니다.
 
-채널 태그명은 영문 대/소문자, 숫자, 일부 특수 기호(-, _, :, .)만 사용할 수 있으며, 최대 20자까지 입력할 수 있습니다.
+채널 태그명은 영어, 숫자 및 허용된 일부 기호(_, -, :, .)만 사용할 수 있으며, 최대 20자까지 입력할 수 있습니다.
 
 태그명은 중복될 수 없습니다.
 
@@ -208,7 +208,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 ### 알림 메시지 목록 조회
 
-![gametalk_announcement_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_1_230629.png)
+![gametalk_announcement_1_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_1_230731.png)
 
 #### (1) 발송 타입
 
@@ -232,6 +232,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 - **준비**: 발송 예약 시간 전 준비 상태입니다.
 - **진행**: 일림 메시지 발송을 진행 중인 상태입니다.
 - **취소**: 예약 알림 메시지가 발송되기 전에 사용자가 취소한 상태입니다.
+- **실패**: 알림 메시지 발송이 실패한 상태입니다.
 - **완료**: 알림 메시지 발송에 성공한 상태입니다.
 
 
@@ -240,7 +241,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 
 ### 알림 메시지 발송
-![gametalk_announcement_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_2_230629.png)
+![gametalk_announcement_2_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_2_230731.png)
 
 #### (1) 발송 타입
 채널에 전송될 알림 메시지 발송 타입을 선택할 수 있습니다.
@@ -249,7 +250,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 - **예약 발송**: 시간과 표준 시간대를 선택하여 원하는 시간에 알림 메시지를 발송합니다.
 - **반복 발송**: 시간과 표준 시간대를 선택하여 원하는 시간에 발송 횟수와 발송 간격을 선택하여 알림 메시지를 발송합니다.
 
-![gametalk_announcement_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_3_230629.png)
+![gametalk_announcement_3_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_3_230731.png)
 
 #### (2) 발송 대상
 알림 메시지 대상 타입이 될 채널을 선택할 수 있습니다.
@@ -270,12 +271,12 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 ### 알림 메시지 상세 정보 조회
 
-![gametalk_announcement_5_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_5_230629.png)
+![gametalk_announcement_5_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_5_230731.png)
 
 조회된 알림 메시지 목록을 선택하여 상세 정보를 조회할 수 있습니다.
 반복 발송한 알림 메시지의 경우 각 알림 메시지의 발송 상태를 조회할 수 있습니다.
 
-![gametalk_announcement_6_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_6_230629.png)
+![gametalk_announcement_6_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_6_230731.png)
 
 #### 알림 메시지 발송 취소
 준비 상태와 진행 상태의 발송 되지 않은 알림 메시지는 발송 취소할 수 있습니다.
@@ -333,7 +334,7 @@ GameTalk 콘솔은 다음의 메뉴로 구성되어 있습니다.
 
 검색한 유저의 접속 이력을 조회할 수 있습니다.
 1개월간의 접속 이력을 조회할 수 있습니다.
-접속 일시, 닉네임, 언어코드, SDK 버전, 앱 버전, 디바이스 정보, 네트워크 타입 등을 확인할 수 있습니다.
+접속 일시, 닉네임, 언어코드, SDK 버전, 디바이스 정보, 네트워크 타입 등을 확인할 수 있습니다.
 
 #### (7) 구독 중인 채널
 
@@ -448,7 +449,7 @@ GameTalk 서비스 비활성화를 하기 위해 메시지 송신 제한을 설�
 ![gametalk_banned_word_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_1_230629.png)
 
 ### 금칙어 등록
-![gametalk_banned_word_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_230629.png)
+![gametalk_banned_word_2_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_230731.png)
 
 #### (1) 이름
 금칙어의 이름입니다.
@@ -471,7 +472,7 @@ GameTalk 서비스 비활성화를 하기 위해 메시지 송신 제한을 설�
 쉼표(,)로 구분하며 최대 5,000자로 1,000개까지 등록할 수 있습니다.
 쉼표를 포함한 금칙어는 사용할 수 없습니다. 금칙어는 중복될 수 없습니다.
 
-![gametalk_banned_word_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_230629.png)
+![gametalk_banned_word_3_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_230731.png)
 
 #### (6) 업로드
 엑셀 문서를 첨부할 수 있습니다. 이미 입력한 내용이 있을 경우 업로드한 파일의 내용으로 교체합니다.
@@ -484,7 +485,7 @@ GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니�
 
 ### 금칙어 정보 조회
 
-![gametalk_banned_word_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_4_230629.png)
+![gametalk_banned_word_4_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_4_230731.png)
 
 #### (1) 삭제
 금칙어를 삭제할 수 있습니다.
@@ -492,7 +493,7 @@ GameTalk에서 제공하는 기본 금칙어 목록을 적용할 수 있습니�
 
 #### (2) 수정
 
-![gametalk_banned_word_5_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_5_230629.png)
+![gametalk_banned_word_5_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_5_230731.png)
 
 등록된 금칙어를 수정할 수 있습니다.
 

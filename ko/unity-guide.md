@@ -238,9 +238,9 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 
 | GameTalkData.AddEvent | 설명 |
 | --- | --- |
-| type | 이벤트 타입(**GameTalkEventType.cs** 참조)<br>- CHANGE_NETWORK_STATE: 네트워크가 중단되거나, 재연결되었을 때 이벤트를 수신<br>- PUSH_MESSAGE: 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용<br>- PUSH_TO_ALL_USERS: 전체 발송 알림메시지가 수신되면 호출<br>  - EventDataParser의 GetPushToAllUsersData API를 사용하여 data를 객체화하여 사용<br>- PUSH_DELETE_USER: GameTalk을 이용 중인 사용자의 채널 구독 정보를 콘솔 및 server API를 통하여 해제할 경우 호출<br>  - EventDataParser의 GetPushDeleteUserData API를 사용하여 data를 객체화하여 사용 |
+| type | 이벤트 타입(**GameTalkEventType.cs** 참조)<br>- CHANGE_NETWORK_STATE: 네트워크가 중단되거나, 재연결되었을 때 이벤트를 수신<br>- PUSH_MESSAGE: 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용<br>- PUSH_TO_ALL_USERS: 전체 발송 알림메시지가 수신되면 호출<br>  - EventDataParser의 GetPushToAllUsersData API를 사용하여 data를 객체화하여 사용<br>- PUSH_DELETE_USER: GameTalk을 이용 중인 사용자의 채널 구독 정보를 콘솔 및 server API를 통하여 해제할 경우 호출<br>  - 이벤트가 수신되면 게임 로직 처리 후 `GameTalk.DeleteUserInfo` API를 호출하여 서버와 상태 값을 동기화해야 합니다.<br>  - 사용자는 모든 채널의 구독 상태가 해지되므로 채널을 다시 구독하기 전까지는 모든 메시지 송수신이 불가능합니다.<br>  - EventDataParser의 GetPushDeleteUserData API를 사용하여 data를 객체화하여 사용 |
 | data | 이벤트 타입에 따라 달라지는 데이터 (아래 세부 데이터 참조) |
-| data(CHANGE_NETWORK_STATE) | 네트워크 상태(**NetworkState.cs** 참조)<br>- DISCONNECTED: 네트워크 연결 해제<br>- RECONNECTED: 네트워크 재연결 |
+| data(CHANGE_NETWORK_STATE) | 네트워크 상태(**NetworkState.cs** 참조)<br>- DISCONNECTED: 네트워크 연결 해제<br>- RECONNECTED: 네트워크 재연결<br>  - 네트워크 문제로 수신하지 못한 메시지를 조회해야 합니다.(Example 참조) |
 | data(PUSH_MESSAGE) | - channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
 | data(PUSH_TO_ALL_USERS) | PUSH_MESSAGE 이벤트 데이터에서 channelId, channelType만 없고, 모두 동일 |
 | data(PUSH_DELETE_USER) | - userId: 사용자 ID |
@@ -258,34 +258,112 @@ public void AddEventExample()
             {
                 case GameTalkEventType.CHANGE_NETWORK_STATE:
                 {
+                    // 네트워크 상태가 변경되면 호출됩니다.
                     // NetworkState.DISCONNECTED or NetworkState.RECONNECTED
                     Debug.Log(string.Format("Change networkState:{0}", eventData.data));
+
+                    if (eventData.data.Equals(NetworkState.RECONNECTED) is true)
+                    {
+                        // 네트워크 문제로 수신하지 못한 메시지를 조회합니다.
+                        CheckUnreceivedMessages(lastReceivedMessageId);
+                    }
+
                     break;
                 }
                 case GameTalkEventType.PUSH_MESSAGE:
                 {
                     // It is called when a new message is received on the subscribed open channel
-                    // Use EventDataParser's GetPushMessageData API to objectify and use data.
-                    Debug.Log(string.Format("PUSH_MESSAGE event was received. data:{0}", EventDataParser.GetPushMessageData(eventData.data)));
+                    // Use EventDataParser's GetEventData<GameTalkData.Message.PushMessage> API to objectify and use data.
+                    Debug.Log(string.Format(
+                        "An event has been received. data:{0}",
+                        EventDataParser.GetEventData<GameTalkData.Message.PushMessage>(eventData.data)));
                     break;
                 }
                 case GameTalkEventType.PUSH_TO_ALL_USERS:
                 {
-                    // Use EventDataParser's GetPushToAllUsersData API to objectify and use data
-                    Debug.Log(string.Format("PUSH_TO_ALL_USERS event was received. data:{0}", EventDataParser.GetPushToAllUsersData(eventData.data)));
+                    // 전체 발송 알림메시지가 수신되면 호출
+                    // Use EventDataParser's GetEventData<GameTalkData.Message.PushToAllUsers> API to objectify and use data
+                    Debug.Log(string.Format(
+                        "An event has been received. data:{0}",
+                        EventDataParser.GetEventData<GameTalkData.Message.PushToAllUsers>(eventData.data)));
                     break;
                 }
                 case GameTalkEventType.PUSH_DELETE_USER:
                 {
-                    // Use EventDataParser's GetPushDeleteUserData API to objectify and use data
-                    Debug.Log(string.Format("PUSH_DELETE_USER event was received. data:{0}", EventDataParser.GetPushDeleteUserData(eventData.data)));
+                    // GameTalk을 이용 중인 사용자의 채널 구독 정보를 콘솔 및 server API를 통하여 해제할 경우 호출
+                    // Use EventDataParser's GetEventData<GameTalkData.PushDeleteUser> API to objectify and use data
+                    Debug.Log(string.Format(
+                        "PUSH_DELETE_USER event was received. data:{0}",
+                        EventDataParser.GetEventData<GameTalkData.PushDeleteUser>(eventData.data)));
+
+                    // 서버와 클라이언트 상태를 동기화하려면 DeleteUserInfo API를 호출해야 합니다.
+                    DeleteUserInfo();
                     break;
                 }
             }
         }
         else
         {
-            Debug.Log(string.Format("A failed event was received. error:{0}", error));
+            Debug.Log(string.Format("error:{0}", error));
+        }
+    });
+}
+
+private void CheckUnreceivedMessages(long lastReceivedMessageId)
+{
+    var param = new GameTalkParams.Message.GetMessage
+    {
+        // 마지막으로 수신한 메시지의 ID입니다.
+        messageId = lastReceivedMessageId,
+        nextCount = 50,
+        channelId = "{CURRENT_CHANNEL_ID}"
+    };
+
+    GameTalk.Message.GetMessage(param, (message, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            if (message.nextMessageList.Count == 0)
+            {
+                // 수신하지 못한 메시지가 없습니다.
+
+                //------------------------------
+                //  게임 처리 로직
+                //------------------------------
+                // PUSH_MESSAGE 이벤트로 수신된 메시지를 UI에 표시합니다.
+            }
+            else
+            {
+                // 수신하지 못한 메시지가 있습니다.
+                // PUSH_MESSAGE 이벤트로 수신된 메시지를 UI에 표시할 경우에는 메시지의 순서가 맞지 않는 문제가 발생할 수 있으므로,
+                // 해당 처리가 끝날 때까지 수신된 메시지를 보관합니다.
+
+                //------------------------------
+                //  게임 처리 로직
+                //------------------------------
+                // 1. PUSH_MESSAGE 이벤트로 수신된 메시지를 보관합니다. (UI 표시 X)
+                // 2. 게임 UI에 GetMessage API로 조회된 메시지들을 표시합니다.
+                // 3. 수신하지 못한 메시지가 없을 때까지 CheckUnreceivedMessages 메서드를 재귀 호출합니다.
+            }
+        }
+        else
+        {
+            Debug.Log(string.Format("GetMessage failed. error:{0}", error));
+        }
+    });
+}
+
+private void DeleteUserInfo()
+{
+    GameTalk.DeleteUserInfo((error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            Debug.Log("DeleteUserInfo succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("DeleteUserInfo failed. error:{0}", error));
         }
     });
 }
@@ -339,7 +417,7 @@ static void MappingUserInfo(
 | --- | --- | --- |
 | idPType | X | IdP (identity provider) 타입(**IdPType.cs** 참조)<br>- GAMEBASE: Gamebase<br>Gamebase를 사용 중이라면 IdPType.GAMEBASE를 입력 |
 | userId | O | 사용자 ID<br>Gamebase를 사용 중이라면 Gamebase User ID를 입력 |
-| token | O | 사용자 인증 토큰<br>Gamebase를 사용 중이라면 Gamebase 인증 토큰을 입력 |
+| token | X | 사용자 인증 토큰<br>Gamebase 인증을 사용 중이라면 Gamebase 인증 토큰을 입력(토큰이 생략되면 서버에서 오류가 반환)<br>Gamebase 인증을 사용하지 않는다면 생략 가능 |
 | nickname | X | 사용자 별명 |
 
 **콜백**
@@ -1138,6 +1216,7 @@ static void ReportMessage(
 | GameTalkParams.Message.ReportMessage | 필수 | 설명 |
 | --- | --- | --- |
 | messageId | O | 신고 대상 메세지 아이디 |
+| messageLanguageCode | O | 신고 대상 메세지 언어코드 |
 | channelId | O | 채널 생성 시 부여된 고유 ID |
 | reporterNickname | X | 신고자 별명 |
 | reason | X | 신고 사유 |
@@ -1156,6 +1235,7 @@ public void ReportMessageExample()
     var param = new GameTalkParams.Message.ReportMessage
     {
         channelId = "[CHANNEL_ID]",
+        messageLanguageCode = LanguageCode.Korean,
         messageId = 123456,
         reporterNickname = "[REPORTER_NICKNAME]",
         reason = "[REASON]"
