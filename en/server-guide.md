@@ -1,4 +1,4 @@
-## Game > GameTalk > API v1.0 Guide
+## Game > GameTalk > API v1.1 Guide
 
 The GameTalk Server API provides the following APIs in RESTful format.
 
@@ -11,13 +11,13 @@ To use the Server API, the following information is required.
 The URL (server address) to call the API is as follows. The address can also be in the GameTalk console.
 > https://api-gametalk-back.nhncloudservice.com
 
-![pre_server_url_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_url_v1.0.png)
+![pre_server_url_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_url_v1.0.0.png)
 
 #### AppKey
 
 AppKey can be found in the GameTalk console.
 
-![pre_server_appkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_appkey_v1.0.png)
+![pre_server_appkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_appkey_v1.0.0.png)
 
 #### SecretKey
 
@@ -25,7 +25,7 @@ Secret key serves as an access control measure to the API and can be found in th
 > [Note]
 If an invalid call occurs because the secret key is exposed, click **Regenerate** to create and use a new secret key.
 
-![pre_server_secretkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_secretkey_v1.0.png)
+![pre_server_secretkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_secretkey_v1.0.0.png)
 
 #### TransactionId
 
@@ -90,9 +90,9 @@ Creates a channel.
 
 **[Method, URI]**
 
-| Method | URI |
-| --- | --- |
-| POST | /game-talk/v1.0/appkeys/{appKey}/channels |
+| Method | URI                                       |
+| --- |-------------------------------------------|
+| POST |  |
 
 **[Request Header]**
 
@@ -108,17 +108,19 @@ Checks common items
 
 ```json
 {
-  "channelName" : "String",
-  "channelTagIds": [1],
-  "translation": false
+  "name" : "String",
+  "nickname" : "String",
+  "tagIdList": [1],
+  "autoDelete": true
 }
 ```
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| channelName | String | mandatory | Channel name |
-| channelTagIds | long[] | optional | Channel Tag |
-| translation | boolean | optional | Availability<br/>true, false |
+| Name | Type | Required | Value                     |
+| --- | --- | --- |---------------------------|
+| name | String | mandatory | Channel name                       |
+| nickname | String | optional | Channel nickname                     |
+| tagIdList | long[] | optional | Channel Tag                     |
+| autoDelete | boolean | optional | Whether to enable automatic channel deletion (default is true) |
 
 **[Response Body]**
 
@@ -135,38 +137,40 @@ Checks common items
     "id": "String",
     "type": "String",
     "name": "String",
-    "regUser": "String",
-    "regDate": "2023-02-23T07:31:52+09:00",
-    "translation": "String",
-    "lastMessageId": null,
-    "lastAdminMessageId": null,
+    "nickname": "String",
+    "autoDelete": true,
+    "deleted": false,
+    "lastMessageId": 0,
     "subscriberCount": 0,
     "tagList": [
       {
         "id": 1,
         "name": "String"
       }
-    ]
+    ],
+    "regUser": "String",
+    "regDate": "2023-01-01T00:00:00+09:00"
   }
 }
 ```
 
-| Key | Type | Description |
-| --- | --- | --- |
-| result | Object | Channel information |
-| result.appKey | String | NHN Cloud Project AppKey |
-| result.id | String | Channel ID |
-| result.type | String | Channel type |
-| result.name | String | Channel name |
-| result.regUser | String  | Creator  |
-| result.regDate | Date  | Date of creation. Date and time compliant with ISO 8601.  |
-| result.translation | String | Whether to use translation<br/>Y (use), N (not use) |
-| result.lastMessageId | String | Last message ID |
-| result.lastAdminMessageId | String | Last announcement message ID |
-| result.subscriberCount | int | Number of channel subscribers |
-| result.tagList | Array[Object] | Channel tag list |
-| result.tagList[].id | long | Channel tag ID |
-| result.tagList[].name | String | Channel tag name |
+| Key                    | Type          | Description                     |
+|------------------------|---------------|---------------------------------|
+| result                 | Object        | Channel information                           |
+| result.appKey          | String        | Project Appkey           |
+| result.id              | String        | Channel ID                           |
+| result.type            | String        | Channel type<br/>PUBLIC (general)            |
+| result.name            | String        | Channel name                             |
+| result.nickname        | String        | Channel nickname                           |
+| result.autoDelete      | boolean       | Whether to use automatic channel deletion                  |
+| result.deleted         | boolean       | Whether to delete the channel                        |
+| result.lastMessageId   | Long          | Last message ID                      |
+| result.subscriberCount | int           | Number of channel subscribers                        |
+| result.tagList         | Array[Object] | Channel tag list                        |
+| result.tagList[].id    | long          | Channel tag ID                        |
+| result.tagList[].name  | String        | Channel tag name                          |
+| result.regUser         | String        | Creator                             |
+| result.regDate         | Date          | Date of creation. Date and time compliant with ISO 8601. |
 
 #### Update Channel
 
@@ -176,7 +180,7 @@ Updates a channel.
 
 | Method | URI |
 | --- | --- |
-| PUT | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId} |
+| PUT | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId} |
 
 **[Request Header]**
 
@@ -193,17 +197,19 @@ Checks common items
 
 ```json
 {
-  "channelName" : "String",
-  "channelTagIds": [1],
-  "translation": false
+  "name" : "String",
+  "nickname" : "String",
+  "tagIdList": [1],
+  "autoDelete": true
 }
 ```
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| channelName | String | optional | Channel name |
-| channelTagIds | long[] | optional | Channel Tag |
-| translation | boolean | optional | Whether to use translation<br/>true, false |
+| Name | Type | Required | Value                     |
+| --- | --- | --- |---------------------------|
+| name | String | optional | Channel name                       |
+| nickname | String | optional | Channel nickname                     |
+| tagIdList | long[] | optional | Channel Tag                     |
+| autoDelete | boolean | optional | Whether to enable automatic channel deletion (default is true) |
 
 **[Response Body]**
 
@@ -226,7 +232,7 @@ Deletes a channel.
 
 | Method | URI |
 | --- | --- |
-| DELETE | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId} |
+| DELETE | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId} |
 
 **[Request Header]**
 
@@ -264,7 +270,7 @@ Retrieves the list of channels.
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/channels |
+| GET | /game-talk/v1.1/appkeys/{appKey}/channels |
 
 **[Request Header]**
 
@@ -281,9 +287,9 @@ Checks common items
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | page | int | optional | Page number (default is 0) |
-| size | int | optional | Number of lists on a page (default is 10) |
+| size | int | mandatory | Number of lists on a page (maximum 10) |
 | tagType | String | optional | Tag search condition (default is OR)<br/>OR, AND |
-| tagList | String | optional | Tag ID list<br/>Separate each ID with comma (1, 2, 3...) |
+| tagIdList | String | optional | Tag ID list<br/>Separate each ID with comma (1, 2, 3...) |
 
 **[Request Body]**
 
@@ -314,47 +320,53 @@ None
       "id" : "String",
       "type" : "String",
       "name" : "String",
-      "regUser" : "String",
-      "regDate" : "2022-10-25T20:54:45+09:00",
-      "translation" : "String",
-      "lastMessageId" : null,
-      "lastAdminMessageId" : null,
+      "nickname" : "String",
+      "autoDelete" : true,
+      "deleted" : false,
+      "lastMessageId" : 1282796687576789,
       "subscriberCount" : 0,
       "tagList" : [
         {
           "id" : 1,
           "name" : "String"
         }
-      ]
+      ],
+      "regUser" : "String",
+      "regDate" : "2023-01-01T00:00:00+09:00",
+      "modUser": "String",
+      "modDate": "2023-01-01T00:00:00+09:00"
     }
   ]
 }
 ```
 
-| Key | Type | Description |
-| --- | --- | --- |
-| pagingInfo | Object | Paging information |
-| pagingInfo.first | boolean | First page exists or not |
-| pagingInfo.last | boolean | Last page exists or not |
-| pagingInfo.numberOfElements | int | Number of retrieved lists on the page |
-| pagingInfo.page | int | Current page number |
-| pagingInfo.size | int | Number of page lists |
-| pagingInfo.totalElements | int | Number of total lists |
-| pagingInfo.totalPages | int | Total number of pages |
+| Key | Type          | Description |
+| --- |---------------| --- |
+| pagingInfo | Object        | Paging information |
+| pagingInfo.first | boolean       | First page exists or not |
+| pagingInfo.last | boolean       | Last page exists or not |
+| pagingInfo.numberOfElements | int           | Number of retrieved lists on the page |
+| pagingInfo.page | int           | Current page number |
+| pagingInfo.size | int           | Number of page lists |
+| pagingInfo.totalElements | long          | Number of total lists |
+| pagingInfo.totalPages | int           | Total number of pages |
 | channelList | Array[Object] | Channel list information |
-| channelList[].appKey | String | NHN Cloud Project AppKey |
-| channelList[].id | String | Channel ID |
-| channelList[].type | String | Channel type |
-| channelList[].name | String | Channel name |
-| channelList[].regUser | String | Creator |
-| channelList[].regDate | Date | Date of creation. Date and time compliant with ISO 8601. |
-| channelList[].translation | String | Whether to use auto translation<br/>Y, N |
-| channelList[].lastMessageId | String | Last message ID |
-| channelList[].lastAdminMessageId | String | Last announcement message ID |
-| channelList[].subscriberCount | int | Number of channel subscribers |
+| channelList[].appKey | String        | Project Appkey |
+| channelList[].id | String        | Channel ID |
+| channelList[].type | String        | Channel type<br/>PUBLIC (general) |
+| channelList[].name | String        | Channel name |
+| channelList[].nickname | String        | Channel nickname |
+| channelList[].autoDelete | boolean       | Whether to use automatic channel deletion |
+| channelList[].deleted | boolean       | Whether to delete the channel |
+| channelList[].lastMessageId | Long          | Last message ID |
+| channelList[].subscriberCount | int           | Number of channel subscribers |
 | channelList[].tagList | Array[Object] | Channel tag list |
-| channelList[].tagList[].id | long | Channel tag ID |
-| channelList[].tagList[].name | String | Channel tag name |
+| channelList[].tagList[].id | long          | Channel tag ID |
+| channelList[].tagList[].name | String        | Channel tag name |
+| channelList[].regUser | String        | Creator |
+| channelList[].regDate | Date          | Date of creation. Date and time compliant with ISO 8601. |
+| channelList[].modUser | String        | Modifier |
+| channelList[].modDate | Date          | Date of modification. Date and time compliant with ISO 8601. |
 
 #### Get Channel
 
@@ -364,7 +376,7 @@ Retrieves a channel.
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId} |
+| GET | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId} |
 
 **[Request Header]**
 
@@ -395,45 +407,49 @@ None
     "transactionId" : "String",
     "isSuccessful" : true
   },
-  "result" : [
+  "result" : {
+    "appKey" : "String",
+    "id" : "String",
+    "type" : "String",
+    "name" : "String",
+    "nickname" : "String",
+    "autoDelete" : true,
+    "deleted" : false,
+    "lastMessageId" : 1282796687576789,
+    "subscriberCount" : 0,
+    "tagList" : [
     {
-      "appKey" : "String",
-      "id" : "String",
-      "type" : "String",
-      "name" : "String",
-      "regUser" : "String",
-      "regDate" : "2022-10-25T20:54:45+09:00",
-      "translation" : "String",
-      "lastMessageId" : null,
-      "lastAdminMessageId" : null,
-      "subscriberCount" : 0,
-      "tagList" : [
-        {
-          "id" : 1,
-          "name" : "String"
-        }
-      ]
+      "id" : 1,
+      "name" : "String"
     }
-  ]
+    ],
+    "regUser" : "String",
+    "regDate" : "2023-01-01T00:00:00+09:00",
+    "modUser": "String",
+    "modDate": "2023-01-01T00:00:00+09:00"
+  }
 }
 ```
 
-| Key | Type | Description |
-| --- | --- | --- |
-| result | Object | Channel list information |
-| result.appKey | String | NHN Cloud Project AppKey |
-| result.id | String | Channel ID |
-| result.type | String | Channel type |
-| result.name | String | Channel name |
-| result.regUser | String | Creator |
-| result.regDate | Date | Date of creation. Date and time compliant with ISO 8601. |
-| result.translation | String | Whether to use translation<br/>Y (use), N (not use) |
-| result.lastMessageId | String | Last message ID |
-| result.lastAdminMessageId | String | Last announcement message ID |
-| result.subscriberCount | int | Number of channel subscribers |
+| Key | Type          | Description |
+| --- |---------------| --- |
+| result | Object        | Channel list information |
+| result.appKey | String        | Project Appkey |
+| result.id | String        | Channel ID |
+| result.type | String        | Channel type<br/>PUBLIC (general) |
+| result.name | String        | Channel name |
+| result.nickname | String        | Channel nickname |
+| result.autoDelete | boolean       | Whether to use automatic channel deletion |
+| result.deleted | boolean       | Whether to delete the channel |
+| result.lastMessageId | Long          | Last message ID |
+| result.subscriberCount | int           | Number of channel subscribers |
 | result.tagList | Array[Object] | Channel tag list |
-| result.tagList[].id | long | Channel tag ID |
-| result.tagList[].name | String | Channel tag name |
+| result.tagList[].id | long          | Channel tag ID |
+| result.tagList[].name | String        | Channel tag name |
+| result.regUser | String        | Creator |
+| result.regDate | Date          | Date of creation. Date and time compliant with ISO 8601. |
+| result.modUser | String        | Modifier |
+| result.modDate | Date          | Date of modification. Date and time compliant with ISO 8601. |
 
 #### Subscribe Channel
 
@@ -443,7 +459,7 @@ Subscribes to a channel.
 
 | Method | URI |
 | --- | --- |
-| POST | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId}/subscribes |
+| POST | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId}/subscribes |
 
 **[Request Header]**
 
@@ -489,7 +505,7 @@ Unsubscribes a channel.
 
 | Method | URI |
 | --- | --- |
-| DELETE | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId}/subscribes |
+| DELETE | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId}/subscribes |
 
 **[Request Header]**
 
@@ -535,7 +551,7 @@ Retrieves a channel subscriber.
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/channels/{channelId}/subscribes |
+| GET | /game-talk/v1.1/appkeys/{appKey}/channels/{channelId}/subscribes |
 
 **[Request Header]**
 
@@ -553,7 +569,7 @@ Checks common items
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | page | int | optional | Page number (default is 0) |
-| size | int | optional | Number of lists on a page (default is 10) |
+| size | int | mandatory | Number of lists on a page (maximum 10) |
 
 **[Request Body]**
 
@@ -582,30 +598,34 @@ None
     {
       "appKey": "String",
       "userId": "String",
-      "regDate": "2023-02-16T11:53:05+09:00",
+      "nickname": "String",
       "languageCode": "String",
-      "valid": "String"
+      "valid": true,
+      "lastLoginDate": "2023-01-01T00:00:00+09:00",
+      "regDate": "2023-01-01T00:00:00+09:00"
     }
   ]
 }
 ```
 
-| Key | Type | Description |
-| --- | --- | --- |
-| pagingInfo | Object | Paging information |
-| pagingInfo.first | boolean | First page exists or not |
-| pagingInfo.last | boolean | Last page exists or not |
-| pagingInfo.numberOfElements | int | Number of retrieved lists on the page |
-| pagingInfo.page | int | Current page number |
-| pagingInfo.size | int | Number of page lists |
-| pagingInfo.totalElements | int | Number of total lists |
-| pagingInfo.totalPages | int  | Total number of pages |
-| userList | Array[Object] | Subscriber information |
-| userList[].appKey | String | NHN Cloud Project AppKey |
-| userList[].userId | String | User ID |
-| userList[].regDate | Date | Date of subscription. Date and time compliant with ISO 8601. |
-| userList[].languageCode | String | Language code |
-| userList[].valid | String | User status<br/>Y (normal), D(withdrawl) |
+| Key | Type          | Description                          |
+| --- |---------------|--------------------------------------|
+| pagingInfo | Object        | Paging information                            |
+| pagingInfo.first | boolean       | First page exists or not                             |
+| pagingInfo.last | boolean       | Last page exists or not                           |
+| pagingInfo.numberOfElements | int           | Number of retrieved lists on the page                        |
+| pagingInfo.page | int           | Current page number                            |
+| pagingInfo.size | int           | Number of page lists                            |
+| pagingInfo.totalElements | long          | Number of total lists                              |
+| pagingInfo.totalPages | int           | Total number of pages                             |
+| userList | Array[Object] | Subscriber information                               |
+| userList[].appKey | String        | Project Appkey                |
+| userList[].userId | String        | User ID                                |
+| userList[].nickname | String        | User nickname                               |
+| userList[].languageCode | String        | Language code                                |
+| userList[].valid | boolean       | User status<br/>true (normal), false (delete)        |
+| userList[].lastLoginDate | Date          | Date of last login. Date and time compliant with ISO 8601. |
+| userList[].regDate | Date          | Date of subscription. Date and time compliant with ISO 8601.      |
 
 ## Tag
 
@@ -617,7 +637,7 @@ Retrieves the list of tags.
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/tags |
+| GET | /game-talk/v1.1/appkeys/{appKey}/tags |
 
 **[Request Header]**
 
@@ -634,7 +654,7 @@ Checks common items
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | page | int | optional | Page number (default is 0) |
-| size | int | optional | Number of lists on a page (default is 10) |
+| size | int | mandatory | Number of lists on a page (maximum 10) |
 
 **[Request Body]**
 
@@ -682,11 +702,11 @@ None
 | pagingInfo.numberOfElements | int | Number of retrieved lists on the page |
 | pagingInfo.page | int | Current page number |
 | pagingInfo.size | int | Number of page lists |
-| pagingInfo.totalElements | int | Number of total lists |
+| pagingInfo.totalElements | long | Number of total lists |
 | pagingInfo.totalPages | int  | Total number of pages |
 | tagList | Array[Object] | Tag list information |
 | tagList[].appKey | String | NHN Cloud Project AppKey |
-| tagList[].id | String | Tag ID |
+| tagList[].id | long | Tag ID |
 | tagList[].name | String | Tag name |
 | tagList[].description | String | Tag description |
 | tagList[].regUser | String | Creator |
@@ -702,7 +722,7 @@ Retrieves a tag.
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/tags/{tagId} |
+| GET | /game-talk/v1.1/appkeys/{appKey}/tags/{tagId} |
 
 **[Request Header]**
 
@@ -750,7 +770,7 @@ None
 | --- | --- | --- |
 | result | Object | Tag information |
 | result.appKey | String | NHN Cloud Project AppKey |
-| result.id | String | Tag ID |
+| result.id | long | Tag ID |
 | result.name | String | Tag name |
 | result.description | String | Tag description |
 | result.regUser | String | Creator |
@@ -768,7 +788,7 @@ Retrieves user information.
 
 | Method | URI |
 | --- | --- |
-| GET | /game-talk/v1.0/appkeys/{appKey}/users/{userId} |
+| GET | /game-talk/v1.1/appkeys/{appKey}/users/{userId} |
 
 **[Request Header]**
 
@@ -783,9 +803,7 @@ Checks common items
 
 **[Request Parameter]**
 
-| Name | Type | Required | Value |
-| --- | --- | --- | --- |
-| valid | String | mandatory | User status<br/>Y (normal), D(withdrawl) |
+None
 
 **[Request Body]**
 
@@ -804,33 +822,35 @@ None
   "user": {
     "appKey": "String",
     "userId": "String",
+    "nickname": "String",
     "languageCode": "String",
-    "regDate": "2023-02-16T11:53:05+09:00",
-    "lastLoginDate": "2023-02-16T17:47:12+09:00",
-    "valid": "String"
+    "valid": true,
+    "lastLoginDate": "2023-01-01T00:00:00+09:00",
+    "regDate": "2023-01-01T00:00:00+09:00"
   }
 }
 ```
 
-| Key | Type | Description |
-| --- | --- | --- |
-| user | Object | User information |
-| user.appKey | String | NHN Cloud Project AppKey |
-| user.userId | String | User ID |
-| user.languageCode | String | Language code |
-| user.regDate | Date | Date of creation. Date and time compliant with ISO 8601. |
-| user.lastLoginDate | Date | Date of access. Date and time compliant with ISO 8601. |
-| user.valid | String | User status<br/>Y (normal), D(withdrawl) |
+| Key | Type    | Description                          |
+| --- |---------|--------------------------------------|
+| user | Object  | User information                                |
+| user.appKey | String  | Project Appkey                |
+| user.userId | String  | User ID                                |
+| user.nickname | String  | User nickname                               |
+| user.languageCode | String  | Language code                                |
+| user.valid | boolean | User status<br/>true (normal), false (delete)        |
+| user.lastLoginDate | Date    | Date of last login. Date and time compliant with ISO 8601. |
+| user.regDate | Date    | Date of subscription. Date and time compliant with ISO 8601.      |
 
-#### Withdraw
+#### Delete User Info
 
-Unsubscribes a user.
+Delete user information.
 
 **[Method, URI]**
 
 | Method | URI |
 | --- | --- |
-| DELETE | /game-talk/v1.0/appkeys/{appKey}/users/{userId} |
+| DELETE | /game-talk/v1.1/appkeys/{appKey}/users/{userId} |
 
 **[Request Header]**
 
@@ -872,7 +892,7 @@ Updates user information.
 
 | Method | URI |
 | --- | --- |
-| PUT | /game-talk/v1.0/appkeys/{appKey}/users/{userId} |
+| PUT | /game-talk/v1.1/appkeys/{appKey}/users/{userId} |
 
 **[Request Header]**
 
@@ -893,13 +913,15 @@ None
 
 ```json
 {
-  "languageCode" : "String"
+  "languageCode" : "String",
+  "nickname" : "String"
 }
 ```
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
 | languageCode | String | mandatory | Language code |
+| nickname | String | mandatory | User nickname |
 
 **[Response Body]**
 
