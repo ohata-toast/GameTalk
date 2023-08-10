@@ -157,7 +157,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key                    | Type          | Description                     |
 |------------------------|---------------|---------------------------------|
 | result                 | Object        | 채널 정보                           |
-| result.appKey          | String        | NHN Cloud 프로젝트 AppKey           |
+| result.appKey          | String        | 프로젝트 앱키(Appkey)           |
 | result.id              | String        | 채널 ID                           |
 | result.type            | String        | 채널 타입<br/>PUBLIC(일반)            |
 | result.name            | String        | 채널명                             |
@@ -342,7 +342,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type          | Description |
 | --- |---------------| --- |
-| pagingInfo | Object        | Paging 정보 |
+| pagingInfo | Object        | 페이징 정보 |
 | pagingInfo.first | boolean       | 첫 페이지 여부 |
 | pagingInfo.last | boolean       | 마지막 페이지 여부 |
 | pagingInfo.numberOfElements | int           | 조회된 페이지 목록 개수 |
@@ -351,7 +351,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | long          | 총 목록 개수 |
 | pagingInfo.totalPages | int           | 총 페이지 개수 |
 | channelList | Array[Object] | 채널 목록 정보 |
-| channelList[].appKey | String        | NHN Cloud 프로젝트 AppKey |
+| channelList[].appKey | String        | 프로젝트 앱키(Appkey) |
 | channelList[].id | String        | 채널 ID |
 | channelList[].type | String        | 채널 타입<br/>PUBLIC(일반) |
 | channelList[].name | String        | 채널명 |
@@ -434,7 +434,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type          | Description |
 | --- |---------------| --- |
 | result | Object        | 채널 목록 정보 |
-| result.appKey | String        | NHN Cloud 프로젝트 AppKey |
+| result.appKey | String        | 프로젝트 앱키(Appkey) |
 | result.id | String        | 채널 ID |
 | result.type | String        | 채널 타입<br/>PUBLIC(일반) |
 | result.name | String        | 채널명 |
@@ -610,7 +610,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type          | Description                          |
 | --- |---------------|--------------------------------------|
-| pagingInfo | Object        | Paging 정보                            |
+| pagingInfo | Object        | 페이징 정보                            |
 | pagingInfo.first | boolean       | 첫 페이지 여부                             |
 | pagingInfo.last | boolean       | 마지막 페이지 여부                           |
 | pagingInfo.numberOfElements | int           | 조회된 페이지 목록 개수                        |
@@ -619,7 +619,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | pagingInfo.totalElements | long          | 총 목록 개수                              |
 | pagingInfo.totalPages | int           | 총 페이지 개수                             |
 | userList | Array[Object] | 구독자 정보                               |
-| userList[].appKey | String        | NHN Cloud 프로젝트 AppKey                |
+| userList[].appKey | String        | 프로젝트 앱키(Appkey)                |
 | userList[].userId | String        | 유저 ID                                |
 | userList[].nickname | String        | 유저 닉네임                               |
 | userList[].languageCode | String        | 언어 코드                                |
@@ -834,7 +834,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 | Key | Type    | Description                          |
 | --- |---------|--------------------------------------|
 | user | Object  | 유저 정보                                |
-| user.appKey | String  | NHN Cloud 프로젝트 AppKey                |
+| user.appKey | String  | 프로젝트 앱키(Appkey)                |
 | user.userId | String  | 유저 ID                                |
 | user.nickname | String  | 유저 닉네임                               |
 | user.languageCode | String  | 언어 코드                                |

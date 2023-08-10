@@ -238,10 +238,10 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 
 | GameTalkData.AddEvent | 설명 |
 | --- | --- |
-| type | 이벤트 타입(**GameTalkEventType.cs** 참조)<br>- CHANGE_NETWORK_STATE: 네트워크가 중단되거나, 재연결되었을 때 이벤트를 수신<br>- PUSH_MESSAGE: 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용<br>- PUSH_TO_ALL_USERS: 전체 발송 알림메시지가 수신되면 호출<br>  - EventDataParser의 GetPushToAllUsersData API를 사용하여 data를 객체화하여 사용<br>- PUSH_DELETE_USER: GameTalk을 이용 중인 사용자의 채널 구독 정보를 콘솔 및 server API를 통하여 해제할 경우 호출<br>  - 이벤트가 수신되면 게임 로직 처리 후 `GameTalk.DeleteUserInfo` API를 호출하여 서버와 상태 값을 동기화해야 합니다.<br>  - 사용자는 모든 채널의 구독 상태가 해지되므로 채널을 다시 구독하기 전까지는 모든 메시지 송수신이 불가능합니다.<br>  - EventDataParser의 GetPushDeleteUserData API를 사용하여 data를 객체화하여 사용 |
-| data | 이벤트 타입에 따라 달라지는 데이터 (아래 세부 데이터 참조) |
-| data(CHANGE_NETWORK_STATE) | 네트워크 상태(**NetworkState.cs** 참조)<br>- DISCONNECTED: 네트워크 연결 해제<br>- RECONNECTED: 네트워크 재연결<br>  - 네트워크 문제로 수신하지 못한 메시지를 조회해야 합니다.(Example 참조) |
-| data(PUSH_MESSAGE) | - channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
+| type | 이벤트 타입(**GameTalkEventType.cs** 참조)<br>- CHANGE_NETWORK_STATE: 네트워크가 중단되거나, 재연결되었을 때 이벤트를 수신<br>- PUSH_MESSAGE: 구독 중인 오픈 채널에 새로운 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushMessageData API를 사용하여 data를 객체화하여 사용<br>- PUSH_TO_ALL_USERS: 전체 발송 알림 메시지가 수신되면 호출<br>  - EventDataParser의 GetPushToAllUsersData API를 사용하여 data를 객체화하여 사용<br>- PUSH_DELETE_USER: GameTalk을 이용 중인 사용자의 채널 구독 정보를 콘솔 및 server API를 통하여 해제할 경우 호출<br>  - 이벤트가 수신되면 게임 로직 처리 후 `GameTalk.DeleteUserInfo` API를 호출하여 서버와 상태 값을 동기화해야 합니다.<br>  - 사용자는 모든 채널의 구독 상태가 해지되므로 채널을 다시 구독하기 전까지는 모든 메시지 송수신이 불가능합니다.<br>  - EventDataParser의 GetPushDeleteUserData API를 사용하여 data를 객체화하여 사용 |
+| data | 이벤트 타입에 따라 달라지는 데이터(아래 세부 데이터 참조) |
+| data(CHANGE_NETWORK_STATE) | 네트워크 상태(**NetworkState.cs** 참조)<br>- DISCONNECTED: 네트워크 연결 해제<br>- RECONNECTED: 네트워크 재연결<br>  - 네트워크 문제로 수신하지 못한 메시지를 조회해야 합니다(Example 참조). |
+| data(PUSH_MESSAGE) | - channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링 된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
 | data(PUSH_TO_ALL_USERS) | PUSH_MESSAGE 이벤트 데이터에서 channelId, channelType만 없고, 모두 동일 |
 | data(PUSH_DELETE_USER) | - userId: 사용자 ID |
 
@@ -281,7 +281,7 @@ public void AddEventExample()
                 }
                 case GameTalkEventType.PUSH_TO_ALL_USERS:
                 {
-                    // 전체 발송 알림메시지가 수신되면 호출
+                    // 전체 발송 알림 메시지가 수신되면 호출
                     // Use EventDataParser's GetEventData<GameTalkData.Message.PushToAllUsers> API to objectify and use data
                     Debug.Log(string.Format(
                         "An event has been received. data:{0}",
@@ -341,7 +341,7 @@ private void CheckUnreceivedMessages(long lastReceivedMessageId)
                 //------------------------------
                 //  게임 처리 로직
                 //------------------------------
-                // 1. PUSH_MESSAGE 이벤트로 수신된 메시지를 보관합니다. (UI 표시 X)
+                // 1. PUSH_MESSAGE 이벤트로 수신된 메시지를 보관합니다(UI 표시 X).
                 // 2. 게임 UI에 GetMessage API로 조회된 메시지들을 표시합니다.
                 // 3. 수신하지 못한 메시지가 없을 때까지 CheckUnreceivedMessages 메서드를 재귀 호출합니다.
             }
@@ -431,7 +431,7 @@ static void MappingUserInfo(
 
 | GameTalkData.MappingUserInfo | 설명 |
 | --- | --- |
-| user | **사용자 정보**<br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어코드<br>- lastLoginDate: 마지막 로그인 일시 |
+| user | **사용자 정보**<br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어 코드<br>- lastLoginDate: 마지막 로그인 일시 |
 
 **Example**
 
@@ -838,7 +838,7 @@ static void GetSubscriber(
 | GameTalkData.Channel.GetSubscriber | 설명 |
 | --- | --- |
 | pagingInfo | **페이징 정보**<br>- first: 첫 페이지 여부<br>- last: 마지막 페이지 여부<br>- numberOfElements: 현재 페이지의 채널 수<br>- page: 페이지 인덱스<br>- size: 페이지 사이즈<br>- totalElements: 총 채널 수<br>- totalPages: 총 페이지 수 |
-| userList | **사용자 리스트** <br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어코드<br>- lastLoginDate: 마지막 로그인 일시 |
+| userList | **사용자 리스트** <br>- userId: 사용자 ID<br>- nickname: 사용자 별명<br>- valid: 사용자 상태<br>  - true: 정상<br>  - false: 삭제된 유저<br>- regDate: 사용자 가입 일시<br>- languageCode: 사용자 언어 코드<br>- lastLoginDate: 마지막 로그인 일시 |
 
 **Example**
 
@@ -1075,7 +1075,7 @@ static void GetRecentlyMessage(
 | GameTalkParams.Message.GetRecentlyMessage | 필수 | 설명 |
 | --- | --- | --- |
 | channelId | O | 채널 생성 시 부여된 고유 ID |
-| count | O | 조회할 메시지 갯수<br>- 1부터 50 사이의 값 |
+| count | O | 조회할 메시지 개수<br>- 1부터 50 사이의 값 |
 
 **콜백**
 
@@ -1089,7 +1089,7 @@ static void GetRecentlyMessage(
 | GameTalkData.Message.GetRecentlyMessage | 설명 |
 | --- | --- |
 | count | 조회된 메시지 갯수 |
-| recentlyMessageList | **최근 메시지 리스트**<br>- channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
+| recentlyMessageList | **최근 메시지 리스트**<br>- channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링 된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
 
 **Example**
 
@@ -1122,10 +1122,10 @@ public void GetRecentlyMessageExample()
 
 > <font color="red">**[주의]**</font><br/>
 > 
-> 특정 메시지 ID를 기준으로<span>최대 51개</span>의 메시지를 조회할 수 있습니다.
-> 매개변수 중 include의 값을 true로 설정할 경우, 기준이 되는 메시지를 포함하여<span>총 51개<span>의 메시지가 조회됩니다.</span></span>
+> 특정 메시지 ID를 기준으로 <span>최대 51개</span>의 메시지를 조회할 수 있습니다.
+> 매개변수 중 include의 값을 true로 설정할 경우, 기준이 되는 메시지를 포함하여 <span>총 51개<span>의 메시지가 조회됩니다.</span></span>
 > 
-> prevCount와 nextCount의 합이<span>1이상 50이하<span>가 되어야 합니다.</span></span>
+> prevCount와 nextCount의 합이 <span>1이상 50이하<span>가 되어야 합니다.</span></span>
 
 **API**
 
@@ -1146,8 +1146,8 @@ static void GetMessage(
 | --- | --- | --- |
 | channelId | O | 채널 생성 시 부여된 고유 ID |
 | messageId | O | 기준 메시지 아이디 |
-| prevCount | O | 기준 메시지로 부터 조회할 이전 메시지 갯수<br>- 0부터 50 사이의 값 |
-| nextCount | O | 기준 메시지로 부터 조회할 다음 메시지 갯수<br>- 0부터 50 사이의 값 |
+| prevCount | O | 기준 메시지로부터 조회할 이전 메시지 개수<br>- 0부터 50 사이의 값 |
+| nextCount | O | 기준 메시지로부터 조회할 다음 메시지 개수<br>- 0부터 50 사이의 값 |
 | include | X | 기준 메시지 포함 여부<br>- Default: false |
 
 **콜백**
@@ -1162,7 +1162,7 @@ static void GetMessage(
 | GameTalkData.Message.GetMessage | 설명 |
 | --- | --- |
 | count | 조회된 메시지 갯수 |
-| baseMessage | **기준 메시지(단일 객체)**<br>- channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
+| baseMessage | **기준 메시지(단일 객체)**<br>- channelId: 채널 생성 시 부여된 고유 ID<br>- channelType: 채널 타입(**ChannelType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>- messageId: 메시지 아이디<br>- messageType: 메시지 타입(**MessageType.cs** 참조)<br>  - PUBLIC: 공개<br>  - PRIVATE: 비공개<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 알림 메시지<br>  - SYSTEM: 시스템<br>- contentType: 메시지 데이터 타입(**MessageContentType.cs** 참조)<br>  - TEXT: 텍스트<br>- senderType: 송신자 타입(**MessageSenderType.cs** 참조)<br>  - USER: 사용자<br>  - ADMIN: 운영자<br>  - ANNOUNCEMENT: 운영자<br>  - SYSTEM: 시스템<br>- senderId: 송신자 아이디<br>- senderNickname: 송신자 닉네임<br>- languageCode: 메시지 언어 코드(**LanguageCode.cs** 참조)<br>- content: 메시지<br>- state: 메시지 상태(**MessageState.cs** 참조)<br>  - NORMAL: 정상 메시지<br>  - FILTER: 비속어로 인해 필터링 된 메시지<br>- deleted: 메시지 삭제 여부<br>- regDate: 메시지 전송 일시 |
 | prevMessageList | baseMessage와 동일한 구조의 객체가 리스트로 전달 |
 | nextMessageList | baseMessage와 동일한 구조의 객체가 리스트로 전달 |
 
@@ -1215,8 +1215,8 @@ static void ReportMessage(
 
 | GameTalkParams.Message.ReportMessage | 필수 | 설명 |
 | --- | --- | --- |
-| messageId | O | 신고 대상 메세지 아이디 |
-| messageLanguageCode | O | 신고 대상 메세지 언어코드 |
+| messageId | O | 신고 대상 메시지 아이디 |
+| messageLanguageCode | O | 신고 대상 메시지 언어 코드 |
 | channelId | O | 채널 생성 시 부여된 고유 ID |
 | reporterNickname | X | 신고자 별명 |
 | reason | X | 신고 사유 |
