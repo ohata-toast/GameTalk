@@ -172,6 +172,11 @@ public void InitializeExample()
         if (GameTalk.IsSucceeded(error) is true)
         {
             Debug.Log(string.Format("Initialize succeeded. data:{0}", data));
+
+            // 초기화가 성공하면 AddEvent API를 이용하여 이벤트를 수신할 핸들러를 등록해야 합니다.
+            GameTalk.AddEvent((eventData, eventError) =>
+            {
+            });
         }
         else
         {
@@ -215,6 +220,11 @@ public void IsInitializedExample()
 ### AddEvent
 
 서버 이벤트를 수신할 핸들러를 등록합니다.
+
+> <font color="red">**[주의]**</font><br/>
+> 
+> MappingUserInfo API를 <span>호출하기 전<span>에 호출되어야 합니다.
+> 이후에 호출되면, 이벤트로 수신되는 메시지가 누락될 수 있습니다.
 
 **API**
 
