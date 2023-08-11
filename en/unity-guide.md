@@ -224,7 +224,7 @@ Register a handler to receive the server evnets.
 > <font color="red">**[Caution]**</font><br/>
 > 
 > Must be called before calling the MappingUserInfo API.
-If called later, messages received as events may be missed.
+> If called later, messages received as events may be missed.
 
 **API**
 
