@@ -696,7 +696,7 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | Paging 정보 |
+| pagingInfo | Object | 페이징 정보 |
 | pagingInfo.first | boolean | 첫 페이지 여부 |
 | pagingInfo.last | boolean | 마지막 페이지 여부 |
 | pagingInfo.numberOfElements | int | 조회된 페이지 목록 개수 |
