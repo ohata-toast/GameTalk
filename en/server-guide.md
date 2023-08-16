@@ -92,7 +92,7 @@ Creates a channel.
 
 | Method | URI                                       |
 | --- |-------------------------------------------|
-| POST |  |
+| POST | /game-talk/v1.1/appkeys/{appKey}/channels |
 
 **[Request Header]**
 
