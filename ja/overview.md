@@ -1,71 +1,80 @@
-## Game > GameTalk > 概要
+## Game > GameTalk > Overview
 
-簡単にゲーム内チャット機能を実装できるソリューションサービスです。GameTalkサービスを利用してリアルタイムチャット、1：1会話、ギルドチャットなど、さまざまなチャット環境をゲーム内に実装できます。
+GameTalk is a service that allows you to implement an in-app chat feature. The GameTalk service enables you to build real-time chat, guild chat, and other chatting environments in games.
 
-* ユーザー同士で自由に会話できるチャットメッセージ送受信機能を提供します。
-* API、コンソールから自由にチャンネルを作成/アップデート/削除できます。
-* オープンチャット/グループチャット/1：1会話など、必要に応じて適切な形のチャットチャンネルを実装できます。
-* 作成されたチャンネルを検索し、管理して、タグで分類できます。
-* 卑俗語、違法広告を防止するための禁止語設定が可能です。
-* 管理者用の告知メッセージ機能を別途提供します。
-* チャンネルでユーザーを検索し、管理できます。
+* Provides a send and receive message feature that allows the user to communicate freely.
+* Creates, updates, and deletes channels freely in an API or on a console.
+* Implements a suitable type of chat channel according to your needs, such as guild chat / group chat.
+* Searches and manages created channels, and sorts them with tag.
+* Sets forbidden words to prevent profanity and illegal advertisements.
+* Provides an announcement message feature for convenient operation.
+* Searches and manages users from a channel.
 
 ## Key Features
 
-![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_01.png)
+![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_en_01.png)
 
-### チャンネル管理
+### Channel Management
 
-ユーザー間でコミュニケーションできるチャットチャンネルを作成できます。大人数が参加する全体チャンネルから、小さい単位のギルドやパーティチャンネル、 1：1チャンネルまで、多様に作成・管理できます。
+You can create chat channels where users can communicate. Also, you can create and manage a wide range of channels, from mass participation to small-scale guild or party channels.
 
-### メッセージの送受信
+### Message Transmission and Reception
 
-ゲーム内チャット機能を提供してユーザー同士が自由にコミュニケーションをとり、コミュニティを作るのを助けます。
+Provides in-game chat features to help users communicate freely and build a community.
 
-### ユーザーの管理
+### Report Message
 
-ユーザーリストを確認し、管理できます。 
+Users can report inappropriate messages such as profanity and abusive language in the chat.
 
-### 禁止語の管理
+### User Management
 
-悪口やさまざまな卑俗語、サービスに支障をきたす広告単語を禁止語に設定して防止できます。快適で健全に会話できる環境を構成できます。
+You can check and manage user lists. 
 
-### 告知メッセージ
+### Manage Forbidden Word
 
-すべてのユーザーまたは特定チャンネルのユーザーを対象に告知メッセージを送信できます。
+You can set swear words, various slang words, and advertisements that interfere with the service as forbidden words and prevent them. You can create a pleasant and sound conversation environment.
+
+### Announcement Message
+
+You can send announcement messages to all users or users on a specific channel.<br>
+You can send various types of announcement messages to users by using the immediate send, scheduled send, and repetitive send features.
 
 ## Terms
 
-以下はGameTalkの基本用語をまとめたものです。
+The following is a summary of the GameTalk basic terms.
 
-| 用語    | 説明                                     |
+| Terms      | Descriptions                                       |
 | ------- | ---------------------------------------- |
-| チャンネル | 1：1、ギルド、パーティ、ロビーなどのタイプに関係なくユーザー間チャットをサポートする接続窓口   |
-| チャンネルタグ | チャンネル照会および告知メッセージの伝達に役立ち、1つのチャンネルに複数のタグを設定可能 |
-| チャンネル購読  | 購読したチャンネルにメッセージを送信、またはチャンネルで発生したメッセージの受信可能   |
-| メンバー  | 特定チャンネルを購読したユーザー |
-| メッセージ | 同じチャンネルを購読したユーザー間でやりとりするテキストメッセージ |
-| 禁止語 | コンソールで設定可能な禁止単語で、メッセージ内に禁止語が含まれる場合はフィルタリング処理         |
+| Channel  | Connection window for user-to-user chat regardless of chat types such as guild, party, lobby, etc.    |
+| Channel Tag  | Channel Tags to help retrieve Channels and deliver Announcement Messages. Multiple tags can be set in one channel.   |
+| Channel Subscription    | You can send messages to subscribed Channel or receive a message from a subscribed Channel.     |
+| Members    | User who subscribed to a specific channel |
+| Message  | Text messages exchanged between users who subscribe to the same channel  |
+| Forbidden Words | Forbidden words that can be set on the console, conducting filtering if it contains forbidden words in the message.           |
 
 
 ## Platform Guide
 
 **Client Developer's Guide**
 
-* [Unity SDK使用ガイド](./unity-guide)
+* [Unity SDK Guide](./unity-guide)
 
 **Operator's Guide**
 
-* [コンソール使用ガイド](./console-user-guide)
+* [Console Guide](./console-user-guide)
 
-## サービス利用に関する規制遵守案内
+**Server Developer's Guide**
 
-GameTalkサービスを顧客のゲームに適用する場合、本サービスが含まれるゲームに関連して情報通信網法を含む関係法令遵守義務を負う主体は、本サービスを利用する顧客です。したがって、関係法令上の複数の規制(情報通信網法に基づく掲示板提供、広告性情報発信などを含みますが、これに限定しません。)を遵守する方法で本サービス、または顧客のゲームが提供されるように内部ポリシーを定め運営してください。
+* [API Guide](./server-guide/)
 
-## 個人情報処理に関する案内
+## Information on compliance with service use
 
-GameTalkサービスを利用する過程で、顧客は利用者の個人情報を収集/利用することができ、この場合、顧客は個人情報保護法などの関連法令を遵守する義務があります。<br>
-また、この過程で顧客とNHN Cloudの間で個人情報処理に関する業務受委託関係が発生することがあります。委託者の地位にある顧客は、受託社であるNHN Cloudと別途書面による委託契約を締結することができ、顧客が運営する個人情報処理方針に以下の内容を参考にして告知できます。
+When the GameTalk service is applied to customer's game, the person responsible for compliance with the relevant laws, including the Information and Communication Network Act, is the customer who uses the service. Therefore, we ask you to establish and operate internal policy to ensure that this service, or the customer's game, is provided in compliance with various regulations under the relevant laws (including, but not limited to, the provision of bulletin boards and the transmission of advertising information under the Information and Communication Network Act.)
 
-* 受託業者：NHNクラウド(株)
-* 委託業務の内容：GameTalkサービスの提供
+## Information on Processing of Personal Information
+
+In the process of using GameTalk service, customers can collect and make use of users' personal information, and in this case, customers are obligated to comply with relevant laws and regulations such as the Personal Information Protection Act.<br>
+In addition, during this process, a consignment relationship between the customer and NHN Cloud regarding the processing of personal information may occur. Customers in the position of Consignor may enter into separate written consignment contract with NHN Cloud, the consignee, and may notify the customer by referring to the following information in the personal information processing policy operated by Customer.
+
+* Consignee: NHN Cloud Corp.
+* Contents of consigned work: Provision of GameTalk Service
