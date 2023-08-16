@@ -154,7 +154,7 @@ static void Initialize(
 | GameTalkData.ServiceInfo | Description |
 | --- | --- |
 | maxMessageLength | Maximum message length registered in the console |
-| gameTalkState | GameTalk status (Refer to**GameTalkState.cs** )<br>ACTIVATED: Enabled<br>DEACTIVATED: Disabled<br>DELETED: Deleted |
+| gameTalkState | GameTalk status (Refer to **GameTalkState.cs**)<br>- ACTIVATED: Enabled<br>- DEACTIVATED: Disabled<br>- DELETED: Deleted |
 
 **Example**
 
@@ -250,10 +250,10 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 | --- | --- |
 | type | Event type (see **GameTalkEventType.cs**)<br>- CHANGE_NETWORK_STATE: Receive an event when the network is interrupted or reconnected<br>- PUSH_MESSAGE: Called when a new message is received in the open channel you are subscribed to<br>  - Use EventDataParser's GetPushMessageData API to objectify and use data<br>- PUSH_TO_ALL_USERS: Called when announcement message sent to all is received.<br>  - Use the GetPushMessageData API of EventDataParser to objectify and use data<br>- PUSH_DELETE_USER: Called when canceling channel subscription information of a user using GameTalk through the console and server API.<br>  - When an event is received, the status value must be synchronized with the server by calling the GameTalk.DeleteUserInfo API after processing the game logic.<br>  - Since the user's subscription to all channels is canceled, all messages cannot be sent or received until the user subscribes to the channel again.<br>  - Use the GetPushDeleteUserData API of EventDataParser to objectify and use data |
 | data | Data dependent on event type (see detailed data below) |
-| data(CHANGE_NETWORK_STATE) | Network state (see NetworkState.cs)<br>- DISCONNECTED: <br>- RECONNECTED: <br>  - You must retrieve messages that were not received due to network problems (see Example). |
-| data(PUSH_MESSAGE) | channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  SYSTEM: System<br>contentType: Message data type (Refer to **MessageContentType.cs**)<br>  TEXT: Text<br>senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  SYSTEM: System<br>senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>content: Message<br>state: Message status ( Refer to **MessageState.cs**)<br>  NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>regDate: Message sent date |
+| data(CHANGE_NETWORK_STATE) | Network state (see **NetworkState.cs**)<br>- DISCONNECTED: Disconnected.<br>- RECONNECTED: Reconnected.<br>  - You must retrieve messages that were not received due to network problems (see Example). |
+| data(PUSH_MESSAGE) | - channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
 | data(PUSH_TO_ALL_USERS) | In the PUSH_MESSAGE event data, only channelId and channelType are missing, all are the same |
-| data(PUSH_DELETE_USER) | userId: User ID |
+| data(PUSH_DELETE_USER) |- userId: User ID |
 
 **Example**
 
@@ -379,30 +379,6 @@ private void DeleteUserInfo()
 }
 ```
 
-### RemoveEvent
-
-Remove a registered handler.
-
-**API**
-
-Supported Platforms
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-
-```cs
-static void RemoveEvent()
-```
-
-**Example**
-
-```cs
-public void RemoveEventExample()
-{
-    GameTalk.RemoveEvent();
-}
-```
-
 ### MappingUserInfo
 
 Map user credentials to GameTalk.
@@ -441,7 +417,7 @@ static void MappingUserInfo(
 
 | GameTalkData.MappingUserInfo | Description |
 | --- | --- |
-| user | **User Information**<br>userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  true: normal<br>  - false: deleted user<br>regDate: User’s subscription date<br>- languageCode: user language code<br>lastLoginDate: Last login date |
+| user | **User Information**<br>- userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  - true: normal<br>  - false: deleted user<br>- regDate: User’s subscription date<br>- languageCode: user language code<br>- lastLoginDate: Last login date |
 
 **Example**
 
@@ -661,7 +637,7 @@ static void GetChannelList(
 | --- | --- | --- |
 | page | X | Page index<br>- starting value is 0 |
 | size | O | Page size<br>- A value between 1 and 100 |
-| tagType | X | Tag search condition (see **TagType.cs**)<br>- Default: OR<br>OR: Search for channels that contain at least one selected channel tag<br>AND: Search for channels that contain all selected channel tags |
+| tagType | X | Tag search condition (see **TagType.cs**)<br>- Default: OR<br>- OR: Search for channels that contain at least one selected channel tag<br>- AND: Search for channels that contain all selected channel tags |
 | tagIdList | X | Search tag list |
 
 **Callback**
@@ -675,8 +651,8 @@ static void GetChannelList(
 
 | GameTalkData.Channel.GetChannelList | Description |
 | --- | --- |
-| pagingInfo | **Paging information**<br>first: Whether it is the first page<br>last: Whether it is the last page<br>numberOfElements: Number of channels on the current page<br>- page: page index<br>size: Page size<br>totalElements: The total number of channels<br>totalPages: The total number of pages |
-| channelList | **Channel List**<br>id: Channel ID<br>type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>    iid: Tag ID<br>    name: Tag name |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| channelList | **Channel List**<br>- id: Channel ID<br>- type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>- subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>  - id: Tag ID<br>  - name: Tag name |
 
 **Example**
 
@@ -847,8 +823,8 @@ static void GetSubscriber(
 
 | GameTalkData.Channel.GetSubscriber | Description |
 | --- | --- |
-| pagingInfo | **Paging information**<br>first: Whether it is the first page<br>last: Whether it is the last page<br>numberOfElements: Number of channels on the current page<br>- page: page index<br>size: Page size<br>totalElements: The total number of channels<br>totalPages: The total number of pages |
-| userList | **User List** <br>userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  true: normal<br>  - false: deleted user<br>regDate: User’s subscription date<br>- languageCode: user language code<br>lastLoginDate: Last login date |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| userList | **User List** <br>- userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  - true: normal<br>  - false: deleted user<br>- regDate: User’s subscription date<br>- languageCode: user language code<br>- lastLoginDate: Last login date |
 
 **Example**
 
@@ -911,8 +887,8 @@ static void GetTagList(
 
 | GameTalkData.Channel.GetTagList | Description |
 | --- | --- |
-| pagingInfo | **Paging information**<br>first: Whether it is the first page<br>last: Whether it is the last page<br>numberOfElements: Number of channels on the current page<br>- page: page index<br>size: Page size<br>totalElements: The total number of channels<br>totalPages: The total number of pages |
-| tagList | **Tag List** <br>iid: Tag ID<br>name: Tag name |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| tagList | **Tag List** <br>- id: Tag ID<br>- name: Tag name |
 
 **Example**
 
@@ -974,8 +950,8 @@ static void GetSubscribedChannelList(
 
 | GameTalkData.Channel.GetSubscribedChannelList | Description |
 | --- | --- |
-| pagingInfo | **Paging information**<br>first: Whether it is the first page<br>last: Whether it is the last page<br>numberOfElements: Number of channels on the current page<br>- page: page index<br>size: Page size<br>totalElements: The total number of channels<br>totalPages: The total number of pages |
-| channelList | **Channel List**<br>id: Channel ID<br>type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>    iid: Tag ID<br>    name: Tag name |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| channelList | **Channel List**<br>- id: Channel ID<br>- type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>- subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>  - iid: Tag ID<br>  - name: Tag name |
 
 **Example**
 
@@ -1024,7 +1000,7 @@ static void SendMessage(
 | GameTalkParams.Message.SendMessage | Required | Description |
 | --- | --- | --- |
 | channelId | O | Unique ID given at channel creation |
-| contentType | O | Message data type (Refer to **MessageContentType.cs**)<br>TEXT: Text |
+| contentType | O | Message data type (Refer to **MessageContentType.cs**)<br>- TEXT: Text |
 | content | O | Message |
 
 **Callback**
@@ -1099,7 +1075,7 @@ static void GetRecentlyMessage(
 | GameTalkData.Message.GetRecentlyMessage | Description |
 | --- | --- |
 | count | Number of messages viewed |
-| recentlyMessageList | **List of Recent Messages**<br>channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  SYSTEM: System<br>contentType: Message data type (Refer to **MessageContentType.cs**)<br>  TEXT: Text<br>senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  SYSTEM: System<br>senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>content: Message<br>state: Message status ( Refer to **MessageState.cs**)<br>  NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>regDate: Message sent date |
+| recentlyMessageList | **List of Recent Messages**<br>- channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see **MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  - TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
 
 **Example**
 
@@ -1172,7 +1148,7 @@ static void GetMessage(
 | GameTalkData.Message.GetMessage | Description |
 | --- | --- |
 | count | Number of messages viewed |
-| baseMessage | **Base message (single object)**<br>channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  SYSTEM: System<br>contentType: Message data type (Refer to **MessageContentType.cs**)<br>  TEXT: Text<br>senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  SYSTEM: System<br>senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>content: Message<br>state: Message status ( Refer to **MessageState.cs**)<br>  NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>regDate: Message sent date |
+| baseMessage | **Base message (single object)**<br>- channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  - TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
 | prevMessageList | An object with the same structure as baseMessage is passed as a list |
 | nextMessageList | An object with the same structure as baseMessage is passed as a list |
 

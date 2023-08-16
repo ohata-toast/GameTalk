@@ -436,7 +436,7 @@ If you set the language, the language you set will be set as the default when se
 The default language and supported language are set to Korean.
 
 #### Restrict Message Sending
-You can set message transmission limit before disabling GameTalk service. (If transmission restrictions are not set, GameTalk cannot be disabled.)
+You can set message transmission limit before disabling GameTalk service(If transmission restrictions are not set, GameTalk cannot be disabled.).
 Data is immediately deleted upon disabling the service, and deleted data cannot be recovered.
 If message transmission is restricted, message transmission within the channel is not possible, **channel creation, tag creation, and new announcement message registration** are not possible.
 
