@@ -23,7 +23,7 @@ This document explains GameTalk SDK for Unity environment and how to use it.
 
 * iOS 11 or higher
 
-### Supported Platforms
+### Spported Platforms
 
 * UnityEditor
     * Support several features.
@@ -68,14 +68,16 @@ static void SetDebugMode(bool isDebugMode)
 
 **Parameter**
 
-* bool isDebugMode: Whether the debug mode is enabled
+| Parameter | Required | Description |
+| --- | --- | --- |
+| isDebugMode | O | Whether to enable debug mode |
 
 **Example**
 
 ```cs
-public void SetDebugModeSample(bool isDebugMode)
+public void SetDebugModeExample()
 {
-    Gamebase.SetDebugMode(isDebugMode);
+    GameTalk.SetDebugMode(true);
 }
 ```
 
@@ -96,14 +98,16 @@ static bool IsSucceeded(GameTalkError error)
 
 **Parameter**
 
-* GameTalkError error: GameTalkError object
+| Parameter | Required | Description |
+| --- | --- | --- |
+| error | O | GameTalkError object |
 
 **Example**
 
 ```cs
-public void IsSucceeded(GameTalkError error)
+public void IsSucceededExample(GameTalkError error)
 {
-    if (GameTalk.IsSucceeded(error) == true)
+    if (GameTalk.IsSucceeded(error) is true)
     {
         Debug.Log("succeeded.");
     }
@@ -133,33 +137,46 @@ static void Initialize(
 
 **Parameter**
 
-* GameTalkParams.Config config
-    * appKey: Appkey automatically generated when GameTalk project is activated in the console
-    * languageCode: The standard language code among multilingual translation target codes registered in the console
-* GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback
-    * GameTalkData.ServiceInfo
-        * maxMessageLength: The largest message length registered in the conosle
-        * gameTalkState: GameTalk status (Refer to**GameTalkState.cs** )
-            * ACTIVATED: Enabled
-            * DEACTIVATED: Disabled
-            * DELETED: Deleted
+| GameTalkParams.Config | Required | Description |
+| --- | --- | --- |
+| appKey | O | Appkey automatically generated when GameTalk project is activated in the console |
+| languageCode | O | The standard language code among multilingual translation target codes registered in the console |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> | Description |
+| --- | --- |
+| <GameTalkData.ServiceInfo> data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.ServiceInfo | Description |
+| --- | --- |
+| maxMessageLength | Maximum message length registered in the console |
+| gameTalkState | GameTalk status (Refer to **GameTalkState.cs**)<br>- ACTIVATED: Enabled<br>- DEACTIVATED: Disabled<br>- DELETED: Deleted |
 
 **Example**
 
 ```cs
-public void Initialize()
+public void InitializeExample()
 {
-    var config = new GameTalkParams.Config
+    var param = new GameTalkParams.Config
     {
-        appKey = "appKey",
+        appKey = "[GAMETALK_APP_KEY]",
         languageCode = LanguageCode.Korean
     };
-    
-    GameTalk.Initialize(config, (data, error) =>
+
+    GameTalk.Initialize(param, (data, error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("Initialize succeeded. maxMessageLength:{0}, gameTalkState:{1}", data.maxMessageLength, data.gameTalkState));
+            Debug.Log(string.Format("Initialize succeeded. data:{0}", data));
+
+            // If initialization is successful, you must register a handler to receive events using the AddEvent API.
+            GameTalk.AddEvent((eventData, eventError) =>
+            {
+            });
         }
         else
         {
@@ -187,9 +204,9 @@ static bool IsInitialized()
 **Example**
 
 ```cs
-public void IsInitialized()
+public void IsInitializedExample()
 {
-    if (GameTalk.IsInitialized() == true)
+    if (GameTalk.IsInitialized() is true)
     {
         Debug.Log("Initialized.");
     }
@@ -204,6 +221,11 @@ public void IsInitialized()
 
 Register a handler to receive the server evnets.
 
+> <font color="red">**[Caution]**</font><br/>
+> 
+> Must be called before calling the MappingUserInfo API.
+> If called later, messages received as events may be missed.
+
 **API**
 
 Supported Platforms
@@ -217,172 +239,150 @@ static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> ev
 
 **Parameter**
 
-* GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> eventHandler
-    * GameTalkData.AddEvent
-        * type: Event type ( Refer to**EventType.cs** )
-            * PUSH_MESSAGE
-                * It is called when a new message is received on the subscribed open channel
-                * Use EventDataParser's GetPushMessageData API to objectify and use data
-        * Data that changes according to the event type
-            * PUSH_MESSAGE                
-* Data by event type
-    * data(PUSH_MESSAGE)
-        * messageInfoList
-            * messageInfo
-                * messageId: Message ID
-                * channelId: Unique ID assigned when a channel is created
-                * senderType: Sender type ( Refer to **MessageSenderType.cs** )
-                    * USER: General user
-                    * ADMIN: Administrator
-                    * SYSTEM: System
-                * senderId: Sender ID
-                * senderNickname: Sender nicknme (If not, automatically set to senderId)
-                * regDate: Message sent date
-                * contentType: Message data type (Refer to **MessageContentType.cs**)
-                    * TEXT: Text
-                * messageList: The message entered by the sender and the translated message based on the LanguageCode are delivered together (LanguageCode can be changed in the Initialize and UpdateUserInfo APIs).
-                    * message
-                        * content: Message
-                        * state: Message status ( Refer to **MessageState.cs**)
-                            * NORMAL: Normal message
-                            * FILTER: Messages filtered for profanity
+| GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> | Description |
+| --- | --- |
+| <GameTalkData.AddEvent>data | Event data |
+| error | Error object |
+
+**Event data**
+
+| GameTalkData.AddEvent | Description |
+| --- | --- |
+| type | Event type (see **GameTalkEventType.cs**)<br>- CHANGE_NETWORK_STATE: Receive an event when the network is interrupted or reconnected<br>- PUSH_MESSAGE: Called when a new message is received in the open channel you are subscribed to<br>  - Use EventDataParser's GetPushMessageData API to objectify and use data<br>- PUSH_TO_ALL_USERS: Called when announcement message sent to all is received.<br>  - Use the GetPushMessageData API of EventDataParser to objectify and use data<br>- PUSH_DELETE_USER: Called when canceling channel subscription information of a user using GameTalk through the console and server API.<br>  - When an event is received, the status value must be synchronized with the server by calling the GameTalk.DeleteUserInfo API after processing the game logic.<br>  - Since the user's subscription to all channels is canceled, all messages cannot be sent or received until the user subscribes to the channel again.<br>  - Use the GetPushDeleteUserData API of EventDataParser to objectify and use data |
+| data | Data dependent on event type (see detailed data below) |
+| data(CHANGE_NETWORK_STATE) | Network state (see **NetworkState.cs**)<br>- DISCONNECTED: Disconnected.<br>- RECONNECTED: Reconnected.<br>  - You must retrieve messages that were not received due to network problems (see Example). |
+| data(PUSH_MESSAGE) | - channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
+| data(PUSH_TO_ALL_USERS) | In the PUSH_MESSAGE event data, only channelId and channelType are missing, all are the same |
+| data(PUSH_DELETE_USER) |- userId: User ID |
 
 **Example**
 
 ```cs
-public void AddEvent()
+public void AddEventExample()
 {
     GameTalk.AddEvent((eventData, error) =>
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            switch (eventData.type)
+            switch(eventData.type)
             {
-                case EventType.PUSH_MESSAGE:
+                case GameTalkEventType.CHANGE_NETWORK_STATE:
                 {
-                    var pushMessageData = EventDataParser.GetPushMessageData(eventData.data);
-                    var sb = new StringBuilder();
-                    foreach (var messageInfo in pushMessageData.messageInfoList)
-                    {
-                        sb.AppendFormat("messageType:{0}, ", messageInfo.messageType); 
-                        sb.AppendFormat("messageId:{0}, ", messageInfo.messageId); 
-                        sb.AppendFormat("channelId:{0}, ", messageInfo.channelId); 
-                        sb.AppendFormat("senderType:{0}, ", messageInfo.senderType); 
-                        sb.AppendFormat("senderId:{0}, ", messageInfo.senderId); 
-                        sb.AppendFormat("receiverId:{0}, ", messageInfo.receiverId); 
-                        sb.AppendFormat("regDate:{0}, ", messageInfo.regDate); 
-                        sb.AppendFormat("contentType:{0}, ", messageInfo.contentType);
+                    // Called when the network state changes.
+                    // NetworkState.DISCONNECTED or NetworkState.RECONNECTED
+                    Debug.Log(string.Format("Change networkState:{0}", eventData.data));
 
-                        foreach (var message in messageInfo.messageList)
-                        {
-                            sb.AppendFormat("content:{0}, ", message.content);
-                            sb.AppendFormat("languageCode:{0}, ", message.languageCode);
-                            sb.AppendFormat("state:{0}, ", message.state);
-                        }
-                        sb.AppendLine("==========");
+                    if (eventData.data.Equals(NetworkState.RECONNECTED) is true)
+                    {
+                        // Retrieve messages not received due to network problems.
+                        CheckUnreceivedMessages(lastReceivedMessageId);
                     }
-                    
-                    Debug.Log(string.Format("AddEvent succeeded. message:{0}", sb));
+
+                    break;
+                }
+                case GameTalkEventType.PUSH_MESSAGE:
+                {
+                    // It is called when a new message is received on the subscribed open channel
+                    // Use EventDataParser's GetEventData<GameTalkData.Message.PushMessage> API to objectify and use data.
+                    Debug.Log(string.Format(
+                        "An event has been received. data:{0}",
+                        EventDataParser.GetEventData<GameTalkData.Message.PushMessage>(eventData.data)));
+                    break;
+                }
+                case GameTalkEventType.PUSH_TO_ALL_USERS:
+                {
+                    // Called when the entire delivery notification message is received
+                    // Use EventDataParser's GetEventData<GameTalkData.Message.PushToAllUsers> API to objectify and use data
+                    Debug.Log(string.Format(
+                        "An event has been received. data:{0}",
+                        EventDataParser.GetEventData<GameTalkData.Message.PushToAllUsers>(eventData.data)));
+                    break;
+                }
+                case GameTalkEventType.PUSH_DELETE_USER:
+                {
+                    // Called when the channel subscription information of the user using GameTalk is canceled through the console and server API
+                    // Use EventDataParser's GetEventData<GameTalkData.PushDeleteUser> API to objectify and use data
+                    Debug.Log(string.Format(
+                        "PUSH_DELETE_USER event was received. data:{0}",
+                        EventDataParser.GetEventData<GameTalkData.PushDeleteUser>(eventData.data)));
+
+                    // You must call the DeleteUserInfo API to synchronize server and client state.
+                    DeleteUserInfo();
+                    break;
                 }
             }
         }
         else
         {
-            Debug.Log(string.Format("AddEvent failed. error:{0}", error));
+            Debug.Log(string.Format("error:{0}", error));
         }
     });
 }
-```
 
-### RemoveEvent
-
-Remove a registered handler.
-
-**API**
-
-Supported Platforms
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-
-```cs
-static void RemoveEvent()
-```
-
-**Example**
-
-```cs
-public void RemoveEvent()
+private void CheckUnreceivedMessages(long lastReceivedMessageId)
 {
-    GameTalk.RemoveEvent();
-}
-```
-
-### Login
-
-Run GameTalk login.
-
-**API**
-
-Supported Platforms
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
-
-```cs
-static void Login(
-    GameTalkParams.Auth.Login param,
-    GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback)
-```
-
-**Parameter**
-
-* GameTalkParams.Auth.Login param
-    * idPType: IdP (identity provider) type ( Refer to**IdPType.cs**)
-        * Enter IdPType.GAMEBASE when Gamebase is in use.
-    * userId: User ID
-        * Enter Gamebase User ID when Gamebase is in use
-    * token: User authenticated token
-        * Enter Gamebase-authenticated token when Gamebase is in use
-* GameTalkCallback.GameTalkDelegate<GameTalkData.Auth.Login> callback
-    * GameTalkData.Auth.Login
-        * user
-            * userId: User ID
-            * valid: User Status ( Refer to**UserState.cs**)
-                * Y: Normal
-                * D: Deleted user
-            * regDate: User’s subscription date
-            * lastLoginDate: Last login date
-
-**Example**
-
-```cs
-public void Login()
-{
-    var loginParams = new GameTalkParams.Auth.Login
+    var param = new GameTalkParams.Message.GetMessage
     {
-        idPType = IdPType.XX,
-        token = "token",
-        userId = "userId"
+        // The ID of the last received message.
+        messageId = lastReceivedMessageId,
+        nextCount = 50,
+        channelId = "{CURRENT_CHANNEL_ID}"
     };
 
-    GameTalk.Auth.Login(loginParams, (data, error) =>
+    GameTalk.Message.GetMessage(param, (message, error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("Login succeeded. userId:{0}", data.user.userId));
+            if (message.nextMessageList.Count == 0)
+            {
+                // There are no unreceived messages.
+
+                //-----------------------------
+                // game processing logic
+                //-----------------------------
+                // Display the message received through the PUSH_MESSAGE event on the UI.
+            }
+            else
+            {
+                // There are unreceived messages.
+                // If messages received through the PUSH_MESSAGE event are displayed on the UI, the order of messages may be out of order.
+                // Hold the received message until its processing is finished.
+
+                //-----------------------------
+                // game processing logic
+                //-----------------------------
+                // 1. Archive the message received with the PUSH_MESSAGE event (UI display X).
+                // 2. Display the messages retrieved by the GetMessage API on the game UI.
+                // 3. Call the CheckUnreceivedMessages method recursively until there are no unreceived messages.
+            }
         }
         else
         {
-            Debug.Log(string.Format("Login failed. error:{0}", error));
+            Debug.Log(string.Format("GetMessage failed. error:{0}", error));
+        }
+    });
+}
+
+private void DeleteUserInfo()
+{
+    GameTalk.DeleteUserInfo((error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            Debug.Log("DeleteUserInfo succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("DeleteUserInfo failed. error:{0}", error));
         }
     });
 }
 ```
 
-### Logout
+### MappingUserInfo
 
-Log out of GameTalk
+Map user credentials to GameTalk.
+The mapped information serves as the GameTalk user identifier.
 
 **API**
 
@@ -392,27 +392,127 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 
 ```cs
-static void Logout(GameTalkCallback.ErrorDelegate callback)
+static void MappingUserInfo(
+    GameTalkParams.MappingUserInfo param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.MappingUserInfo> callback)
 ```
 
 **Parameter**
 
-* GameTalkCallback.ErrorDelegate callback
+| GameTalkParams.MappingUserInfo | Required | Description |
+| --- | --- | --- |
+| idPType | X | IdP (identity provider) type ( Refer to**IdPType.cs**)<br>- GAMEBASE: Gamebase<br>Enter IdPType.GAMEBASE when Gamebase is in use. |
+| userId | O | User ID<br>Enter Gamebase User ID when Gamebase is in use |
+| token | X | User authentication token<br>If using Gamebase authentication, enter the Gamebase authentication token (if the token is omitted, the server will return an error)<br>Can be omitted if Gamebase authentication is not used |
+| nickname | X | User nickname |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.MappingUserInfo> | Description |
+| --- | --- |
+| <GameTalkData.MappingUserInfo>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.MappingUserInfo | Description |
+| --- | --- |
+| user | **User Information**<br>- userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  - true: normal<br>  - false: deleted user<br>- regDate: User’s subscription date<br>- languageCode: user language code<br>- lastLoginDate: Last login date |
 
 **Example**
 
 ```cs
-public void Logout()
+public void MappingUserInfoExample()
 {
-    GameTalk.Auth.Logout((error) =>
+    var param = new GameTalkParams.MappingUserInfo
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        idPType = IdPType.GAMEBASE,
+        token = "[TOKEN]",
+        userId = "[USER_ID]",
+        nickname = "[NICKNAME]"
+    };
+
+    GameTalk.MappingUserInfo(param, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log("Logout succeeded.");
+            Debug.Log(string.Format("MappingUserInfo succeeded. data:{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("Logout failed. error:{0}", error));
+            Debug.Log(string.Format("MappingUserInfo failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### IsMappedUserInfo
+
+Make sure users credentials are mapped to GameTalk.
+
+**API**
+
+Supported Platforms
+<span style="color:#b60205">■</span> UNITY_EDITOR
+<span style="color:#0e8a16">■</span> UNITY_ANDROID
+<span style="color:#1d76db">■</span> UNITY_IOS
+
+```cs
+static bool IsMappedUserInfo()
+```
+
+**Example**
+
+```cs
+public void IsMappedUserInfoExample()
+{
+    if (GameTalk.IsMappedUserInfo() is true)
+    {
+        Debug.Log("UserInfo is mapped.");
+    }
+    else
+    {
+        Debug.Log("UserInfo is not mapped.");
+    }
+}
+```
+
+### UnmappingUserInfo
+
+Disable the user credentials mapped to GameTalk.
+All chat messages cannot be received until the GameTalk.MappingUserInfo API is called.
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void UnmappingUserInfo(GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
+
+**Example**
+
+```cs
+public void UnmappingUserInfoExample()
+{
+    GameTalk.UnmappingUserInfo((error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            Debug.Log("UnmappingUserInfo succeeded.");
+        }
+        else
+        {
+            Debug.Log(string.Format("UnmappingUserInfo failed. error:{0}", error));
         }
     });
 }
@@ -431,29 +531,37 @@ Supported Platforms
 
 ```cs
 static void UpdateUserInfo(
-    GameTalkParams.Auth.UpdateUserInfo param,
+    GameTalkParams.UpdateUserInfo param,
     GameTalkCallback.ErrorDelegate callback)
 ```
 
 **Parameter**
 
-* GameTalkParams.Auth.UpdateUserInfo param
-    * languageCode: The standard language code among multilingual translation target codes registered in the console
-* GameTalkCallback.ErrorDelegate callback
+| GameTalkParams.UpdateUserInfo | Required | Description |
+| --- | --- | --- |
+| languageCode | O | The standard language code among multilingual translation target codes registered in the console |
+| nickname | X | User nickname |
+
+**Callback**
+
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
 
 **Example**
 
 ```cs
-public void UpdateUserInfo()
+public void UpdateUserInfoExample()
 {
-    var updateUserInfoParams = new GameTalkParams.Auth.UpdateUserInfo
+    var param = new GameTalkParams.UpdateUserInfo
     {
-        languageCode = LanguageCode.English
+        languageCode = LanguageCode.English,
+        nickname = "[NICKNAME]"
     };
 
-    GameTalk.Auth.UpdateUserInfo(updateUserInfoParams, (error) =>
+    GameTalk.UpdateUserInfo(param, (error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
             Debug.Log("UpdateUserInfo succeeded.");
         }
@@ -465,9 +573,9 @@ public void UpdateUserInfo()
 }
 ```
 
-### Withdraw
+### DeleteUserInfo
 
-Delete the user information.
+Disable the subscription information on all channels for uers mapped to GameTalk.
 
 **API**
 
@@ -477,27 +585,29 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 
 ```cs
-static void Withdraw(GameTalkCallback.ErrorDelegate callback)
+static void DeleteUserInfo(GameTalkCallback.ErrorDelegate callback)
 ```
 
 **Parameter**
 
-* GameTalkCallback.ErrorDelegate callback
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
 
 **Example**
 
 ```cs
-public void Withdraw()
+public void DeleteUserInfoExample()
 {
-    GameTalk.Auth.Withdraw((error) =>
+    GameTalk.DeleteUserInfo((error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log("Withdraw succeeded.");
+            Debug.Log("DeleteUserInfo succeeded.");
         }
         else
         {
-            Debug.Log(string.Format("Withdraw failed. error:{0}", error));
+            Debug.Log(string.Format("DeleteUserInfo failed. error:{0}", error));
         }
     });
 }
@@ -523,55 +633,45 @@ static void GetChannelList(
 
 **Parameter**
 
-* GameTalkParams.Channel.GetChannelList param
-    * page: Page index (start value is 0)
-    * size: Page size
-    * tagType: Tag search condition ( Refer to **TagType.cs**)
-        * The default is OR
-        * OR: Search for channels that contain at least one selected channel tag
-        * AND: Search for channels that contain all selected channel tags
-    * tagList: Search tag list
-* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> callback
-    * GameTalkData.Channel.GetChannelList
-        * pagingInfo
-            * first: Whether it is the first page
-            * last: Whether it is the last page
-            * numberOfElements: Number of channels on the current page
-            * page: Page index (start value is 0)
-            * size: Page size
-            * totalElements: The total number of channels
-            * totalPages: The total number of pages
-        * channelList
-            * channelInfo
-                * id: Channel ID
-                * type: Channel type (Refer to**ChannelType.cs**)
-                    * public: Open channel
-                    * private: System channel, 1:1 channel
-                * name: Channel name entered when creating a channel
-                * subscriberCount: Number of channel subscribers
-                * tagList
-                    * tag
-                        * id: Tag ID
-                        * name: Tag name
+| GameTalkParams.Channel.GetChannelList | Required | Description |
+| --- | --- | --- |
+| page | X | Page index<br>- starting value is 0 |
+| size | O | Page size<br>- A value between 1 and 100 |
+| tagType | X | Tag search condition (see **TagType.cs**)<br>- Default: OR<br>- OR: Search for channels that contain at least one selected channel tag<br>- AND: Search for channels that contain all selected channel tags |
+| tagIdList | X | Search tag list |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> | Description |
+| --- | --- |
+| <GameTalkData.Channel.GetChannelList>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.Channel.GetChannelList | Description |
+| --- | --- |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| channelList | **Channel List**<br>- id: Channel ID<br>- type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>- subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>  - id: Tag ID<br>  - name: Tag name |
 
 **Example**
 
 ```cs
-public void GetChannelList()
+public void GetChannelListExample()
 {
-    var getChannelListParams = new GameTalkParams.Channel.GetChannelList
+    var param = new GameTalkParams.Channel.GetChannelList
     {
         page = 0,
         size = 10,
         tagType = TagType.OR,
-        tagList = new List<int> { 0, 1 }
+        tagIdList = new List<int>() { 1, 2 }
     };
 
-    GameTalk.Channel.GetChannelList(getChannelListParams, (data, error) =>
+    GameTalk.Channel.GetChannelList(param, (data, error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetChannelList succeeded. channelList:{0}", data));
+            Debug.Log(string.Format("GetChannelList succeeded. data:{0}", data));
         }
         else
         {
@@ -600,23 +700,29 @@ static void SubscribeChannel(
 
 **Parameter**
 
-* GameTalkParams.Channel.SubscribeChannel param
-    * channelId: Unique ID assigned when a channel is created
-* GameTalkCallback.ErrorDelegate callback
+| GameTalkParams.Channel.SubscribeChannel | Required | Description |
+| --- | --- | --- |
+| channelId | O | Unique ID given at channel creation |
+
+**Callback**
+
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
 
 **Example**
 
 ```cs
-public void SubscribeChannel()
+public void SubscribeChannelExample()
 {
-    var subscribeChannelParams = new GameTalkParams.Channel.SubscribeChannel
+    var param = new GameTalkParams.Channel.SubscribeChannel
     {
-        channelId = "channelId"
+        channelId = "[CHANNEL_ID]"
     };
 
-    GameTalk.Channel.SubscribeChannel(subscribeChannelParams, (error) =>
+    GameTalk.Channel.SubscribeChannel(param, (error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
             Debug.Log("SubscribeChannel succeeded.");
         }
@@ -647,24 +753,29 @@ static void UnsubscribeChannel(
 
 **Parameter**
 
-* GameTalkParams.Channel.UnsubscribeChannel param
-    * channelId: Unique ID assigned when a channel is created
-* GameTalkCallback.ErrorDelegate callback
+| GameTalkParams.Channel.UnsubscribeChannel | Required | Description |
+| --- | --- | --- |
+| channelId | O | Unique ID given at channel creation |
 
+**Callback**
+
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
 
 **Example**
 
 ```cs
-public void UnsubscribeChannel()
+public void UnsubscribeChannelExample()
 {
-    var subscribeChannelParams = new GameTalkParams.Channel.UnsubscribeChannel
+    var param = new GameTalkParams.Channel.UnsubscribeChannel
     {
-        channelId = "channelId"
+        channelId = "[CHANNEL_ID]"
     };
 
-    GameTalk.Channel.UnsubscribeChannel(subscribeChannelParams, (error) =>
+    GameTalk.Channel.UnsubscribeChannel(param, (error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
             Debug.Log("UnsubscribeChannel succeeded.");
         }
@@ -695,39 +806,41 @@ static void GetSubscriber(
 
 **Parameter**
 
-* GameTalkParams.Channel.GetSubscriber param
-    * channelId: Unique ID assigned when a channel is created
-    * page: Page index (start value is 0)
-    * size: Page size
-* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> callback
-    * GameTalkData.Channel.GetSubscriber
-        * pagingInfo
-            * first: Whether it is the first page
-            * last: Whether it is the last page
-            * numberOfElements: Number of channels on the current page
-            * page: Page index (start value is 0)
-            * size: Page size
-            * totalElements: The total number of channels
-            * totalPages: The total number of pages
-        * userList
-            * user
-                * id: User ID
+| GameTalkParams.Channel.GetSubscriber | Required | Description |
+| --- | --- | --- |
+| channelId | O | Unique ID given at channel creation |
+| page | X | Page index<br>- starting value is 0 |
+| size | O | Page size<br>- A value between 1 and 100 |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> | Description |
+| --- | --- |
+| <GameTalkData.Channel.GetSubscriber>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.Channel.GetSubscriber | Description |
+| --- | --- |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| userList | **User List** <br>- userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  - true: normal<br>  - false: deleted user<br>- regDate: User’s subscription date<br>- languageCode: user language code<br>- lastLoginDate: Last login date |
 
 **Example**
 
 ```cs
-public void GetSubscriber()
+public void GetSubscriberExample()
 {
-    var getSubscriberParams = new GameTalkParams.Channel.GetSubscriber
+    var param = new GameTalkParams.Channel.GetSubscriber
     {
-        channelId = "channelId",
+        channelId = "[CHANNEL_ID]",
         page = 0,
         size = 10
     };
 
-    GameTalk.Channel.GetSubscriber(getSubscriberParams, (data, error) =>
+    GameTalk.Channel.GetSubscriber(param, (data, error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
             Debug.Log(string.Format("GetSubscriber succeeded. data:{0}", data));
         }
@@ -739,7 +852,7 @@ public void GetSubscriber()
 }
 ```
 
-### GetChannelTagList
+### GetTagList
 
 Retrieve the channel’s tag list.
 
@@ -751,51 +864,52 @@ Supported Platforms
 <span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
 
 ```cs
-static void GetChannelTagList(
-    GameTalkParams.Channel.GetChannelTagList param,
-    GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelTagList> callback)
+static void GetTagList(
+    GameTalkParams.Channel.GetTagList param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetTagList> callback)
 ```
 
 **Parameter**
 
-* GameTalkParams.Channel.GetChannelTagList param
-    * page: Page index (start value is 0)
-    * size: Page size
-* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelTagList> callback
-    * GameTalkData.Channel.GetChannelTagList
-        * pagingInfo
-            * first: Whether it is the first page
-            * last: Whether it is the last page
-            * numberOfElements: Number of channels on the current page
-            * page: Page index (start value is 0)
-            * size: Page size
-            * totalElements: The total number of channels
-            * totalPages: The total number of pages
-        * tagList
-            * tag
-                * id: Tag ID
-                * name: Tag name
+| GameTalkParams.Channel.GetTagList | Required | Description |
+| --- | --- | --- |
+| page | X | Page index<br>- starting value is 0 |
+| size | O | Page size<br>- A value between 1 and 100 |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetTagList> | Description |
+| --- | --- |
+| <GameTalkData.Channel.GetTagList>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.Channel.GetTagList | Description |
+| --- | --- |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| tagList | **Tag List** <br>- id: Tag ID<br>- name: Tag name |
 
 **Example**
 
 ```cs
-public void GetChannelTagList()
+public void GetTagListExample()
 {
-    var getChannelTagListParams = new GameTalkParams.Channel.GetChannelTagList
+    var param = new GameTalkParams.Channel.GetTagList
     {
         page = 0,
         size = 10
     };
 
-    GameTalk.Channel.GetChannelTagList(getChannelTagListParams, (data, error) =>
+    GameTalk.Channel.GetTagList(param, (data, error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetChannelTagList succeeded. data:{0}", data));
+            Debug.Log(string.Format("GetTagList succeeded. data:{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("GetChannelTagList failed. error:{0}", error));
+            Debug.Log(string.Format("GetTagList failed. error:{0}", error));
         }
     });
 }
@@ -820,48 +934,41 @@ static void GetSubscribedChannelList(
 
 **Parameter**
 
-* GameTalkParams.Channel.GetSubscribedChannelList param
-    * page: Page index (start value is 0)
-    * size: Page size
-* GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> callback)
-    * GameTalkData.Channel.GetSubscribedChannelList
-        * pagingInfo
-            * first: Whether it is the first page
-            * last: Whether it is the last page
-            * numberOfElements: Number of channels on the current page
-            * page: Page index (start value is 0)
-            * size: Page size
-            * totalElements: The total number of channels
-            * totalPages: The total number of pages
-        * channelList
-            * channelInfo
-                * id: Channel ID
-                * type: Channel type (Refer to**ChannelType.cs**)
-                    * public: Open channel
-                    * private: System channel, 1:1 channel
-                * name: Channel name entered when creating a channel
-                * subscriberCount: Number of channel subscribers
-                * tagList
-                    * tag
-                        * id: Tag ID
-                        * name: Tag name
+| GameTalkParams.Channel.GetSubscribedChannelList | Required | Description |
+| --- | --- | --- |
+| page | X | Page index<br>- starting value is 0 |
+| size | O | Page size<br>- A value between 1 and 100 |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> | Description |
+| --- | --- |
+| <GameTalkData.Channel.GetSubscribedChannelList>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.Channel.GetSubscribedChannelList | Description |
+| --- | --- |
+| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
+| channelList | **Channel List**<br>- id: Channel ID<br>- type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>- subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>  - iid: Tag ID<br>  - name: Tag name |
 
 **Example**
 
 ```cs
-public void GetSubscribedChannelList()
+public void GetSubscribedChannelListExample()
 {
-    var getSubscribedChannelListParams = new GameTalkParams.Channel.GetSubscribedChannelList
+    var param = new GameTalkParams.Channel.GetSubscribedChannelList
     {
         page = 0,
         size = 10
     };
 
-    GameTalk.Channel.GetSubscribedChannelList(getSubscribedChannelListParams, (data, error) =>
+    GameTalk.Channel.GetSubscribedChannelList(param, (data, error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetSubscribedChannelList succeeded. channelList:{0}", data));
+            Debug.Log(string.Format("GetSubscribedChannelList succeeded. data:{0}", data));
         }
         else
         {
@@ -890,36 +997,245 @@ static void SendMessage(
 
 **Parameter**
 
-* GameTalkParams.Message.SendMessage param
-    * senderNickname: Sender nicknme (If not, automatically set to senderId)
-    * channelId: Unique ID assigned when a channel is created
-    * contentType: Message data type (Refer to **MessageContentType.cs**)
-        * TEXT: Text
-    * content: Message
-* GameTalkCallback.ErrorDelegate callback
+| GameTalkParams.Message.SendMessage | Required | Description |
+| --- | --- | --- |
+| channelId | O | Unique ID given at channel creation |
+| contentType | O | Message data type (Refer to **MessageContentType.cs**)<br>- TEXT: Text |
+| content | O | Message |
+
+**Callback**
+
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
 
 **Example**
 
 ```cs
-public void SendPublicMessageToChannel()
+public void SendMessageExample()
 {
-    var sendMessageParams = new GameTalkParams.Message.SendMessage
+    var param = new GameTalkParams.Message.SendMessage
     {
-        channelId = "channelId",
-        contentType = text,
-        content = "message",
-        languageCode = LanguageCode.Korean
+        channelId = "[CHANNEL_ID]",
+        contentType = MessageContentType.TEXT,
+        content = "[MESSAGE]"
     };
 
-    GameTalk.Message.SendMessage(sendMessageParams, (error) =>
+    GameTalk.Message.SendMessage(param, (error) =>
     {
-        if (GameTalk.IsSucceeded(error) == true)
+        if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("SendPublicMessageToChannel succeeded."));
+            Debug.Log(string.Format("SendMessage succeeded."));
         }
         else
         {
-            Debug.Log(string.Format("SendPublicMessageToChannel failed. error:{0}", error));
+            Debug.Log(string.Format("SendMessage failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### GetRecentlyMessage
+
+Retrieves recent messages.
+
+> <font color="red">**[Caution]**</font><br/>
+> 
+> You can view up to <span>50 messages<span>, including the latest messages.
+
+**API**
+
+Supported Platforms
+<span style="color:#b60205">■</span> UNITY_EDITOR
+<span style="color:#0e8a16">■</span> UNITY_ANDROID
+<span style="color:#1d76db">■</span> UNITY_IOS
+
+```cs
+static void GetRecentlyMessage(
+    GameTalkParams.Message.GetRecentlyMessage param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetRecentlyMessage> callback)
+```
+
+**Parameter**
+
+| GameTalkParams.Message.GetRecentlyMessage | Required | Description |
+| --- | --- | --- |
+| channelId | O | Unique ID given at channel creation |
+| count | O | Number of messages to retrieve<br>- A value between 1 and 50 |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetRecentlyMessage> | Description |
+| --- | --- |
+| <GameTalkData.Message.GetRecentlyMessage>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.Message.GetRecentlyMessage | Description |
+| --- | --- |
+| count | Number of messages viewed |
+| recentlyMessageList | **List of Recent Messages**<br>- channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see **MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  - TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
+
+**Example**
+
+```cs
+public void GetRecentlyMessageExample()
+{
+    var param = new GameTalkParams.Message.GetRecentlyMessage
+    {
+        channelId = "[CHANNEL_ID]",
+        count = 10
+    };
+
+    GameTalk.Message.GetRecentlyMessage(param, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            Debug.Log(string.Format("GetRecentlyMessage succeeded. data:{0}", data));
+        }
+        else
+        {
+            Debug.Log(string.Format("GetRecentlyMessage failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### GetMessage
+
+Retrieve messages based on a specific message ID.
+
+> <font color="red">**[Caution]**</font><br/>
+> 
+> You can retrieve <span>up to 51 messages<span> based on a specific message ID.
+If the value of include among the parameters is set to true, <span>a total of 51 messages<span> including the standard message will be retrieved.<span><span>
+> 
+> The sum of prevCount and nextCount must be greater than <span>1 and less than 50<span>.<span><span>
+
+**API**
+
+Supported Platforms
+<span style="color:#b60205">■</span> UNITY_EDITOR
+<span style="color:#0e8a16">■</span> UNITY_ANDROID
+<span style="color:#1d76db">■</span> UNITY_IOS
+
+```cs
+static void GetMessage(
+    GameTalkParams.Message.GetMessage param,
+    GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetMessage> callback)
+```
+
+**Parameter**
+
+| GameTalkParams.Message.GetMessage | Required | Description |
+| --- | --- | --- |
+| channelId | O | Unique ID given at channel creation |
+| messageId | O | Base message id |
+| prevCount | O | The number of previous messages to retrieve from the base message<br>- A value between 0 and 50 |
+| nextCount | O | The number of next messages to retrieve from the base message<br>- A value between 0 and 50 |
+| include | X | Whether to include base message<br>- Default: false |
+
+**Callback**
+
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetMessage> | Description |
+| --- | --- |
+| <GameTalkData.Message.GetMessage>data | Callback Data |
+| error | Error object |
+
+**Callback Data**
+
+| GameTalkData.Message.GetMessage | Description |
+| --- | --- |
+| count | Number of messages viewed |
+| baseMessage | **Base message (single object)**<br>- channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  - TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
+| prevMessageList | An object with the same structure as baseMessage is passed as a list |
+| nextMessageList | An object with the same structure as baseMessage is passed as a list |
+
+**Example**
+
+```cs
+public void GetMessageExample()
+{
+    var param = new GameTalkParams.Message.GetMessage
+    {
+        channelId = "[CHANNEL_ID]",
+        messageId = 123456,
+        prevCount = 10,
+        nextCount = 10,
+        include = true
+    };
+
+    GameTalk.Message.GetMessage(param, (data, error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            Debug.Log(string.Format("GetMessage succeeded. data:{0}", data));
+        }
+        else
+        {
+            Debug.Log(string.Format("GetMessage failed. error:{0}", error));
+        }
+    });
+}
+```
+
+### ReportMessage
+
+Report a specific message.
+
+**API**
+
+Supported Platforms
+<span style="color:#b60205">■</span> UNITY_EDITOR
+<span style="color:#0e8a16">■</span> UNITY_ANDROID
+<span style="color:#1d76db">■</span> UNITY_IOS
+
+```cs
+static void ReportMessage(
+    GameTalkParams.Message.ReportMessage param,
+    GameTalkCallback.ErrorDelegate callback)
+```
+
+**Parameter**
+
+| GameTalkParams.Message.ReportMessage | Required | Description |
+| --- | --- | --- |
+| messageId | O | Message ID to report |
+| messageLanguageCode | O | Message language code to report |
+| channelId | O | Unique ID given at channel creation |
+| reporterNickname | X | Reporter Nickname |
+| reason | X | Reason for Report |
+
+**Callback**
+
+| GameTalkCallback.ErrorDelegate | Description |
+| --- | --- |
+| error | Error object |
+
+**Example**
+
+```cs
+public void ReportMessageExample()
+{
+    var param = new GameTalkParams.Message.ReportMessage
+    {
+        channelId = "[CHANNEL_ID]",
+        messageLanguageCode = LanguageCode.Korean,
+        messageId = 123456,
+        reporterNickname = "[REPORTER_NICKNAME]",
+        reason = "[REASON]"
+    };
+
+    GameTalk.Message.ReportMessage(param, (error) =>
+    {
+        if (GameTalk.IsSucceeded(error) is true)
+        {
+            Debug.Log(string.Format("ReportMessage succeeded."));
+        }
+        else
+        {
+            Debug.Log(string.Format("ReportMessage failed. error:{0}", error));
         }
     });
 }
