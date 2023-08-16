@@ -12,7 +12,7 @@ GameTalk is a service that allows you to implement an in-app chat feature. The G
 
 ## Key Features
 
-![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_kr_v1.1.0.png)
+![GameTalk_features](http://static.toastoven.net/prod_gametalk/gametalk_overview_en_01.png)
 
 ### Channel Management
 
