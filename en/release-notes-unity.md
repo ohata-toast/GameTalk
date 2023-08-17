@@ -2,7 +2,7 @@
 
 ### 1.1.0 (2023. 08. 17.)
 
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/GameTalkSDK_Unity.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/v1.1.0/GameTalkSDK_Unity.zip)
 
 * Added Features
     * Added API to report messages.
