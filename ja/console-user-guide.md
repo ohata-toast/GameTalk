@@ -1,526 +1,525 @@
-## Game > GameTalk > Console User Guide
+## Game > GameTalk > コンソール使用ガイド
 
-This document explains how to manage channels, members, and messages, and set languages, forbidden words, message sending restriction and authentication information by using the GameTalk console.
+この文書は、GameTalkコンソールを利用してチャンネル、メンバー、メッセージを管理し、言語、禁止語、メッセージ送信制限、認証情報などを設定する方法を説明します。
 
-GameTalk console consists of the following menus.
+GameTalkコンソールは、次のメニューで構成されています。
 
-- **Channel**: Manage channels that allow users to chat, channel tags, and announcement messages in GameTalk
-- **Member**: Manage GameTalk users
-- **Message**: View GameTalk messages and manage report messages
-- **Settings**: Limitation on the number of characters, language settings, message sending restriction, forbidden word management,authentication management
+- **チャンネル**：GameTalkでユーザー間チャットをサポートするチャンネルの管理、チャンネルタグ管理、通知メッセージ管理
+- **メンバー**：GameTalkを使用するユーザーの管理
+- **メッセージ**：GameTalkのメッセージ照会、通報メッセージ管理
+- **設定**：文字数制限、言語設定、メッセージ送信制限、禁止語管理、認証情報管理
 
-## Channel
-Channel is a connection window that enables chats among users in GameTalk.
-Channels can be created in the console and all created channels have their own channel ID.
-Users can subscribe to channels with an unique channel ID. Users can freely subscribe to and unsubscribe from multiple Channels.
+## チャンネル
+チャンネルはGameTalkでユーザー間チャットをサポートする接続窓口です。
+チャンネルはコンソールで作成可能で、作成されたすべてのチャンネルは固有のチャンネルIDが存在します。
+ユーザーは、一意のチャンネルIDを持つチャンネルを購読できます。複数のチャンネルを自由に購読/解除できます。
 
-## Channel List
-You can retrieve/create/delete channels.
+## チャンネルリスト
+チャンネルを照会・作成・修正・削除できます。
 
-### Retrieve Channel List
+### チャンネルリストの照会
 ![gametalk_channel_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_1_230629.png)
 
-#### (1) Search Conditions
+#### (1)検索条件
 
-Select Search Conditions
+検索条件を選択します。
 
-- **Channel Name**: Search by channel name entered when creating the Channel. Search for the Channel whose entered string contains the channel name.
-- **Channel ID**: Search by the unique ID given during Channel creation. Search for the Channel whose entered string is matched with the Channel ID.
-- **Channel Nickname**: Search by channel nickname entered in the Channel. Searches for channels whose channel nickname contains the entered string.
+- **チャンネル名**：チャンネル作成時に入力したチャンネル名で検索します。入力した文字列がチャンネル名に含まれているチャンネルを検索します。
+- **チャンネルID**：チャンネル作成時に付与された固有IDで検索します。入力した文字列がチャンネルIDに一致するチャンネルを検索します。
+- **チャンネルエイリアス**：チャンネルに入力したチャンネルエイリアスで検索します。入力した文字列がチャンネルエイリアスに含まれるチャンネルを検索します。
 
-#### (2) Channel Tag
-You can search by Channel Tag
+#### (2)チャンネルタグ
+チャンネルタグで検索できます。
 
-- **AND**: Search for Channels that contain all selected Channel Tags.
-- **OR**: Search for Channels that contain any of the selected Channel Tags.
-
-
-#### (3) Number of Channel Users
-Search for Channels that contain the number of subscribers to the Channel in the range entered.
-
-#### (4) User ID
-Search for the Channel that the user ID you entered is subscribed to.
-
-#### (5) Channel Created Date
-Search for Channels whose channel creation date is in the range you entered.
-
-#### (6) Last Message
-Search for channel whose delivery time of the last message passed to the Channel is within the range you entered.
+- **AND**：選択したチャンネルタグをすべて含むチャンネルを検索します。
+- **OR**：選択したチャンネルタグを1つでも含むチャンネルを検索します。
 
 
-### Channel Creation
+#### (3)チャンネルユーザー数
+チャンネルの購読者数が入力した範囲に含まれるチャンネルを検索します。
+
+#### (4)ユーザーID
+入力したユーザーIDが購読しているチャンネルを検索します。
+
+#### (5)チャンネル作成日
+チャンネル作成日が入力した範囲に含まれるチャンネルを検索します。
+
+#### (6)最後のメッセージ
+チャンネルに最後に伝達されたメッセージの送信時間が入力した範囲に含まれるチャンネルを検索します。
+
+
+### チャンネルの作成
 ![gametalk_channel_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_2_230629.png)
 
-#### (1) Channel Name
-Enter the channel name to use.
-Channel names cannot be duplicated, and all characters including emojis and special characters can be entered.
-You can enter up to 50 characters.
+#### (1)チャンネル名
+使用するチャンネル名を入力します。 
+チャンネル名は重複ができず、絵文字、特殊文字を含むすべての文字入力が可能です。
+最大50文字まで入力できます。
 
-#### (2) Channel Nickname
-You can enter a channel nickname to use.
-Channel nicknames can be duplicated, and all characters including emojis and special characters can be entered.
-You can enter up to 50 characters.
+#### (2)チャンネルエイリアス
+使用するチャンネルエイリアスを入力できます。
+チャンネルエイリアスは重複が可能で、絵文字、特殊文字を含むすべての文字入力が可能です。
+最大50文字まで入力できます。
 
-#### (3) Channel Tag
-You can add registered Channel Tag.
-Tags added to Channels can be used to search for Channels.
+#### (3)チャンネルタグ
+登録されたチャンネルタグを追加できます。
+チャンネルに追加されたタグはチャンネルを検索する時に使用できます。
 
-Maximum 10 Channel Tags can be registered and the same Tag cannot be duplicated.
+チャンネルタグは最大10個まで登録でき、同じタグを重複設定できません。
 
-#### (4) Register Tag
-You can register a tag.
+#### (4)タグの登録
+タグを登録できます。
 
 ![gametalk_channel_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_3_230629.png)
 
-#### (5) Auto Delete Channel
-When the number of subscribers to a channel reaches 0, the channel is automatically deleted.
-When the user unsubscribes from the channel, checks whether the channel has been deleted.
+#### (5)チャンネル自動削除
+チャンネルの購読人数が0人になった時、チャンネルが自動的に削除されます。
+ユーザーのチャンネル購読解除時点でチャンネルを削除するかどうかを検査します。
 
-### Retrieve Channel Information
+### チャンネル情報の照会
 ![gametalk_channel_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_4_230629.png)
 
-#### (1) Channel Name
-Channel name you entered when creating the Channel.
+#### (1)チャンネル名
+チャンネルを作成する時に入力したチャンネル名です。
 
-#### (1) Channel ID
-Channel’s own ID automatically granted when the Channel is created.
+#### (2)チャンネルID
+チャンネルが作成される時、自動的に付与されるチャンネル固有IDです。
 
-#### (3) Channel Nickname
-Channel nicknames entered in Channel.
+#### (3)チャンネルエイリアス
+チャンネルに入力したチャンネルエイリアスです。
 
-#### (4) Channel Tag
-Channel Tag added when creating the Channel.
+#### (4)チャンネルタグ
+チャンネルを作成する時に追加したチャンネルタグです。
 
-#### (5) Channel type
-The type of channel. Currently only PUBLIC is supported.
+#### (5)チャンネルタイプ
+チャンネルのタイプです。現在はPUBLICのみ対応しています。
 
-#### (6) Auto Delete Channel
-Whether to select the automatic deletion feature of a channel that is deleted when the number of subscribers to the channel reaches 0.
+#### (6)チャンネル自動削除
+チャンネルの購読人数が0人になった時、削除されるチャンネルの自動削除機能を選択するかどうかです。
 
-#### (7) Last Message Delivered Date
-Time at which the last message was delivered to the current Channel.
+#### (7)最後のメッセージ伝達日
+現在のチャンネルに最後にメッセージが伝達された時間です。
 
-#### (8) Modified By / Modified Date
-Email of the user who modified the Channel information, the date and time of modification.
+#### (8)修正者/修正日
+チャンネル情報を修正したユーザーのEmailと修正した日付が表示されます。
 
-#### (9) Created By / Created Date
-Email of the user who created the Channel, date and time of creation.
+#### (9)作成者/作成日
+チャンネルを作成したユーザーのEmailと作成日が表示されます。
 
-#### (10) Channel Member
-The number of users who are currently subscribing to the Channel.
+#### (10)チャンネルメンバー
+現在チャンネルを購読しているユーザー数です。
 
 ![gametalk_channel_5_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_5_230731.png)
 
-You can search the channel's subscriber information.
+チャンネルの購読者情報を照会できます。
 
-#### (11) Chat
-Live chat messages from the current channel are displayed.
+#### (11)チャット
+現在チャンネルのリアルタイムチャットメッセージが表示されます。
 
-#### (12) Administrator Message
-You can send admin messages to the current channel.
+#### (12)管理者メッセージ
+現在のチャンネルに管理者メッセージを送ることができます。
 
-#### (13) Modify
+#### (13)修正
 
 ![gametalk_channel_6_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_channel_6_230629.png)
 
-Click **Modify** to switch to a screen where you can modify channel information.
-You can modify the **channel name, channel nickname, channel tag, and whether to automatically delete the channel**.
+**修正**をクリックすると、チャンネル情報を修正できる画面に切り替わります。
+**チャンネル名、チャンネルエイリアス、チャンネルタグ、チャンネル自動削除を行うかどうか**を修正できます。
 
-#### (14) Delete
-Click **Delete** to delete the channel.
-Once a channel is deleted, it is reverted.
+#### (14)削除
+**削除**をクリックすると、チャンネルを削除できます。
+チャンネルは、削除すると元に戻せません。
 
 
 
-## Channel Tag
-You can retrieve/create/modify/delete Channel Tags.
-Use Channel Tags to assist in Retrieve Channel and delivery of announcement messages.
+## チャンネルタグ
+チャンネルタグを照会・作成・修正・削除できます。
+チャンネルの照会および通知メッセージの伝達に役立つチャンネルタグを使用します。
 
-For each Channel, users can register their own Channel Tags.
-Channel Tags are not provided by default and users have to create and set the desired tags.
+チャンネルごとにユーザーが直接チャンネルタグを登録できます。
+チャンネルタグは基本提供されず、必要なタグを作成して設定する必要があります。
 
-You can set maximum 10 Channel Tags per Channel and cannot set duplicate Channel Tags. Single tag can be used on multiple channels.
+チャンネルごとに10個のチャンネルタグを設定でき、重複して設定できません。1つのチャンネルタグを複数のチャンネルで使用できます。
 
-### Retrieve Tag List
+### タグリストの照会
 
 ![gametalk_tag_1_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_1_230731.png)
 
-You can retrieve registered Tag.
+登録したタグを照会できます。
 
-#### (1) Search Tag
-You can search tags by Tag name.
-Search for Tags that contain the values you enter in Tag name.
+#### (1)タグ検索
+タグ名でタグを検索できます。
+入力した値がタグ名に含まれるタグを検索します。
 
 
-### Register Tag
+### タグの登録
 ![gametalk_tag_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_2_230629.png)
 
-You can register a tag.
+タグを登録できます。
 
-#### (1) Channel Tag name
+#### (1)チャンネルタグ名
 
-Enter Tag name to use.
+使用するタグ名を入力します。
 
-Channel Tag names can only contain alphanumeric and some allowed characters (_, -, :, .), and you can enter a maximum of 20 characters.
+チャンネルタグ名は英語、数字および許可された一部記号(_, -, :, .)のみ使用でき、最大20文字まで入力できます。
 
-Tag names cannot be duplicated.
+タグ名は重複できません。
 
-#### (2) Tag Description
+#### (2)タグの説明
 
-Enter description of the Tag to use.
+使用するタグの説明を入力します。
 
-No characters are unable to be used and can enter a maximum of 100 characters.
+タグの説明は最大100文字まで入力できます。
 
-#### (3) [+] Button
-You can register additional tags by clicking on Button.
+#### (3) [+]ボタン
+[+]ボタンをクリックしてタグを追加登録できます。
 
-### Retrieve Tag Information
+### タグ情報の照会
 
 ![gametalk_tag_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_3_230629.png)
 
-#### (1) Channel Tag name
-Channel Tag name entered when registering Channel Tag.
+#### (1)チャンネルタグ名
+チャンネルタグを登録する時に入力したチャンネルタグ名です。
 
-#### (2) Tag Description
-Tag Description entered when registering Channel Tag.
+#### (2)タグ説明
+チャンネルタグを登録する時に入力したタグの説明です。
 
-#### (3) Modified By / Modified Date
-Email of the user who modified the Channel Tag, the date and time of modification.
+#### (3)修正者/修正日
+チャンネルタグを修正したユーザーのEmailと修正した日付が表示されます。
 
-#### (4) Created By / Created Date
-Email of the user who created the Channel Tag, the date and time of modification.
+#### (4)作成者/作成日
+チャンネルタグを作成したユーザーのEmailと作成した日付が表示されます。
 
-#### (5) Modify
+#### (5)修正
 ![gametalk_tag_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_tag_4_230629.png)
-Can modify Channel Tag and Channel descriptions.
+チャンネルタグ名とタグ説明を修正できます。
 
-#### (6) Delete
+#### (6)削除
 
-You can delete Channel Tag.
-Once Channel Tag is deleted, it cannot be reverted.
-
-
-## Announcement Message 
-You can send announcement message to desired Channel.
-Announcement messages can be sent in multiple languages and translation is provided.
-You can send announcement message immediately or can choose the time you want to send.
+チャンネルタグを削除できます。
+チャンネルタグは削除すると元に戻せません。
 
 
-### Retrieve Announcement Messages
+## 通知メッセージ 
+チャンネルに通知メッセージを送信できます。
+通知メッセージは、複数の言語で送信でき、翻訳が提供されます。
+即時送信または時間を指定して送信することもできます。
+
+
+### 通知メッセージリスト照会
 
 ![gametalk_announcement_1_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_1_230731.png)
 
-#### (1) Send Type
+#### (1)送信タイプ
 
-- **Send All**: Search for announcement messages sent to all.
-- **Channel Tag**: Search for Channel that sending type of announcement is Channel Tag and that matches the Tag search criteria you set.
-- **Channel Name**: searches for Sent Announcements that sending type of announcement is the Channel Name and that contains the Channel value that you entered.
-
-
-#### (2) Content
-
-- **All**: search Announcements that contain any value entered in Announcement message and Announcement memo.
-- **Announcement Message**: search Announcements that contain the value entered in the Announcement message.
-- **Announcement Memo**: search Announcements that contain the value entered in the Announcement memo.
+- **全体送信**：全体送信した通知メッセージを検索します。
+- **チャンネルタグ**：送信タイプをチャンネルタグに設定した通知メッセージのうち、タグ条件に合ったチャンネルに送信した項目を検索します。
+- **チャンネル名**：送信対象をチャンネル名に設定した通知メッセージのうち、チャンネル名に入力した値が含まれるチャンネルに送信した項目を検索します。
 
 
-#### (3) Registered Date
-- Search for registered announcement messages within the selected time period.
+#### (2)内容
 
-#### (4) Announcement Message Status
-
-- **Ready**: message in a ready state fore the scheduled send time.
-- **In Progress**: Sending announcement messages in progress.
-- **Canceled**: User canceled the scheduled announcement message before it was sent.
-- **Failed**: Announcement message failed to be sent.
-- **Completed**: Announcement message successfully sent.
+- **全体**：通知メッセージまたは通知メッセージメモに入力した値が含まれる通知メッセージを検索します。
+- **通知メッセージ**：通知メッセージに入力した値が含まれる通知メッセージを検索します。
+- **通知メッセージメモ**：通知メッセージメモに入力した値が含まれる通知メッセージを検索します。
 
 
-#### (5) Retrieval Result
-Results of the retrieved announcement. Put the mouse cursor over the content to see the whole content.
+#### (3)登録日
+'- 選択した時間内に登録された通知メッセージを検索します。
+
+#### (4)通知メッセージ状態
+
+- **準備**：送信予約時間前の準備状態です。
+- **進行**：通知メッセージ送信を進行中の状態です。
+- **キャンセル**：予約通知メッセージが送信される前にユーザーがキャンセルした状態です。
+- **失敗**：通知メッセージの送信に失敗した状態です。
+- **完了**：通知メッセージの送信に成功した状態です。
 
 
-### Send Announcement Message
+#### (5)照会結果
+照会された通知メッセージ結果です。内容にマウスポインタを合わせると内容全体を確認できます。
+
+
+### 通知メッセージ送信
 ![gametalk_announcement_2_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_2_230731.png)
 
-#### (1) Send Type
-You can select the type of announcement message sent to the channel.
+#### (1)送信タイプ
+チャンネルに送信される通知メッセージの送信タイプを選択できます。
 
-- **Send Immediately**: Send announcements immediately.
-- **Scheduled Send**: Send announcements on the desired time. Select time and time zone to send announcements at the selected time of the selected time zone.
-- **Repetitive Send**: Send announcement messages at the desired time by selecting the time and time zone, and by selecting the number of sendings and the sending interval.
+- **即時送信**：通知メッセージをすぐに送信します。
+- **予約送信**：時間と標準時間帯を選択して希望の時間に通知メッセージを送信します。
+- **繰り返し送信**：時間と標準時間帯を選択して、希望の時間に送信回数と送信間隔を選択して通知メッセージを送信します。
 
 ![gametalk_announcement_3_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_3_230731.png)
 
-#### (2) Send To
-You can select a channel to be an announcement target type.
+#### (2)送信対象
+通知メッセージ対象タイプになるチャンネルを選択できます。
 
-- **Send All**: Send to all users to receive announcements.
-- **Channel Tag**: Send announcements to users who subscribed to the Channel that meets the Channel Tag criteria.
-- **Channel Name**: Send announcements to users who subscribed to the selected Channel.
+- **全体送信**：すべてのユーザーが通知メッセージを受信できるように送信します。
+- **チャンネルタグ**：チャンネルタグの条件に合うチャンネルを購読したユーザーが通知メッセージを受信できるように送信します。
+- **チャンネル名**：選択したチャンネルを購読したユーザーが通知メッセージを受信できるように送信します。
 
-#### (3) Announcement Message Content
+#### (3)通知メッセージ内容
 
-- Announcement Content to send to users.
-- Click **Translate to Selected Language** button to fill the contents of the remaining languages with the selected language.
+- ユーザーに伝達する通知メッセージの内容です。
+- **選択言語に翻訳**をクリックして、通知メッセージの内容を希望の言語に翻訳できます。
 
-#### (4) Announcement Message Preview
+#### (4)通知メッセージプレビュー
 ![gametalk_announcement_4_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_4_230629.png)
 
-- Check and send the created announcement message.
+- 作成した通知メッセージを確認した後、送信します。
 
-### Retrieve Announcement Message in Detail
+'### 通知メッセージ詳細情報照会
 
 ![gametalk_announcement_5_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_5_230731.png)
 
-You can view detailed information by selecting the searched announcement message list.
-For announcement messages sent repeatedly, you can query the delivery status of each announcement message.
+照会された通知メッセージリストを選択して詳細情報を照会できます。
+繰り返し送信した通知メッセージの場合、各通知メッセージの送信状態を照会できます。
 
 ![gametalk_announcement_6_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_announcement_6_230731.png)
 
-#### Cancel Sending Announcement Messages
-Announcement messages that have not been sent in Ready and In progress can be canceled.
-Canceled announcement messages cannot be resent.
+#### 通知メッセージの送信キャンセル
+準備状態と進行状態の送信されていない通知メッセージは、送信をキャンセルできます。
+送信をキャンセルした通知メッセージは再度送信することはできません。
 
-#### Copy Announcement Messages
-You can create a new announcement message with the same input values as the registered announcement message.
+#### 通知メッセージのコピー
+登録された通知メッセージと同じ入力値の新規通知メッセージを作成できます。
 
----
+'---
 
-## Member
-Provides features to manage users, such as viewing information and access history of users who are using the chat service, and deleting users.
+## メンバー
+GameTalkを使用するユーザーの情報と接続履歴照会、ユーザーの削除など、ユーザーを管理する機能を提供します。
 
 
-## View Member
+## メンバーの照会
 
-You can check the information of users who are using the chat service, their access history, and the list of channels they are subscribed to.
-User information can be searched by user ID and user nickname. Information of the same user as the entered value is searched.
+チャットサービスを利用しているユーザーの情報、接続履歴、購読中のチャンネル一覧などを確認できます。
+ユーザーID、ユーザーニックネームでユーザー情報を検索できます。入力した値と同じユーザーの情報が検索されます。
 
 ![gametalk_member_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_member_1_230629.png)
 
-### View Member
-Retrieve member’s information who are using the chatting service.
+### メンバーの照会
+チャットサービスを利用中のメンバーの情報を照会します。
 
-#### (1) Search Conditions
+#### (1)検索条件
 
-Select Search Conditions
+検索条件を選択します。
 
-- **User ID**: Search by user ID. Searches for users whose input string matches the user ID.
-- **Nickname**: Search by user's nickname. Searches for users whose nickname matches the input string.
+- **ユーザーID**：ユーザーのIDで検索します。入力した文字列がユーザーIDと一致するユーザーを検索します。
+- **ニックネーム**：ユーザーのニックネームで検索します。入力した文字列がニックネームと一致するユーザーを検索します。
 
 
-### Retrieve Member Details
+### メンバー詳細照会
 
-You can check the information of users who use the chat service, their access history, and the channels they are subscribed to.
+チャットサービスを利用するユーザーの情報、接続履歴、購読中のチャンネルを確認できます。
 
 ![gametalk_member_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_member_2_230629.png)
 
-#### (1) User ID
-This is the ID of the user using the chat service.
+#### (1)ユーザーID
+チャットサービスを利用しているユーザーのIDです。
 
-#### (2) Nickname
-This is the nickname of the user using the chat service.
+#### (2)ニックネーム
+チャットサービスを利用しているユーザーのニックネームです。
 
-#### (3) Language Code
-This is the language code registered by the user using the chat service.
+#### (3)言語コード
+チャットサービスを利用しているユーザーが登録した言語コードです。
 
-#### (4) Last Access Date
-The date and time the user last used the chat service.
+#### (4)最終接続日
+当該ユーザーが最後にチャットサービスを利用した日時です。
 
-#### (4) User Created Date
-The date and time the user first used the chat service.
+#### (5)ユーザー作成日
+当該ユーザーが初めてチャットサービスを利用した日時です。
 
-#### (6) Access History
+#### (6)接続履歴
 
-You can retrieve access history of a searched user.
-You can retrieve 1 month of access history.
-You can check the access date and time, nickname, language code, SDK version, device information, network type, etc.
+検索したユーザーの接続履歴を照会できます。
+1か月間の接続履歴を照会できます。
+接続日時、ニックネーム、言語コード、 SDKバージョン、デバイス情報、ネットワークタイプなどを確認できます。
 
-#### (7) Subscribed Channels
+#### (7)購読中のチャンネル
 
-You can search the channels subscribed to by the searched user.
+検索したユーザーの購読中のチャンネルを照会できます。
 
-#### (8) Delete Member
+#### (8)メンバーの削除
 
-You can delete users. The user's access history and subscribed channels will be deleted.
+ユーザーを削除できます。該当ユーザーの接続履歴と購読中のチャンネルが削除されます。
 
 ---
 
-## Message
-Retrieves messages from the chat service.
+## メッセージ
+チャットサービスのメッセージを照会できます。
 
-### Retrieve Message List
+### メッセージリスト照会
 ![gametalk_message_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_message_1_230629.png)
 
-#### (1) Search Conditions
-Select Search Conditions
+#### (1)検索条件
+検索条件を選択します。
 
-- **User ID**: Search by user ID. Searches for messages sent by users whose input string matches the user ID.
-- **Nickname**: Search by user's nickname. Searches for messages sent by users whose nickname matches the input string.
-- **Channel ID**: Search by the unique ID given during Channel creation. Search for messages of the Channel whose entered string is matched with the Channel ID.
-- **Channel Name**: Search by channel name entered when creating the Channel. Search for messages of the Channel whose entered string contains the channel name.
+- **ユーザーID**：ユーザーのIDで検索します。入力した文字列がユーザーIDと一致するユーザーが送信したメッセージを検索します。
+- **ニックネーム**：ユーザーのニックネームで検索します。入力した文字列がニックネームと一致するユーザーが送信したメッセージを検索します。
+- **チャンネルID**：チャンネル作成時に付与された固有のIDで検索します。入力した文字列がチャンネルIDと一致するチャンネルのメッセージを検索します。
+- **チャンネル名**：チャンネル作成時に入力したチャンネル名で検索します。入力した文字列がチャンネル名に含まれるチャンネルのメッセージを検索します。
 
-#### (2) Message Creation Date
-Search for messages with a message creation date that falls within the entered range.
+#### (2)メッセージ作成日
+メッセージ作成日が入力した範囲に含まれるメッセージを検索します。
 
-#### (3) Include Messages of Deleted Channel
-Search for messages, including messages from deleted channels.
+#### (3)削除されたチャンネルメッセージを含む
+削除されたチャンネルのメッセージを含めてメッセージを検索します。
 
-## Report Message 
-View message information reported by users using the chat service and delete report history.
+## 通報メッセージ 
+チャットサービスを利用するユーザーが通報したメッセージ情報を照会、通報履歴を削除する機能を提供します。
 
-### Retrieve Report Messages
+### 通報メッセージリスト照会
 ![gametalk_message_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_message_2_230629.png)
 
-#### (1) Search Conditions
-Select Search Conditions
+#### (1)検索条件
+検索条件を選択します。
 
-- **User ID**: Search by user ID. Searches for messages written by users whose input string matches the user ID.
-- **Nickname**: Search by user's nickname. Searches for messages written by users whose nickname matches the input string.
-- **Channel ID**: Search by the unique ID given during Channel creation. Search for report messages of the Channel whose entered string is matched with the Channel ID.
-- **Channel Name**: Search by channel name entered when creating the Channel. Search for report messages of the Channel whose entered string contains the channel name.
+- **ユーザーID**：ユーザーのIDで検索します。入力した文字列がユーザーIDと一致するユーザーが作成した通報メッセージを検索します。
+- **ニックネーム**：ユーザーのニックネームで検索します。入力した文字列がニックネームと一致するユーザーが作成した通報メッセージを検索します。
+- **チャンネルID**：チャンネル作成時に付与された固有のIDで検索します。入力した文字列がチャンネルIDと一致するチャンネルの通報メッセージを検索します。
+- **チャンネル名**：チャンネル作成時に入力したチャンネル名で検索します。入力した文字列がチャンネル名に含まれるチャンネルの通報メッセージを検索します。
 
-#### (2) Message Creation Date
-Search for report messages with a report message creation date that falls within the entered range.
+#### (2)メッセージ作成日
+報告メッセージの作成日が入力した範囲に含まれる報告メッセージを検索します。
 
-#### (3) Include Messages of Deleted Channel
-Search for report messages, including report messages from deleted channels.
+#### (3)削除されたチャンネルメッセージを含む
+削除されたチャンネルの通報メッセージを含めて通報メッセージを検索します。
 
-### Retrieve Report Message Details
+### 通報メッセージ詳細照会
 ![gametalk_message_3_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_message_3_230629.png)
 
-#### (1) Channel name (channel ID)
-The channel name and channel ID of the report message.
+#### (1)チャンネル名(チャンネルID)
+通報メッセージのチャンネル名とチャンネルIDです。
 
-#### (2) Channel type
-The channel type of the report message.
+#### (2)チャンネルタイプ
+通報メッセージのチャンネルタイプです。
 
-#### (3) Deleted channel
-Whether to delete the channel in the report message.
+#### (3)削除されたチャンネル
+通報メッセージのチャンネル削除有無です。
 
-#### (4) Reported user ID (nickname)
-User ID and nickname that sent the reported message.
+#### (4)通報されたユーザーID(ニックネーム)
+報告されたメッセージを送信したユーザーIDとニックネームです。
 
-#### (5) Reported message ID
-Reported message ID
+#### (5)通報メッセージID
+通報されたメッセージIDです。
 
-#### (6) Cumulative reports
-The cumulative number of reports for reported messages.
+#### (6)累積通報
+通報されたメッセージの通報累積回数です。
 
-#### (7) Report message
-This is the content of the reported message. In the case of messages processed with forbidden words, if the original message remains, the original message can be searched.
+#### (7)通報メッセージ
+通報されたメッセージの内容です。禁止語処理されたメッセージの場合、元のメッセージが残っていれば、元のメッセージの照会が可能です。
 
-#### (8) Message report history
-You can view the information of the reported user.
+#### (8)メッセージ通報履歴
+通報したユーザーの情報を照会できます。
 
-#### (9) Delete report history
-You can delete the report history.  
+#### (9)通報履歴の削除
+通報履歴を削除できます。  
 
 ---
 
-## Settings
-Limitation of the number of characters, language of announcement message, message sending restriction, forbidden word, credentials management.
+## 設定
+メッセージ文字数制限、通知メッセージの言語、メッセージ送信制限、禁止語、認証情報などGameTalkの設定を管理できます。
 
-## General
+## 一般
 ![gametalk_common_setting_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_common_setting_1_230629.png)
-### Message
-You can do settings about message
+### メッセージ
+メッセージ関連設定ができます。
 
-#### Character Limit
-You can limit the number of message characters that can be sent.
-You can only enter numbers between 10 and 100.
+#### 文字数制限
+送信できるメッセージ文字数を制限できます。
+10～100の間の数字のみ入力できます。
 
-#### Language Settings
-You can set the languages supported by the chat service.
-If you set the language, the language you set will be set as the default when sending notification messages.
-The default language and supported language are set to Korean.
+#### 言語設定
+チャットサービスでサポートする言語を設定できます。
+言語を設定すると、通知メッセージを送信する際に設定した言語がデフォルトに設定されます。
+基本言語とサポート言語の初期値は韓国語に設定されます。
 
-#### Restrict Message Sending
-You can set message transmission limit before disabling GameTalk service(If transmission restrictions are not set, GameTalk cannot be disabled.).
-Data is immediately deleted upon disabling the service, and deleted data cannot be recovered.
-If message transmission is restricted, message transmission within the channel is not possible, **channel creation, tag creation, and new announcement message registration** are not possible.
+#### メッセージ送信制限
+GameTalkサービスを無効にする前にメッセージ送信制限を設定できます(送信制限を設定しない場合、GameTalkを無効にできません)。
+サービスを無効化すると、データは直ちに削除され、削除されたデータは復元できません。
+メッセージ送信を制限する場合、チャンネル内のメッセージ送信ができず、**チャンネル作成、タグ作成、通知メッセージの新規登録**ができません。
 
-## Manage Forbidden Word
+## 禁止語の管理
 
-You can manage forbidden words applying to message.
+メッセージに適用される禁止語を管理できます。
 
-### Retrieve Forbidden Word List
+### 禁止語リストの照会
 
 ![gametalk_banned_word_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_1_230629.png)
 
-### Register Forbidden Word
+### 禁止語の登録
 ![gametalk_banned_word_2_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_2_230731.png)
 
-#### (1) Name
-Name of Forbidden Word
+#### (1)名前
+禁止語の名前です。
 
-#### (2) Application Status
-Whether the forbidden word is applied or not.
+#### (2)適用状態
+禁止語の適用可否です。
 
-#### (3) Include Rule
+#### (3)包含ルール
 
-- **Single (Exact)**: Only words that exactly match the words entered are to be banned.
-- **Collective (Like)**: If it contains words entered based on spacing, it will be banned.
+- **単独(Exact)**：入力された単語と正確に一致した単語のみ禁止語処理します。
+- **包含(Like)**：分かち書きを基準に入力された単語を含んでいる場合は禁止語処理します。
 
-#### (4) Application Method
+#### (4)適用方式
 
-- **Replace with \***: Replace forbidden words with \*.
-- **Block Message**: Block messages if they contain forbidden words.
+- **\*に置換**：禁止語処理された単語を*に置き換えます。
+- **メッセージブロック**：メッセージに禁止語処理された単語がある場合、メッセージをブロックします。
 
-#### (5) Forbidden Words
-It is a forbidden word to apply.
-It is separated with commas (,) and can be registered up to 5,000 byte and 1,000 units.
-You cannot use forbidden words including commas. Forbidden words cannot be duplicated.
+#### (5)禁止語
+適用する禁止語です。
+カンマ(,)で区切られ、最大5,000文字で1,000個まで登録できます。
+カンマを含む禁止語は使用できません。禁止語は重複できません。
 
 ![gametalk_banned_word_3_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_3_230731.png)
 
-#### (6) Upload
-You can attach an Excel document. If there is any content previously entered, replace it with the contents of the uploaded file.
+#### (6)アップロード
+Excel文書を添付できます。すでに入力した内容がある場合、アップロードしたファイルの内容を置き換えます。
 
-#### (7) Apply Defaults
-You can apply Default Forbidden Word List provided by GameTalk.
+#### (7)デフォルト値適用
+GameTalkで提供する基本禁止語リストを適用できます。
 
-#### (8) Save Excel
-You can download the currently registered forbidden word list as an Excel file.
+#### (8) Excel保存
+現在入力されている禁止語リストをExcelファイルでダウンロードできます。
 
-### Retrieve Forbidden Word List
+### 禁止語情報の照会
 
 ![gametalk_banned_word_4_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_4_230731.png)
 
-#### (1) Delete
-You can delete a forbidden word.
-Once forbidden word is deleted, it cannot be reverted.
+#### (1)削除
+禁止語を削除できます。
+削除された禁止語は元に戻せません。
 
-#### (2) Modify
+#### (2)修正
 
 ![gametalk_banned_word_5_230731](https://static.toastoven.net/prod_gametalk/console/gametalk_banned_word_5_230731.png)
 
-You can modify the registered banned word.
+登録された禁止語を修正できます。
 
 
 
-## Authentication Information
+## 認証情報
 
-You can view, create, modify, or delete login authentication information used in GameTalk.
-If login authentication information is registered, only allowed users can use the chat through Gamebase authentication.
+GameTalkで使用するログイン認証情報を照会・作成・修正・削除することができます。
+ログイン認証情報を登録した場合、Gamebase認証を通じて許可されたユーザーのみチャットを利用できるようにします。
 
 ![gametalk_auth_1_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_1_230629.png)
 
 #### (1) APP ID
-It is activated GameBase App ID.
+有効なGamebaseアプリIDです。
 
 #### (2) Secret Key
-It is activated GameBase App Secret Key.
+有効なGamebaseアプリのSecret Keyです。
 
-#### (3) Modify Authentication Information
-You can edit authentication information App ID and Secret Key.
+#### (3)認証情報の修正
+認証情報App IDとSecret Keyを修正できます。
 
 ![gametalk_auth_2_230629](https://static.toastoven.net/prod_gametalk/console/gametalk_auth_2_230629.png)
 
-#### (4) Delete Authentication Information
-You can delete authentication information.
+#### (4)認証情報の削除
+認証情報を削除できます。
 
-> **[Note]**<br />
+> **[参考]**<br />
 >
-> Currently only provides Game Base Credentials.
-
+> 現在はGamebase認証のみ提供します。
