@@ -1,28 +1,28 @@
-## Game > GameTalk > Release Note > Console
+## Game > GameTalk > リリースノート > Console
 
-### 1.1.0 (2023. 08. 17.)
+### 1.1.0(2023. 08. 17.)
 
-* Added Features
-    * Added automatic channel deletion feature.
-    * Added chat UI.
-    * Added a feature to retrieve messages in real time from channels.
-    * Added a feature to send channel admin messages.
-    * Added a feature to retrieve messages.
-    * Added a feature to manage report messages.
-    * Added a feature to restrict message sending.
-    * Added a feature to send announcement messages repetitively.
-* Changes
-    * Notice has been renamed to announcement message.
-    * Improved existing features
+* 機能追加
+    * チャンネル自動削除機能が追加されました。
+    * チャットUIが追加されました。
+    * チャンネルのリアルタイムメッセージ照会機能が追加されました。
+    * チャンネル管理者メッセージ送信機能が追加されました。
+    * メッセージ照会機能が追加されました。
+    * 通報メッセージ管理機能が追加されました。
+    * メッセージ送信制限機能が追加されました。
+    * 通知メッセージの繰り返し送信機能が追加されました。
+* 変更
+    * 告知が通知メッセージに名称が変更されました。
+    * 既存機能の改善
         
-### 1.0.0 (2022. 12. 27.)
+### 1.0.0(2022. 12. 27.)
 
-* Release of a New Service
-  * GameTalk is a service that allows you to implement an in-app chat feature. The GameTalk service enables you to build real-time chat, one-to-one chat, guild chat, and other chatting environments in games.
-    * Provides a send and receive message feature that allows the user to communicate freely.
-    * Creates, updates, and deletes channels freely.
-    * Implements a suitable type of chat channel according to your needs, such as open chat / group chat / one-to-one chat.
-    * Searches and manages created channels, and sorts them with tag.
-    * Sets forbidden words to prevent profanity and illegal advertisements.
-    * Provides an announcement message feature for administrators.
-    * Searches and manages users from a channel.
+* 新規商品リリース
+  * 簡単にゲーム内チャット機能を実装できるサービスです。GameTalkサービスを利用して、リアルタイムチャット、1:1チャット、ギルドチャットなど様々なチャット環境をゲーム内に実装できます。
+    * ユーザー間で自由に会話できるチャットメッセージの送受信機能を提供します。
+    * 自由にチャンネルを作成/更新/削除できます。
+    * オープンチャット/グループチャット/1:1会話など、必要に応じて適切な形のチャットチャンネルを実装できます。
+    * 作成されたチャンネルを検索、管理し、タグで分類できます。
+    * 卑俗語、違法広告を防止するための禁則語設定が可能です。
+    * 管理者用の通知メッセージ機能を別途提供します。
+    * チャンネルでユーザーを検索し、管理できます。
