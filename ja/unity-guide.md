@@ -1,41 +1,41 @@
-## Game > GameTalk > Unity SDK Guide
+## Game > GameTalk > Unity SDK使用ガイド
 
-This document explains GameTalk SDK for Unity environment and how to use it.
+GameTalk SDK for Unity環境および使い方を説明します。
 
 ## Environments
 
 ### Unity
 
-* 2018.4.0 or later
-    * .NET 4.x or later
-* Please contact [Customer Service](https://www.toast.com/kr/support/inquiry) if you need support for an earlier version of Unity.
+* 2018.4.0以上
+    * .NET 4.x以上
+* 下位バージョンのUnityサポートが必要な場合は[サポート](https://www.toast.com/kr/support/inquiry)にお問い合わせください。
 
-> <font color="red">**[Caution]**</font><br/>
+> <font color="red">**[注意]**</font><br/>
 >  
-> new apps published on Google Play since August 1, 2019 must support 64-bit architecture.
-[Check Unity version supporting Google Play policy and 64 bit](https://developer.android.com/games/optimize/64-bit#unity-developers)
+> 2019年8月1日からGoogle Playに公開される新規アプリは、64ビットアーキテクチャをサポートする必要があります。
+> [Google Playポリシーおよび64ビットサポートUnityバージョンの確認](https://developer.android.com/games/optimize/64-bit#unity-developers)
 
 ### Android
 
-* Android 4.4 (API 19) or higher
+* Android 4.4 (API 19)以上
 
 ### iOS
 
-* iOS 11 or higher
+* iOS 11以上
 
-### Spported Platforms
+### Supported Platforms
 
 * UnityEditor
-    * Support several features.
+    * 一部機能のみサポートします。
 * Android
 * iOS
 
-If you call a GameTalk API that is not supported by the selected platform, an error below is returned as a callback. If there is no callback, a warning log is output.
+選択したプラットフォームでサポートしないGameTalk APIを呼び出すと、次のようなエラーがコールバックとして返され、コールバックがない場合にはWarningログが出力されます。
 
 * GameTalkErrorCode.NOT_SUPPORTED_ANDROID
 * GameTalkErrorCode.NOT_SUPPORTED_IOS
 
-Platforms supported for each API are separated by the following icons.
+APIごとにサポートするプラットフォームは、以下のアイコンで区分します。
 
 #### API
 
@@ -47,13 +47,13 @@ Platforms supported for each API are separated by the following icons.
 
 ### SetDebugMode
 
-* GameTalk only displays error logs such as warning.
-* To turn on GameTalk logs for development reference, please call GameTalk.SetDebugMode(true).
+* GameTalkは警告とエラーログだけを表示します。
+* 開発の参考になるGameTalkログをオンにするにはGameTalk.SetDebugMode(true)を呼び出してください。
 
-> <font color="red">**[Caution]**</font><br/>
+> <font color="red">**[注意]**</font><br/>
 >  
-> * If you need inquiry support for GameTalk, you must enable debug mode and send logs together.
-> * Before **releasing** a game, make sure to delete SetDebugMode call from the source code or change the parameter to false before building.
+> * GameTalkお問い合わせサポートが必要な場合には、必ずデバッグモードを有効にした後、ログを一緒に伝えてください。
+> * ゲームを**リリース**する時は、必ずソースコードでSetDebugMode呼び出しを削除するか、パラメータをfalseに変更してビルドしてください。
 
 **API**
 
@@ -66,11 +66,11 @@ Supported Platforms
 static void SetDebugMode(bool isDebugMode)
 ```
 
-**Parameter**
+**引数**
 
-| Parameter | Required | Description |
+| Parameter | 必須 | 説明 |
 | --- | --- | --- |
-| isDebugMode | O | Whether to enable debug mode |
+| isDebugMode | O | デバッグモードが有効かどうか |
 
 **Example**
 
@@ -83,7 +83,7 @@ public void SetDebugModeExample()
 
 ### IsSucceeded
 
-Use GameTalkError to check whether the API is succeeded.
+GameTalkErrorを使用してAPIの成否を確認します。
 
 **API**
 
@@ -96,11 +96,11 @@ Supported Platforms
 static bool IsSucceeded(GameTalkError error)
 ```
 
-**Parameter**
+**引数**
 
-| Parameter | Required | Description |
+| Parameter | 必須 | 説明 |
 | --- | --- | --- |
-| error | O | GameTalkError object |
+| error | O | GameTalkErrorオブジェクト |
 
 **Example**
 
@@ -120,7 +120,7 @@ public void IsSucceededExample(GameTalkError error)
 
 ### Initialize
 
-Initalize GameTalk SDK.
+GameTalk SDKを初期化します。
 
 **API**
 
@@ -135,26 +135,26 @@ static void Initialize(
     GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Config | Required | Description |
+| GameTalkParams.Config | 必須 | 説明 |
 | --- | --- | --- |
-| appKey | O | Appkey automatically generated when GameTalk project is activated in the console |
-| languageCode | O | The standard language code among multilingual translation target codes registered in the console |
+| appKey | O | コンソールでGameTalkプロジェクトを有効にすると自動作成されるアプリケーションキー(Appkey) |
+| languageCode | O | コンソールに登録された多言語翻訳対象コードのうち、基準となる言語コード |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.ServiceInfo> | 説明 |
 | --- | --- |
-| <GameTalkData.ServiceInfo> data | Callback Data |
-| error | Error object |
+| <GameTalkData.ServiceInfo> data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.ServiceInfo | Description |
+| GameTalkData.ServiceInfo | 説明 |
 | --- | --- |
-| maxMessageLength | Maximum message length registered in the console |
-| gameTalkState | GameTalk status (Refer to **GameTalkState.cs**)<br>- ACTIVATED: Enabled<br>- DEACTIVATED: Disabled<br>- DELETED: Deleted |
+| maxMessageLength | コンソールに登録された最大メッセージ長さ |
+| gameTalkState | GameTalk状態(**GameTalkState.cs** 参照)<br>- ACTIVATED：有効<br>- DEACTIVATED：無効<br>- DELETED：削除 |
 
 **Example**
 
@@ -171,12 +171,7 @@ public void InitializeExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("Initialize succeeded. data:{0}", data));
-
-            // If initialization is successful, you must register a handler to receive events using the AddEvent API.
-            GameTalk.AddEvent((eventData, eventError) =>
-            {
-            });
+            Debug.Log(string.Format("Initialize succeeded. data：{0}", data));
         }
         else
         {
@@ -188,7 +183,7 @@ public void InitializeExample()
 
 ### IsInitialized
 
-Check whether the GameTalk SDK is initialized.
+GameTalk SDKの初期化状況を確認します。
 
 **API**
 
@@ -219,12 +214,7 @@ public void IsInitializedExample()
 
 ### AddEvent
 
-Register a handler to receive the server evnets.
-
-> <font color="red">**[Caution]**</font><br/>
-> 
-> Must be called before calling the MappingUserInfo API.
-> If called later, messages received as events may be missed.
+サーバーイベントを受信するハンドラを登録します。
 
 **API**
 
@@ -237,23 +227,23 @@ Supported Platforms
 static void AddEvent(GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> eventHandler)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.AddEvent> | 説明 |
 | --- | --- |
-| <GameTalkData.AddEvent>data | Event data |
-| error | Error object |
+| <GameTalkData.AddEvent>data | イベントデータ |
+| error | エラーオブジェクト |
 
-**Event data**
+**イベントデータ**
 
-| GameTalkData.AddEvent | Description |
+| GameTalkData.AddEvent | 説明 |
 | --- | --- |
-| type | Event type (see **GameTalkEventType.cs**)<br>- CHANGE_NETWORK_STATE: Receive an event when the network is interrupted or reconnected<br>- PUSH_MESSAGE: Called when a new message is received in the open channel you are subscribed to<br>  - Use EventDataParser's GetPushMessageData API to objectify and use data<br>- PUSH_TO_ALL_USERS: Called when announcement message sent to all is received.<br>  - Use the GetPushMessageData API of EventDataParser to objectify and use data<br>- PUSH_DELETE_USER: Called when canceling channel subscription information of a user using GameTalk through the console and server API.<br>  - When an event is received, the status value must be synchronized with the server by calling the GameTalk.DeleteUserInfo API after processing the game logic.<br>  - Since the user's subscription to all channels is canceled, all messages cannot be sent or received until the user subscribes to the channel again.<br>  - Use the GetPushDeleteUserData API of EventDataParser to objectify and use data |
-| data | Data dependent on event type (see detailed data below) |
-| data(CHANGE_NETWORK_STATE) | Network state (see **NetworkState.cs**)<br>- DISCONNECTED: Disconnected.<br>- RECONNECTED: Reconnected.<br>  - You must retrieve messages that were not received due to network problems (see Example). |
-| data(PUSH_MESSAGE) | - channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
-| data(PUSH_TO_ALL_USERS) | In the PUSH_MESSAGE event data, only channelId and channelType are missing, all are the same |
-| data(PUSH_DELETE_USER) |- userId: User ID |
+| type | イベントタイプ(**GameTalkEventType.cs** 参照)<br>- CHANGE_NETWORK_STATE：ネットワークが中断されたり、再接続されたときにイベントを受信<br>- PUSH_MESSAGE：購読中のオープンチャンネルに新しいメッセージが受信されると呼び出し<br>  - EventDataParserのGetPushMessageData APIを使用してdataをオブジェクト化して使用<br>- PUSH_TO_ALL_USERS：全体送信通知メッセージが受信されると呼び出し<br>  - EventDataParserのGetPushToAllUsersData APIを使用してdataをオブジェクト化して使用<br>- PUSH_DELETE_USER： GameTalkを利用中のユーザーのチャンネル購読情報をコンソールおよびserver APIを通じて解除すると呼び出し<br>  - イベントが受信されるとゲームロジック処理後、`GameTalk.DeleteUserInfo` APIを呼び出してサーバーと状態値を同期する必要があります。<br>  - ユーザーはすべてのチャンネルの購読状態が解除されるのでチャンネルを再購読するまではすべてのメッセージの送受信が不可能です。<br>  - EventDataParserのGetPushDeleteUserData APIを使用してdataをオブジェクト化して使用 |
+| data | イベントタイプによって変わるデータ(以下詳細データ参照) |
+| data(CHANGE_NETWORK_STATE) | ネットワーク状態(**NetworkState.cs**参照)<br>- DISCONNECTED：ネットワーク接続解除<br>- RECONNECTED：ネットワーク再接続<br>  - ネットワークの問題で受信できなかったメッセージを照会する必要があります(Example参照). |
+| data(PUSH_MESSAGE) | - channelId：チャンネル作成時に付与された固有ID<br>- channelType：チャンネルタイプ(**ChannelType.cs**参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>- messageId：メッセージID<br>- messageType：メッセージタイプ(**MessageType.cs**参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>  - ADMIN：運営者<br>  - ANNOUNCEMENT：通知メッセージ<br>  - SYSTEM：システム<br>- contentType：メッセージデータ型(**MessageContentType.cs**参照)<br>  - TEXT：テキスト<br>- senderType：送信者タイプ(**MessageSenderType.cs**参照)<br>  - USER：ユーザー<br>  - ADMIN：運営者<br>  - ANNOUNCEMENT：運営者<br>  - SYSTEM：システム<br>- senderId：送信者ID<br>- senderNickname：送信者ニックネーム<br>- languageCode：メッセージ言語コード(**LanguageCode.cs**参照)<br>- content：メッセージ<br>- state：メッセージ状態(**MessageState.cs**参照)<br>  - NORMAL：正常メッセージ<br>  - FILTER：卑属語のためフィルタリングされたメッセージ<br>- deleted：メッセージが削除されているかどうか<br>- regDate：メッセージ送信日時 |
+| data(PUSH_TO_ALL_USERS) | PUSH_MESSAGEイベントデータでchannelId、channelTypeだけなくて、すべて同じ |
+| data(PUSH_DELETE_USER) | - userId：ユーザーID |
 
 **Example**
 
@@ -264,49 +254,49 @@ public void AddEventExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            switch(eventData.type)
+            switch (eventData.type)
             {
-                case GameTalkEventType.CHANGE_NETWORK_STATE:
+                case GameTalkEventType.CHANGE_NETWORK_STATE：
                 {
-                    // Called when the network state changes.
+                    // ネットワーク状態が変更されると呼び出されます。
                     // NetworkState.DISCONNECTED or NetworkState.RECONNECTED
-                    Debug.Log(string.Format("Change networkState:{0}", eventData.data));
+                    Debug.Log(string.Format("Change networkState：{0}", eventData.data));
 
                     if (eventData.data.Equals(NetworkState.RECONNECTED) is true)
                     {
-                        // Retrieve messages not received due to network problems.
+                        // ネットワーク問題で受信できなかったメッセージを照会します。
                         CheckUnreceivedMessages(lastReceivedMessageId);
                     }
 
                     break;
                 }
-                case GameTalkEventType.PUSH_MESSAGE:
+                case GameTalkEventType.PUSH_MESSAGE：
                 {
                     // It is called when a new message is received on the subscribed open channel
                     // Use EventDataParser's GetEventData<GameTalkData.Message.PushMessage> API to objectify and use data.
                     Debug.Log(string.Format(
-                        "An event has been received. data:{0}",
+                        "An event has been received. data：{0}",
                         EventDataParser.GetEventData<GameTalkData.Message.PushMessage>(eventData.data)));
                     break;
                 }
-                case GameTalkEventType.PUSH_TO_ALL_USERS:
+                case GameTalkEventType.PUSH_TO_ALL_USERS：
                 {
-                    // Called when the entire delivery notification message is received
+                    // 全体送信通知メッセージを受信したら呼び出し
                     // Use EventDataParser's GetEventData<GameTalkData.Message.PushToAllUsers> API to objectify and use data
                     Debug.Log(string.Format(
-                        "An event has been received. data:{0}",
+                        "An event has been received. data：{0}",
                         EventDataParser.GetEventData<GameTalkData.Message.PushToAllUsers>(eventData.data)));
                     break;
                 }
-                case GameTalkEventType.PUSH_DELETE_USER:
+                case GameTalkEventType.PUSH_DELETE_USER：
                 {
-                    // Called when the channel subscription information of the user using GameTalk is canceled through the console and server API
+                    // GameTalkを利用中のユーザーのチャンネル購読情報をコンソールおよびserver APIを通じて解除する場合に呼び出し
                     // Use EventDataParser's GetEventData<GameTalkData.PushDeleteUser> API to objectify and use data
                     Debug.Log(string.Format(
-                        "PUSH_DELETE_USER event was received. data:{0}",
+                        "PUSH_DELETE_USER event was received. data：{0}",
                         EventDataParser.GetEventData<GameTalkData.PushDeleteUser>(eventData.data)));
 
-                    // You must call the DeleteUserInfo API to synchronize server and client state.
+                    // サーバーとクライアント状態を同期するにはDeleteUserInfo APIを呼び出しする必要があります。
                     DeleteUserInfo();
                     break;
                 }
@@ -314,7 +304,7 @@ public void AddEventExample()
         }
         else
         {
-            Debug.Log(string.Format("error:{0}", error));
+            Debug.Log(string.Format("error：{0}", error));
         }
     });
 }
@@ -323,7 +313,7 @@ private void CheckUnreceivedMessages(long lastReceivedMessageId)
 {
     var param = new GameTalkParams.Message.GetMessage
     {
-        // The ID of the last received message.
+        // 最後に受信したメッセージのIDです。
         messageId = lastReceivedMessageId,
         nextCount = 50,
         channelId = "{CURRENT_CHANNEL_ID}"
@@ -335,30 +325,30 @@ private void CheckUnreceivedMessages(long lastReceivedMessageId)
         {
             if (message.nextMessageList.Count == 0)
             {
-                // There are no unreceived messages.
+                // 受信できなかったメッセージがありません。
 
-                //-----------------------------
-                // game processing logic
-                //-----------------------------
-                // Display the message received through the PUSH_MESSAGE event on the UI.
+                //------------------------------
+                // ゲーム処理ロジック
+                //------------------------------
+                // PUSH_MESSAGEイベントで受信したメッセージをUIに表示します。
             }
             else
             {
-                // There are unreceived messages.
-                // If messages received through the PUSH_MESSAGE event are displayed on the UI, the order of messages may be out of order.
-                // Hold the received message until its processing is finished.
+                // 受信できなかったメッセージがあります。
+                // PUSH_MESSAGEイベントで受信したメッセージをUIに表示する場合にはメッセージの順序が合わない問題が発生する可能性があるため
+                // 該当処理が終わるまで受信したメッセージを保管します。
 
-                //-----------------------------
-                // game processing logic
-                //-----------------------------
-                // 1. Archive the message received with the PUSH_MESSAGE event (UI display X).
-                // 2. Display the messages retrieved by the GetMessage API on the game UI.
-                // 3. Call the CheckUnreceivedMessages method recursively until there are no unreceived messages.
+                //------------------------------
+                // ゲーム処理ロジック
+                //------------------------------
+                // 1. PUSH_MESSAGEイベントで受信したメッセージを保管します(UI表示X)。
+                // 2. ゲームUIにGetMessage APIで照会したメッセージを表示します。
+                // 3. 受信できなかったメッセージがなくなるまでCheckUnreceivedMessagesメソッドを再帰的に呼び出しします。
             }
         }
         else
         {
-            Debug.Log(string.Format("GetMessage failed. error:{0}", error));
+            Debug.Log(string.Format("GetMessage failed. error：{0}", error));
         }
     });
 }
@@ -373,16 +363,40 @@ private void DeleteUserInfo()
         }
         else
         {
-            Debug.Log(string.Format("DeleteUserInfo failed. error:{0}", error));
+            Debug.Log(string.Format("DeleteUserInfo failed. error：{0}", error));
         }
     });
 }
 ```
 
+### RemoveEvent
+
+登録されたハンドラを削除します。
+
+**API**
+
+Supported Platforms
+<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
+<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
+<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+
+```cs
+static void RemoveEvent()
+```
+
+**Example**
+
+```cs
+public void RemoveEventExample()
+{
+    GameTalk.RemoveEvent();
+}
+```
+
 ### MappingUserInfo
 
-Map user credentials to GameTalk.
-The mapped information serves as the GameTalk user identifier.
+ユーザー認証情報をGameTalkでマッピングします。
+マッピングされた情報はGameTalkユーザー識別子として使用されます。
 
 **API**
 
@@ -397,27 +411,27 @@ static void MappingUserInfo(
     GameTalkCallback.GameTalkDelegate<GameTalkData.MappingUserInfo> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.MappingUserInfo | Required | Description |
+| GameTalkParams.MappingUserInfo | 必須 | 説明 |
 | --- | --- | --- |
-| idPType | X | IdP (identity provider) type ( Refer to**IdPType.cs**)<br>- GAMEBASE: Gamebase<br>Enter IdPType.GAMEBASE when Gamebase is in use. |
-| userId | O | User ID<br>Enter Gamebase User ID when Gamebase is in use |
-| token | X | User authentication token<br>If using Gamebase authentication, enter the Gamebase authentication token (if the token is omitted, the server will return an error)<br>Can be omitted if Gamebase authentication is not used |
-| nickname | X | User nickname |
+| idPType | X | IdP (identity provider)タイプ(**IdPType.cs** 参照)<br>- GAMEBASE： Gamebase<br>Gamebaseを使用中の場合はIdPType.GAMEBASEを入力 |
+| userId | O | ユーザーID<br>Gamebaseを使用中の場合はGamebase User IDを入力 |
+| token | X | ユーザー認証トークン<br>Gamebase認証を使用中の場合はGamebase認証トークンを入力(トークンが省略されるとサーバーでエラーを返す)<br>Gamebase認証を使用しない場合は省略可能 |
+| nickname | X | ユーザーニックネーム |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.MappingUserInfo> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.MappingUserInfo> | 説明 |
 | --- | --- |
-| <GameTalkData.MappingUserInfo>data | Callback Data |
-| error | Error object |
+| <GameTalkData.MappingUserInfo>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.MappingUserInfo | Description |
+| GameTalkData.MappingUserInfo | 説明 |
 | --- | --- |
-| user | **User Information**<br>- userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  - true: normal<br>  - false: deleted user<br>- regDate: User’s subscription date<br>- languageCode: user language code<br>- lastLoginDate: Last login date |
+| user | **ユーザー情報**<br>- userId：ユーザーID<br>- nickname：ユーザーニックネーム<br>- valid：ユーザー状態<br>  - true：正常<br>  - false：削除されたユーザー<br>- regDate：ユーザー加入日時<br>- languageCode：ユーザー言語コード<br>- lastLoginDate：最後のログイン日時 |
 
 **Example**
 
@@ -436,11 +450,11 @@ public void MappingUserInfoExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("MappingUserInfo succeeded. data:{0}", data));
+            Debug.Log(string.Format("MappingUserInfo succeeded. data：{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("MappingUserInfo failed. error:{0}", error));
+            Debug.Log(string.Format("MappingUserInfo failed. error：{0}", error));
         }
     });
 }
@@ -448,14 +462,14 @@ public void MappingUserInfoExample()
 
 ### IsMappedUserInfo
 
-Make sure users credentials are mapped to GameTalk.
+ユーザー認証情報がGameTalkにマッピングされているか確認します。
 
 **API**
 
 Supported Platforms
-<span style="color:#b60205">■</span> UNITY_EDITOR
-<span style="color:#0e8a16">■</span> UNITY_ANDROID
-<span style="color:#1d76db">■</span> UNITY_IOS
+<span style="color：#b60205">■</span> UNITY_EDITOR
+<span style="color：#0e8a16">■</span> UNITY_ANDROID
+<span style="color：#1d76db">■</span> UNITY_IOS
 
 ```cs
 static bool IsMappedUserInfo()
@@ -479,25 +493,25 @@ public void IsMappedUserInfoExample()
 
 ### UnmappingUserInfo
 
-Disable the user credentials mapped to GameTalk.
-All chat messages cannot be received until the GameTalk.MappingUserInfo API is called.
+GameTalkにマッピングされたユーザー認証情報を解除します。
+GameTalk.MappingUserInfo APIが呼び出されるまで、すべてのチャットメッセージを受信できません。
 
 **API**
 
 Supported Platforms
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color：#B60205; font-size： 10pt">■</span> UNITY_EDITOR
+<span style="color：#0E8A16; font-size： 10pt">■</span> UNITY_ANDROID
+<span style="color：#1D76DB; font-size： 10pt">■</span> UNITY_IOS
 
 ```cs
 static void UnmappingUserInfo(GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
@@ -512,7 +526,7 @@ public void UnmappingUserInfoExample()
         }
         else
         {
-            Debug.Log(string.Format("UnmappingUserInfo failed. error:{0}", error));
+            Debug.Log(string.Format("UnmappingUserInfo failed. error：{0}", error));
         }
     });
 }
@@ -520,7 +534,7 @@ public void UnmappingUserInfoExample()
 
 ### UpdateUserInfo
 
-Update user information.
+ユーザー情報を更新します。
 
 **API**
 
@@ -535,18 +549,18 @@ static void UpdateUserInfo(
     GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.UpdateUserInfo | Required | Description |
+| GameTalkParams.UpdateUserInfo | 必須 | 説明 |
 | --- | --- | --- |
-| languageCode | O | The standard language code among multilingual translation target codes registered in the console |
-| nickname | X | User nickname |
+| languageCode | O | コンソールに登録された多言語翻訳対象コードのうち、基準となる言語コード |
+| nickname | X | ユーザーニックネーム |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
@@ -567,7 +581,7 @@ public void UpdateUserInfoExample()
         }
         else
         {
-            Debug.Log(string.Format("UpdateUserInfo failed. error:{0}", error));
+            Debug.Log(string.Format("UpdateUserInfo failed. error：{0}", error));
         }
     });
 }
@@ -575,24 +589,24 @@ public void UpdateUserInfoExample()
 
 ### DeleteUserInfo
 
-Disable the subscription information on all channels for uers mapped to GameTalk.
+GameTalkにマッピングされたユーザーのすべてのチャンネルの購読情報を解除します。
 
 **API**
 
 Supported Platforms
-<span style="color:#B60205; font-size: 10pt">■</span> UNITY_EDITOR
-<span style="color:#0E8A16; font-size: 10pt">■</span> UNITY_ANDROID
-<span style="color:#1D76DB; font-size: 10pt">■</span> UNITY_IOS
+<span style="color：#B60205; font-size： 10pt">■</span> UNITY_EDITOR
+<span style="color：#0E8A16; font-size： 10pt">■</span> UNITY_ANDROID
+<span style="color：#1D76DB; font-size： 10pt">■</span> UNITY_IOS
 
 ```cs
 static void DeleteUserInfo(GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
@@ -607,7 +621,7 @@ public void DeleteUserInfoExample()
         }
         else
         {
-            Debug.Log(string.Format("DeleteUserInfo failed. error:{0}", error));
+            Debug.Log(string.Format("DeleteUserInfo failed. error：{0}", error));
         }
     });
 }
@@ -615,7 +629,7 @@ public void DeleteUserInfoExample()
 
 ### GetChannelList
 
-Retrieve the channel information.
+チャンネル情報を照会します。
 
 
 **API**
@@ -631,28 +645,28 @@ static void GetChannelList(
     GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Channel.GetChannelList | Required | Description |
+| GameTalkParams.Channel.GetChannelList | 必須 | 説明 |
 | --- | --- | --- |
-| page | X | Page index<br>- starting value is 0 |
-| size | O | Page size<br>- A value between 1 and 100 |
-| tagType | X | Tag search condition (see **TagType.cs**)<br>- Default: OR<br>- OR: Search for channels that contain at least one selected channel tag<br>- AND: Search for channels that contain all selected channel tags |
-| tagIdList | X | Search tag list |
+| page | X | ページインデックス<br>- 開始値は0 |
+| size | O | ページサイズ<br>- 1から100の間の値 |
+| tagType | X | タグ検索条件(**TagType.cs** 参照)<br>- Default： OR<br>- OR：選択したチャンネルタグを一つでも含むチャンネルを検索<br>- AND：選択したチャンネルタグを全て含むチャンネルを検索 |
+| tagIdList | X | 検索タグリスト |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetChannelList> | 説明 |
 | --- | --- |
-| <GameTalkData.Channel.GetChannelList>data | Callback Data |
-| error | Error object |
+| <GameTalkData.Channel.GetChannelList>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.Channel.GetChannelList | Description |
+| GameTalkData.Channel.GetChannelList | 説明 |
 | --- | --- |
-| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
-| channelList | **Channel List**<br>- id: Channel ID<br>- type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>- subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>  - id: Tag ID<br>  - name: Tag name |
+| pagingInfo | **ページング情報**<br>- first：最初のページかどうか<br>- last：最後のページかどうか<br>- numberOfElements：現在ページのチャンネル数<br>- page：ページインデックス<br>- size：ページサイズ<br>- totalElements：総チャンネル数<br>- totalPages：総ページ数 |
+| channelList | **チャンネルリスト**<br>- id：チャンネルID<br>- type：チャンネルタイプ(**ChannelType.cs** 参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>- name：チャンネル作成時に入力したチャンネル名<br>- nickname：チャンネルエイリアス<br>- subscriberCount：チャンネル購読者数<br>- lastMessageId：最後のメッセージID<br>- autoDelete：チャンネル自動削除を行うかどうか<br>- deleted：チャンネル削除状態(trueは削除されたチャンネル)<br>- tagList：タグリスト<br>    - <span style="color：#222222"></span>id：タグID<br>    - name：タグ名 |
 
 **Example**
 
@@ -671,11 +685,11 @@ public void GetChannelListExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetChannelList succeeded. data:{0}", data));
+            Debug.Log(string.Format("GetChannelList succeeded. data：{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("GetChannelList failed. error:{0}", error));
+            Debug.Log(string.Format("GetChannelList failed. error：{0}", error));
         }
     });
 }
@@ -683,7 +697,7 @@ public void GetChannelListExample()
 
 ### SubscribeChannel
 
-Subscribe to a channel.
+チャンネルを購読します。
 
 **API**
 
@@ -698,17 +712,17 @@ static void SubscribeChannel(
     GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Channel.SubscribeChannel | Required | Description |
+| GameTalkParams.Channel.SubscribeChannel | 必須 | 説明 |
 | --- | --- | --- |
-| channelId | O | Unique ID given at channel creation |
+| channelId | O | チャンネル作成時に付与された固有ID |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
@@ -728,7 +742,7 @@ public void SubscribeChannelExample()
         }
         else
         {
-            Debug.Log(string.Format("SubscribeChannel failed. error:{0}", error));
+            Debug.Log(string.Format("SubscribeChannel failed. error：{0}", error));
         }
     });
 }
@@ -736,7 +750,7 @@ public void SubscribeChannelExample()
 
 ### UnsubscribeChannel
 
-Unsubscribe channels in subscription.
+購読中のチャンネルを解除します。
 
 **API**
 
@@ -751,17 +765,17 @@ static void UnsubscribeChannel(
     GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Channel.UnsubscribeChannel | Required | Description |
+| GameTalkParams.Channel.UnsubscribeChannel | 必須 | 説明 |
 | --- | --- | --- |
-| channelId | O | Unique ID given at channel creation |
+| channelId | O | チャンネル作成時に付与された固有ID |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
@@ -781,7 +795,7 @@ public void UnsubscribeChannelExample()
         }
         else
         {
-            Debug.Log(string.Format("UnsubscribeChannel failed. error:{0}", error));
+            Debug.Log(string.Format("UnsubscribeChannel failed. error：{0}", error));
         }
     });
 }
@@ -789,7 +803,7 @@ public void UnsubscribeChannelExample()
 
 ### GetSubscriber
 
-Retrieve users in subscription.
+購読中のユーザーを照会します。
 
 **API**
 
@@ -804,27 +818,27 @@ static void GetSubscriber(
     GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Channel.GetSubscriber | Required | Description |
+| GameTalkParams.Channel.GetSubscriber | 必須 | 説明 |
 | --- | --- | --- |
-| channelId | O | Unique ID given at channel creation |
-| page | X | Page index<br>- starting value is 0 |
-| size | O | Page size<br>- A value between 1 and 100 |
+| channelId | O | チャンネル作成時に付与された固有ID |
+| page | X | ページインデックス<br>- 開始値は0 |
+| size | O | ページサイズ<br>- 1から100の間の値 |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscriber> | 説明 |
 | --- | --- |
-| <GameTalkData.Channel.GetSubscriber>data | Callback Data |
-| error | Error object |
+| <GameTalkData.Channel.GetSubscriber>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.Channel.GetSubscriber | Description |
+| GameTalkData.Channel.GetSubscriber | 説明 |
 | --- | --- |
-| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
-| userList | **User List** <br>- userId: User ID<br>- nickname: user nickname<br>- valid: user status<br>  - true: normal<br>  - false: deleted user<br>- regDate: User’s subscription date<br>- languageCode: user language code<br>- lastLoginDate: Last login date |
+| pagingInfo | **ページング情報**<br>- first：最初のページかどうか<br>- last：最後のページかどうか<br>- numberOfElements：現在ページのチャンネル数<br>- page：ページインデックス<br>- size：ページサイズ<br>- totalElements：総チャンネル数<br>- totalPages：総ページ数 |
+| userList | **ユーザーリスト** <br>- userId：ユーザーID<br>- nickname：ユーザーニックネーム<br>- valid：ユーザー状態<br>  - true：正常<br>  - false：削除されたユーザー<br>- regDate：ユーザー加入日時<br>- languageCode：ユーザー言語コード<br>- lastLoginDate：最終ログイン日時 |
 
 **Example**
 
@@ -854,7 +868,7 @@ public void GetSubscriberExample()
 
 ### GetTagList
 
-Retrieve the channel’s tag list.
+チャンネルのタグリストを照会します。
 
 **API**
 
@@ -869,26 +883,26 @@ static void GetTagList(
     GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetTagList> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Channel.GetTagList | Required | Description |
+| GameTalkParams.Channel.GetTagList | 必須 | 説明 |
 | --- | --- | --- |
-| page | X | Page index<br>- starting value is 0 |
-| size | O | Page size<br>- A value between 1 and 100 |
+| page | X | ページインデックス<br>- 開始値は0 |
+| size | O | ページサイズ<br>- 1から100の間の値 |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetTagList> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetTagList> | 説明 |
 | --- | --- |
-| <GameTalkData.Channel.GetTagList>data | Callback Data |
-| error | Error object |
+| <GameTalkData.Channel.GetTagList>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.Channel.GetTagList | Description |
+| GameTalkData.Channel.GetTagList | 説明 |
 | --- | --- |
-| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
-| tagList | **Tag List** <br>- id: Tag ID<br>- name: Tag name |
+| pagingInfo | **ページング情報**<br>- first：最初のページかどうか<br>- last：最後のページかどうか<br>- numberOfElements：現在ページのチャンネル数<br>- page：ページインデックス<br>- size：ページサイズ<br>- totalElements：総チャンネル数<br>- totalPages：総ページ数 |
+| tagList | **タグリスト** <br>- id：タグID<br>- name：タグ名 |
 
 **Example**
 
@@ -905,11 +919,11 @@ public void GetTagListExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetTagList succeeded. data:{0}", data));
+            Debug.Log(string.Format("GetTagList succeeded. data：{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("GetTagList failed. error:{0}", error));
+            Debug.Log(string.Format("GetTagList failed. error：{0}", error));
         }
     });
 }
@@ -917,7 +931,7 @@ public void GetTagListExample()
 
 ### GetSubscribedChannelList
 
-Retrieve channels in subscription.
+購読中のチャンネルを照会します。
 
 **API**
 
@@ -932,26 +946,26 @@ static void GetSubscribedChannelList(
     GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Channel.GetSubscribedChannelList | Required | Description |
+| GameTalkParams.Channel.GetSubscribedChannelList | 必須 | 説明 |
 | --- | --- | --- |
-| page | X | Page index<br>- starting value is 0 |
-| size | O | Page size<br>- A value between 1 and 100 |
+| page | X | ページインデックス<br>- 開始値は0 |
+| size | O | ページサイズ<br>- 1から100の間の値 |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Channel.GetSubscribedChannelList> | 説明 |
 | --- | --- |
-| <GameTalkData.Channel.GetSubscribedChannelList>data | Callback Data |
-| error | Error object |
+| <GameTalkData.Channel.GetSubscribedChannelList>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.Channel.GetSubscribedChannelList | Description |
+| GameTalkData.Channel.GetSubscribedChannelList | 説明 |
 | --- | --- |
-| pagingInfo | **Paging information**<br>- first: Whether it is the first page<br>- last: Whether it is the last page<br>- numberOfElements: Number of channels on the current page<br>- page: page index<br>- size: Page size<br>- totalElements: The total number of channels<br>- totalPages: The total number of pages |
-| channelList | **Channel List**<br>- id: Channel ID<br>- type: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- name: Channel name entered when creating a channel<br>- nickname: channel nickname<br>- subscriberCount: Number of channel subscribers<br>- lastMessageId: last message id<br>- autoDelete: whether to automatically delete the channel<br>- deleted: channel deleted status (if true, deleted channel)<br>- tagList: tag list<br>  - iid: Tag ID<br>  - name: Tag name |
+| pagingInfo | **ページング情報**<br>- first：最初のページかどうか<br>- last：最後のページかどうか<br>- numberOfElements：現在ページのチャンネル数<br>- page：ページインデックス<br>- size：ページサイズ<br>- totalElements：総チャンネル数<br>- totalPages：総ページ数 |
+| channelList | **チャンネルリスト**<br>- id：チャンネルID<br>- type：チャンネルタイプ(**ChannelType.cs** 参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>- name：チャンネル作成時に入力したチャンネル名<br>- nickname：チャンネルエイリアス<br>- subscriberCount：チャンネル購読者数<br>- lastMessageId：最後のメッセージID<br>- autoDelete：チャンネル自動削除を行うかどうか<br>- deleted：チャンネル削除状態(trueは削除されたチャンネル)<br>- tagList：タグリスト<br>    - <span style="color：#222222"></span>id：タグID<br>    - name：タグ名 |
 
 **Example**
 
@@ -968,11 +982,11 @@ public void GetSubscribedChannelListExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetSubscribedChannelList succeeded. data:{0}", data));
+            Debug.Log(string.Format("GetSubscribedChannelList succeeded. data：{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("GetSubscribedChannelList failed. error:{0}", error));
+            Debug.Log(string.Format("GetSubscribedChannelList failed. error：{0}", error));
         }
     });
 }
@@ -980,7 +994,7 @@ public void GetSubscribedChannelListExample()
 
 ### SendMessage
 
-Send a message.
+メッセージを転送します。
 
 **API**
 
@@ -995,19 +1009,19 @@ static void SendMessage(
     GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Message.SendMessage | Required | Description |
+| GameTalkParams.Message.SendMessage | 必須 | 説明 |
 | --- | --- | --- |
-| channelId | O | Unique ID given at channel creation |
-| contentType | O | Message data type (Refer to **MessageContentType.cs**)<br>- TEXT: Text |
-| content | O | Message |
+| channelId | O | チャンネル作成時に付与された固有ID |
+| contentType | O | メッセージデータ型(**MessageContentType.cs** 参照)<br>- TEXT：テキスト |
+| content | O | メッセージ |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
@@ -1029,7 +1043,7 @@ public void SendMessageExample()
         }
         else
         {
-            Debug.Log(string.Format("SendMessage failed. error:{0}", error));
+            Debug.Log(string.Format("SendMessage failed. error：{0}", error));
         }
     });
 }
@@ -1037,18 +1051,18 @@ public void SendMessageExample()
 
 ### GetRecentlyMessage
 
-Retrieves recent messages.
+最新メッセージを照会します。
 
-> <font color="red">**[Caution]**</font><br/>
+> <font color="red">**[注意]**</font><br/>
 > 
-> You can view up to <span>50 messages<span>, including the latest messages.
+> 最新メッセージを含めて<span>最大50個</span>のメッセージを照会できます。
 
 **API**
 
 Supported Platforms
-<span style="color:#b60205">■</span> UNITY_EDITOR
-<span style="color:#0e8a16">■</span> UNITY_ANDROID
-<span style="color:#1d76db">■</span> UNITY_IOS
+<span style="color：#b60205">■</span> UNITY_EDITOR
+<span style="color：#0e8a16">■</span> UNITY_ANDROID
+<span style="color：#1d76db">■</span> UNITY_IOS
 
 ```cs
 static void GetRecentlyMessage(
@@ -1056,26 +1070,26 @@ static void GetRecentlyMessage(
     GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetRecentlyMessage> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Message.GetRecentlyMessage | Required | Description |
+| GameTalkParams.Message.GetRecentlyMessage | 必須 | 説明 |
 | --- | --- | --- |
-| channelId | O | Unique ID given at channel creation |
-| count | O | Number of messages to retrieve<br>- A value between 1 and 50 |
+| channelId | O | チャンネル作成時に付与された固有ID |
+| count | O | 照会するメッセージ数<br>- 1から50の間の値 |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetRecentlyMessage> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetRecentlyMessage> | 説明 |
 | --- | --- |
-| <GameTalkData.Message.GetRecentlyMessage>data | Callback Data |
-| error | Error object |
+| <GameTalkData.Message.GetRecentlyMessage>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.Message.GetRecentlyMessage | Description |
+| GameTalkData.Message.GetRecentlyMessage | 説明 |
 | --- | --- |
-| count | Number of messages viewed |
-| recentlyMessageList | **List of Recent Messages**<br>- channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see **MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  - TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
+| count | 照会されたメッセージ数 |
+| recentlyMessageList | **最近のメッセージリスト**<br>- channelId：チャンネル作成時に付与された固有ID<br>- channelType：チャンネルタイプ(**ChannelType.cs**参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>- messageId：メッセージID<br>- messageType：メッセージタイプ(**MessageType.cs**参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>  - ADMIN：運営者<br>  - ANNOUNCEMENT：通知メッセージ<br>  - SYSTEM：システム<br>- contentType：メッセージデータ型(**MessageContentType.cs**参照)<br>  - TEXT：テキスト<br>- senderType：送信者タイプ(**MessageSenderType.cs**参照)<br>  - USER：ユーザー<br>  - ADMIN：運営者<br>  - ANNOUNCEMENT：運営者<br>  - SYSTEM：システム<br>- senderId：送信者ID<br>- senderNickname：送信者ニックネーム<br>- languageCode：メッセージ言語コード(**LanguageCode.cs**参照)<br>- content：メッセージ<br>- state：メッセージ状態(**MessageState.cs**参照)<br>  - NORMAL：正常メッセージ<br>  - FILTER：卑属語のためフィルタリングされたメッセージ<br>- deleted：メッセージが削除されているかどうか<br>- regDate：メッセージ送信日時 |
 
 **Example**
 
@@ -1092,11 +1106,11 @@ public void GetRecentlyMessageExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetRecentlyMessage succeeded. data:{0}", data));
+            Debug.Log(string.Format("GetRecentlyMessage succeeded. data：{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("GetRecentlyMessage failed. error:{0}", error));
+            Debug.Log(string.Format("GetRecentlyMessage failed. error：{0}", error));
         }
     });
 }
@@ -1104,21 +1118,21 @@ public void GetRecentlyMessageExample()
 
 ### GetMessage
 
-Retrieve messages based on a specific message ID.
+特定メッセージIDを基準にメッセージを照会します。
 
-> <font color="red">**[Caution]**</font><br/>
+> <font color="red">**[注意]**</font><br/>
 > 
-> You can retrieve <span>up to 51 messages<span> based on a specific message ID.
-If the value of include among the parameters is set to true, <span>a total of 51 messages<span> including the standard message will be retrieved.<span><span>
+> 特定メッセージIDを基準に<span>最大51個</span>のメッセージを照会できます。
+> 引数のうちincludeの値をtrueに設定する場合、基準となるメッセージを含めて<span>合計51個<span>のメッセージが照会されます。</span></span>
 > 
-> The sum of prevCount and nextCount must be greater than <span>1 and less than 50<span>.<span><span>
+> prevCountとnextCountの合計が<span>1以上50以下<span>でなければなりません。</span></span>
 
 **API**
 
 Supported Platforms
-<span style="color:#b60205">■</span> UNITY_EDITOR
-<span style="color:#0e8a16">■</span> UNITY_ANDROID
-<span style="color:#1d76db">■</span> UNITY_IOS
+<span style="color：#b60205">■</span> UNITY_EDITOR
+<span style="color：#0e8a16">■</span> UNITY_ANDROID
+<span style="color：#1d76db">■</span> UNITY_IOS
 
 ```cs
 static void GetMessage(
@@ -1126,31 +1140,31 @@ static void GetMessage(
     GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetMessage> callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Message.GetMessage | Required | Description |
+| GameTalkParams.Message.GetMessage | 必須 | 説明 |
 | --- | --- | --- |
-| channelId | O | Unique ID given at channel creation |
-| messageId | O | Base message id |
-| prevCount | O | The number of previous messages to retrieve from the base message<br>- A value between 0 and 50 |
-| nextCount | O | The number of next messages to retrieve from the base message<br>- A value between 0 and 50 |
-| include | X | Whether to include base message<br>- Default: false |
+| channelId | O | チャンネル作成時に付与された固有ID |
+| messageId | O | 基準メッセージID |
+| prevCount | O | 基準メッセージから照会する以前メッセージ数<br>- 0から50の間の値 |
+| nextCount | O | 基準メッセージから照会する次のメッセージ数<br>- 0から50の間の値 |
+| include | X | 基準メッセージを含めるかどうか<br>- Default： false |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetMessage> | Description |
+| GameTalkCallback.GameTalkDelegate<GameTalkData.Message.GetMessage> | 説明 |
 | --- | --- |
-| <GameTalkData.Message.GetMessage>data | Callback Data |
-| error | Error object |
+| <GameTalkData.Message.GetMessage>data | コールバックデータ |
+| error | エラーオブジェクト |
 
-**Callback Data**
+**コールバックデータ**
 
-| GameTalkData.Message.GetMessage | Description |
+| GameTalkData.Message.GetMessage | 説明 |
 | --- | --- |
-| count | Number of messages viewed |
-| baseMessage | **Base message (single object)**<br>- channelId: Unique ID assigned when a channel is created<br>- channelType: Channel type (Refer to**ChannelType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>- messageId: Message ID<br>- messageType: message type (see** MessageType.cs**)<br>  - PUBLIC: Public<br>  - PRIVATE: Private<br>  - ADMIN: Administrator<br>  - ANNOUNCEMENT: Announcement message<br>  - SYSTEM: System<br>- contentType: Message data type (Refer to **MessageContentType.cs**)<br>  - TEXT: Text<br>- senderType: Sender type ( Refer to **MessageSenderType.cs** )<br>  - USER: User<br>  - ADMIN: Operator<br>  - ANNOUNCEMENT: Operator<br>  - SYSTEM: System<br>- senderId: Sender ID<br>- senderNickname: Sender nickname<br>- languageCode: Message language code (see **LanguageCode.cs**)<br>- content: Message<br>- state: Message status ( Refer to **MessageState.cs**)<br>  - NORMAL: Normal message<br>  - FILTER: Messages filtered due to profane language<br>- deleted: Whether the message is deleted<br>- regDate: Message sent date |
-| prevMessageList | An object with the same structure as baseMessage is passed as a list |
-| nextMessageList | An object with the same structure as baseMessage is passed as a list |
+| count | 照会されたメッセージ数 |
+| baseMessage | **基準メッセージ(単一オブジェクト)**<br>- channelId：チャンネル作成時に付与された固有ID<br>- channelType：チャンネルタイプ(**ChannelType.cs**参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>- messageId：メッセージID<br>- messageType：メッセージタイプ(**MessageType.cs**参照)<br>  - PUBLIC：公開<br>  - PRIVATE：非公開<br>  - ADMIN：運営者<br>  - ANNOUNCEMENT：通知メッセージ<br>  - SYSTEM：システム<br>- contentType：メッセージデータ型(**MessageContentType.cs**参照)<br>  - TEXT：テキスト<br>- senderType：送信者タイプ(**MessageSenderType.cs**参照)<br>  - USER：ユーザー<br>  - ADMIN：運営者<br>  - ANNOUNCEMENT：運営者<br>  - SYSTEM：システム<br>- senderId：送信者ID<br>- senderNickname：送信者ニックネーム<br>- languageCode：メッセージ言語コード(**LanguageCode.cs**参照)<br>- content：メッセージ<br>- state：メッセージ状態(**MessageState.cs**参照)<br>  - NORMAL：正常メッセージ<br>  - FILTER：卑属語のためフィルタリングされたメッセージ<br>- deleted：メッセージが削除されているかどうか<br>- regDate：メッセージ送信日時 |
+| prevMessageList | baseMessageと同構造のオブジェクトがリストとして伝達 |
+| nextMessageList | baseMessageと同じ同構造のオブジェクトがリストとして伝達 |
 
 **Example**
 
@@ -1170,11 +1184,11 @@ public void GetMessageExample()
     {
         if (GameTalk.IsSucceeded(error) is true)
         {
-            Debug.Log(string.Format("GetMessage succeeded. data:{0}", data));
+            Debug.Log(string.Format("GetMessage succeeded. data：{0}", data));
         }
         else
         {
-            Debug.Log(string.Format("GetMessage failed. error:{0}", error));
+            Debug.Log(string.Format("GetMessage failed. error：{0}", error));
         }
     });
 }
@@ -1182,7 +1196,7 @@ public void GetMessageExample()
 
 ### ReportMessage
 
-Report a specific message.
+特定メッセージを通報します。
 
 **API**
 
@@ -1197,21 +1211,21 @@ static void ReportMessage(
     GameTalkCallback.ErrorDelegate callback)
 ```
 
-**Parameter**
+**引数**
 
-| GameTalkParams.Message.ReportMessage | Required | Description |
+| GameTalkParams.Message.ReportMessage | 必須 | 説明 |
 | --- | --- | --- |
-| messageId | O | Message ID to report |
-| messageLanguageCode | O | Message language code to report |
-| channelId | O | Unique ID given at channel creation |
-| reporterNickname | X | Reporter Nickname |
-| reason | X | Reason for Report |
+| messageId | O | 申告対象メッセージID |
+| messageLanguageCode | O | 申告対象メッセージ言語コード |
+| channelId | O | チャンネル作成時に付与された固有ID |
+| reporterNickname | X | 通報者のニックネーム |
+| reason | X | 通報理由 |
 
-**Callback**
+**コールバック**
 
-| GameTalkCallback.ErrorDelegate | Description |
+| GameTalkCallback.ErrorDelegate | 説明 |
 | --- | --- |
-| error | Error object |
+| error | エラーオブジェクト |
 
 **Example**
 
