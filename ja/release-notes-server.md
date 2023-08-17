@@ -1,17 +1,17 @@
-## Game > GameTalk > Release Note > Server API
+## Game > GameTalk > リリースノート > Server API
 
-### 1.1.0 (2023. 08. 17.)
+### 1.1.0(2023. 08. 17.)
 
-* Added Features
-    * Added API to query multiple messages by the ID of the underlying message.
-    * Added API to retrieve recent messages.
-    * Added API to report messages.
-    * Added API to send system messages.
-* Changes
-  * Modified to keep messages for 48 hours. 
-  * Improved internal log and fixed bugs.
+* 機能追加
+    * 基準となるメッセージのIDで複数のメッセージを照会するAPIが追加されました。
+    * 最近のメッセージを照会するAPIが追加されました。
+    * メッセージ通報APIが追加されました。
+    * システムメッセージ送信APIが追加されました。
+* 変更
+  * メッセージを48時間保存するように変更されました。 
+  * 内部ロジックを改善し、バグを修正しました。
         
-### 1.0.0 (2022. 12. 27.)
+### 1.0.0(2022. 12. 27.)
 
-* Release of a New Service
-    * GameTalk is a service that allows you to implement an in-app chat feature. The GameTalk service enables you to build real-time chat, guild chat, and other chatting environments in games.
+* 新規商品リリース
+    * 簡単にゲーム内チャット機能を実装できるサービスです。GameTalkサービスを利用して、リアルタイムチャット、ギルドチャットなど様々なチャット環境をゲーム内に実装できます。
