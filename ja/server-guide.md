@@ -1,51 +1,51 @@
-## Game > GameTalk > API v1.1 Guide
+## Game > GameTalk > API v1.1ガイド
 
-The GameTalk Server API provides the following APIs in RESTful format.
+GameTalk Server APIはRESTful形式で次のようなAPIを提供します。
 
 ## Advance Notice
 
-To use the Server API, the following information is required.
+Server APIを使用するには次のような情報が必要です。
 
 #### URL
 
-The URL (server address) to call the API is as follows. The address can also be in the GameTalk console.
+APIを呼び出すためのURL(サーバーアドレス)は次のとおりです。該当アドレスはGameTalk Console画面でも確認できます。
 > https://api-gametalk-back.nhncloudservice.com
 
 ![pre_server_url_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_url_v1.0.0.png)
 
 #### AppKey
 
-AppKey can be found in the GameTalk console.
+AppKeyはGameTalk Consoleで確認できます。
 
 ![pre_server_appkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_appkey_v1.0.0.png)
 
 #### SecretKey
 
-Secret key serves as an access control measure to the API and can be found in the GameTalk console. The secret key must be set in the HTTP header when calling the Server API.
-> [Note]
-If an invalid call occurs because the secret key is exposed, click **Regenerate** to create and use a new secret key.
+秘密鍵(secret key)はAPIへのアクセス制御方法で、GameTalk Consoleで確認できます。秘密鍵はServer APIを呼び出す時、HTTP Headerに必ず設定する必要があります。
+> [参考]
+> 秘密鍵が外部に漏れて誤った呼び出しが発生する場合は、**再作成**をクリックして新しい秘密鍵を作成した後、新たに作った秘密鍵を使用する必要があります。
 
 ![pre_server_secretkey_v1.0](https://static.toastoven.net/prod_gametalk/server/pre_server_secretkey_v1.0.0.png)
 
 #### TransactionId
 
-TransactionId is a feature that allows the server calling the API to manage API calls internally. When the calling server calls the API by setting a transactionId in the HTTP header, the GameTalk server delivers the result by setting the corresponding transactionId in the Response HTTP header and the Response Body Header of the result.
+TransactionIdは、APIを呼び出すサーバーで内部的にAPIリクエストを管理できる機能です。呼び出しサーバーでHTTP HeaderにトランザクションIDを設定してAPIを呼び出すとGameTalkサーバーはレスポンスHTTP Headerおよびレスポンス結果のResponse Body Headerに該当TransactionIdを設定して結果を渡します。
 
 ## Common
 
 #### HTTP Header
 
-When calling the API, set the following items in the HTTP header.
+API呼び出し時にHTTP Headerに次の項目を設定する必要があります。
 
 | Name | Required | Value |
 | --- | --- | --- |
 | Content-Type | mandatory | application/json; charset=UTF-8 |
-| X-Secret-Key | mandatory | See SecretKey description |
-| X-GT-Transaction-Id | optional | See the TransactionId description |
+| X-Secret-Key | mandatory | SecretKey説明参照 |
+| X-GT-Transaction-Id | optional | TransactionId説明参照 |
 
 #### API Response
 
-Delivers an **HTTP 200 OK** in response to all API requests. You can determine if an API request was successful by looking at the header items in the response body.
+すべてのAPIリクエストに対するレスポンスとして**HTTP 200 OK**を渡します。APIリクエストが成功したかどうかはResponse BodyのHeader項目を参照して判断できます。
 
 **[Request]**
 
@@ -77,16 +77,16 @@ X-GT-Transaction-Id: 88a1ae42-6b1d-48c8-894e-54e97aca07fq
 
 | Key | Type | Description |
 | --- | --- | --- |
-| transactionId | String | Value set in the HTTP header when making an API request.<br>Returns a value generated internally by GameTalk if no such value is passed. |
-| isSuccessful | boolean | Successful or not |
-| resultCode | int | Response code<br>Returns 0 when successful, or an error code when failed |
-| resultMessage | String | Response message |
+| transactionId | String | APIリクエスト時にHTTP Headerに設定した値。<br>この値を渡さない場合、GameTalk内部的に作成された値を返す |
+| isSuccessful | boolean | 成否 |
+| resultCode | int | レスポンスコード<br>成功時は0、失敗時はエラーコードを返す |
+| resultMessage | String | レスポンスメッセージ |
 
 ## Channel
 
 #### Create Channel
 
-Creates a channel.
+チャンネルを作成します。
 
 **[Method, URI]**
 
@@ -96,13 +96,13 @@ Creates a channel.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
+| appKey | String | NHN CloudプロジェクトAppKey |
 
 **[Request Body]**
 
@@ -117,10 +117,10 @@ Checks common items
 
 | Name | Type | Required | Value                     |
 | --- | --- | --- |---------------------------|
-| name | String | mandatory | Channel name                       |
-| nickname | String | optional | Channel nickname                     |
-| tagIdList | long[] | optional | Channel Tag                     |
-| autoDelete | boolean | optional | Whether to enable automatic channel deletion (default is true) |
+| name | String | mandatory | チャンネル名                    |
+| nickname | String | optional | チャンネルエイリアス                  |
+| tagIdList | long[] | optional | チャンネルタグ                  |
+| autoDelete | boolean | optional | チャンネル自動削除を使用するかどうか(デフォルト値はtrue) |
 
 **[Response Body]**
 
@@ -156,25 +156,25 @@ Checks common items
 
 | Key                    | Type          | Description                     |
 |------------------------|---------------|---------------------------------|
-| result                 | Object        | Channel information                           |
-| result.appKey          | String        | Project Appkey           |
-| result.id              | String        | Channel ID                           |
-| result.type            | String        | Channel type<br/>PUBLIC (general)            |
-| result.name            | String        | Channel name                             |
-| result.nickname        | String        | Channel nickname                           |
-| result.autoDelete      | boolean       | Whether to use automatic channel deletion                  |
-| result.deleted         | boolean       | Whether to delete the channel                        |
-| result.lastMessageId   | Long          | Last message ID                      |
-| result.subscriberCount | int           | Number of channel subscribers                        |
-| result.tagList         | Array[Object] | Channel tag list                        |
-| result.tagList[].id    | long          | Channel tag ID                        |
-| result.tagList[].name  | String        | Channel tag name                          |
-| result.regUser         | String        | Creator                             |
-| result.regDate         | Date          | Date of creation. Date and time compliant with ISO 8601. |
+| result                 | Object        | チャンネル情報                        |
+| result.appKey          | String        | プロジェクトアプリケーションキー(Appkey)           |
+| result.id              | String        | チャンネルID                           |
+| result.type            | String        | チャンネルタイプ<br/>PUBLIC(一般)            |
+| result.name            | String        | チャンネル名                          |
+| result.nickname        | String        | チャンネルエイリアス                        |
+| result.autoDelete      | boolean       | チャンネル自動削除を使用するかどうか                 |
+| result.deleted         | boolean       | チャンネル削除有無                       |
+| result.lastMessageId   | Long          | 最後のメッセージID                      |
+| result.subscriberCount | int           | チャンネル購読者数                       |
+| result.tagList         | Array[Object] | チャンネルタグリスト                     |
+| result.tagList[].id    | long          | チャンネルタグID                        |
+| result.tagList[].name  | String        | チャンネルタグ名                       |
+| result.regUser         | String        | 作成者                          |
+| result.regDate         | Date          | 作成日時。日付と時間はISO 8601に従う。 |
 
 #### Update Channel
 
-Updates a channel.
+チャンネルを修正します。
 
 **[Method, URI]**
 
@@ -184,14 +184,14 @@ Updates a channel.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| channelId | String | Channel ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| channelId | String | チャンネルID |
 
 **[Request Body]**
 
@@ -206,10 +206,10 @@ Checks common items
 
 | Name | Type | Required | Value                     |
 | --- | --- | --- |---------------------------|
-| name | String | optional | Channel name                       |
-| nickname | String | optional | Channel nickname                     |
-| tagIdList | long[] | optional | Channel Tag                     |
-| autoDelete | boolean | optional | Whether to enable automatic channel deletion (default is true) |
+| name | String | optional | チャンネル名                    |
+| nickname | String | optional | チャンネルエイリアス                  |
+| tagIdList | long[] | optional | チャンネルタグ                  |
+| autoDelete | boolean | optional | チャンネル自動削除を使用するかどうか(デフォルト値はtrue) |
 
 **[Response Body]**
 
@@ -226,7 +226,7 @@ Checks common items
 
 #### Delete Channel
 
-Deletes a channel.
+チャンネルを削除します。
 
 **[Method, URI]**
 
@@ -236,18 +236,18 @@ Deletes a channel.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| channelId | String | Channel ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| channelId | String | チャンネルID |
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -264,7 +264,7 @@ None
 
 #### Get Channel List
 
-Retrieves the list of channels.
+チャンネルリストを照会します。
 
 **[Method, URI]**
 
@@ -274,26 +274,26 @@ Retrieves the list of channels.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
+| appKey | String | NHN CloudプロジェクトAppKey |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| page | int | optional | Page number (default is 0) |
-| size | int | mandatory | Number of lists on a page (maximum 10) |
-| tagType | String | optional | Tag search condition (default is OR)<br/>OR, AND |
-| tagIdList | String | optional | Tag ID list<br/>Separate each ID with comma (1, 2, 3...) |
+| page | int | optional | ページ番号(デフォルト値は0) |
+| size | int | mandatory | 1ページリスト数(最大100) |
+| tagType | String | optional | タグ検索条件(デフォルト値はOR)<br/>OR, AND |
+| tagIdList | String | optional | タグIDリスト<br/>各IDをカンマ(,)で区切る(1, 2, 3...) |
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -342,35 +342,35 @@ None
 
 | Key | Type          | Description |
 | --- |---------------| --- |
-| pagingInfo | Object        | Paging information |
-| pagingInfo.first | boolean       | First page exists or not |
-| pagingInfo.last | boolean       | Last page exists or not |
-| pagingInfo.numberOfElements | int           | Number of retrieved lists on the page |
-| pagingInfo.page | int           | Current page number |
-| pagingInfo.size | int           | Number of page lists |
-| pagingInfo.totalElements | long          | Number of total lists |
-| pagingInfo.totalPages | int           | Total number of pages |
-| channelList | Array[Object] | Channel list information |
-| channelList[].appKey | String        | Project Appkey |
-| channelList[].id | String        | Channel ID |
-| channelList[].type | String        | Channel type<br/>PUBLIC (general) |
-| channelList[].name | String        | Channel name |
-| channelList[].nickname | String        | Channel nickname |
-| channelList[].autoDelete | boolean       | Whether to use automatic channel deletion |
-| channelList[].deleted | boolean       | Whether to delete the channel |
-| channelList[].lastMessageId | Long          | Last message ID |
-| channelList[].subscriberCount | int           | Number of channel subscribers |
-| channelList[].tagList | Array[Object] | Channel tag list |
-| channelList[].tagList[].id | long          | Channel tag ID |
-| channelList[].tagList[].name | String        | Channel tag name |
-| channelList[].regUser | String        | Creator |
-| channelList[].regDate | Date          | Date of creation. Date and time compliant with ISO 8601. |
-| channelList[].modUser | String        | Modifier |
-| channelList[].modDate | Date          | Date of modification. Date and time compliant with ISO 8601. |
+| pagingInfo | Object        | ページング情報 |
+| pagingInfo.first | boolean       | 最初のページかどうか |
+| pagingInfo.last | boolean       | 最後のページかどうか |
+| pagingInfo.numberOfElements | int           | 照会されたページリスト数 |
+| pagingInfo.page | int           | 現在ページ番号 |
+| pagingInfo.size | int           | ページリスト数 |
+| pagingInfo.totalElements | long          | 総リスト数 |
+| pagingInfo.totalPages | int           | 総ページ数 |
+| channelList | Array[Object] | チャンネルリスト情報 |
+| channelList[].appKey | String        | プロジェクトアプリケーションキー(Appkey) |
+| channelList[].id | String        | チャンネルID |
+| channelList[].type | String        | チャンネルタイプ<br/>PUBLIC(一般) |
+| channelList[].name | String        | チャンネル名 |
+| channelList[].nickname | String        | チャンネルエイリアス |
+| channelList[].autoDelete | boolean       | チャンネル自動削除を使用するかどうか |
+| channelList[].deleted | boolean       | チャンネルが削除されているかどういか |
+| channelList[].lastMessageId | Long          | 最後のメッセージID |
+| channelList[].subscriberCount | int           | チャンネル購読者数 |
+| channelList[].tagList | Array[Object] | チャンネルタグリスト |
+| channelList[].tagList[].id | long          | チャンネルタグID |
+| channelList[].tagList[].name | String        | チャンネルタグ名 |
+| channelList[].regUser | String        | 作成者 |
+| channelList[].regDate | Date          | 作成日時。日付と時間はISO 8601に従う。 |
+| channelList[].modUser | String        | 修正者 |
+| channelList[].modDate | Date          | 修正日時。日付と時間はISO 8601に従う。 |
 
 #### Get Channel
 
-Retrieves a channel.
+チャンネルを照会します。
 
 **[Method, URI]**
 
@@ -380,22 +380,22 @@ Retrieves a channel.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| channelId | String | Channel ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| channelId | String | チャンネルID |
 
 **[Request Parameter]**
 
-None
+なし
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -433,27 +433,27 @@ None
 
 | Key | Type          | Description |
 | --- |---------------| --- |
-| result | Object        | Channel list information |
-| result.appKey | String        | Project Appkey |
-| result.id | String        | Channel ID |
-| result.type | String        | Channel type<br/>PUBLIC (general) |
-| result.name | String        | Channel name |
-| result.nickname | String        | Channel nickname |
-| result.autoDelete | boolean       | Whether to use automatic channel deletion |
-| result.deleted | boolean       | Whether to delete the channel |
-| result.lastMessageId | Long          | Last message ID |
-| result.subscriberCount | int           | Number of channel subscribers |
-| result.tagList | Array[Object] | Channel tag list |
-| result.tagList[].id | long          | Channel tag ID |
-| result.tagList[].name | String        | Channel tag name |
-| result.regUser | String        | Creator |
-| result.regDate | Date          | Date of creation. Date and time compliant with ISO 8601. |
-| result.modUser | String        | Modifier |
-| result.modDate | Date          | Date of modification. Date and time compliant with ISO 8601. |
+| result | Object        | チャンネルリスト情報 |
+| result.appKey | String        | プロジェクトアプリケーションキー(Appkey) |
+| result.id | String        | チャンネルID |
+| result.type | String        | チャンネルタイプ<br/>PUBLIC(一般) |
+| result.name | String        | チャンネル名 |
+| result.nickname | String        | チャンネルエイリアス |
+| result.autoDelete | boolean       | チャンネル自動削除を使用するかどうか |
+| result.deleted | boolean       | チャンネルが削除されているかどうか |
+| result.lastMessageId | Long          | 最後のメッセージID |
+| result.subscriberCount | int           | チャンネル購読者数 |
+| result.tagList | Array[Object] | チャンネルタグリスト |
+| result.tagList[].id | long          | チャンネルタグID |
+| result.tagList[].name | String        | チャンネルタグ名 |
+| result.regUser | String        | 作成者 |
+| result.regDate | Date          | 作成日時。日付と時間はISO 8601に従う。 |
+| result.modUser | String        | 修正者 |
+| result.modDate | Date          | 修正日時。日付と時間はISO 8601に従う。 |
 
 #### Subscribe Channel
 
-Subscribes to a channel.
+チャンネルを購読します。
 
 **[Method, URI]**
 
@@ -463,14 +463,14 @@ Subscribes to a channel.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| channelId | String | Channel ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| channelId | String | チャンネルID |
 
 **[Request Body]**
 
@@ -482,7 +482,7 @@ Checks common items
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userId | String | mandatory | User ID |
+| userId | String | mandatory | ユーザーID |
 
 **[Response Body]**
 
@@ -499,7 +499,7 @@ Checks common items
 
 #### Unsubscribe Channel
 
-Unsubscribes a channel.
+チャンネルの購読を解除します。
 
 **[Method, URI]**
 
@@ -509,14 +509,14 @@ Unsubscribes a channel.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| channelId | String | Channel ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| channelId | String | チャンネルID |
 
 **[Request Body]**
 
@@ -528,7 +528,7 @@ Checks common items
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| userId | String | mandatory | User ID |
+| userId | String | mandatory | ユーザーID |
 
 **[Response Body]**
 
@@ -545,7 +545,7 @@ Checks common items
 
 #### Get Subscriber
 
-Retrieves a channel subscriber.
+チャンネル購読者を照会します。
 
 **[Method, URI]**
 
@@ -555,25 +555,25 @@ Retrieves a channel subscriber.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| channelId | String | Channel ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| channelId | String | チャンネルID |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| page | int | optional | Page number (default is 0) |
-| size | int | mandatory | Number of lists on a page (maximum 10) |
+| page | int | optional | ページ番号(デフォルト値は0) |
+| size | int | mandatory | 1ページリスト数(最大100) |
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -610,28 +610,28 @@ None
 
 | Key | Type          | Description                          |
 | --- |---------------|--------------------------------------|
-| pagingInfo | Object        | Paging information                            |
-| pagingInfo.first | boolean       | First page exists or not                             |
-| pagingInfo.last | boolean       | Last page exists or not                           |
-| pagingInfo.numberOfElements | int           | Number of retrieved lists on the page                        |
-| pagingInfo.page | int           | Current page number                            |
-| pagingInfo.size | int           | Number of page lists                            |
-| pagingInfo.totalElements | long          | Number of total lists                              |
-| pagingInfo.totalPages | int           | Total number of pages                             |
-| userList | Array[Object] | Subscriber information                               |
-| userList[].appKey | String        | Project Appkey                |
-| userList[].userId | String        | User ID                                |
-| userList[].nickname | String        | User nickname                               |
-| userList[].languageCode | String        | Language code                                |
-| userList[].valid | boolean       | User status<br/>true (normal), false (delete)        |
-| userList[].lastLoginDate | Date          | Date of last login. Date and time compliant with ISO 8601. |
-| userList[].regDate | Date          | Date of subscription. Date and time compliant with ISO 8601.      |
+| pagingInfo | Object        | ページング情報                         |
+| pagingInfo.first | boolean       | 最初のページかどうか                            |
+| pagingInfo.last | boolean       | 最後のページかどうか                          |
+| pagingInfo.numberOfElements | int           | 照会されたページリスト数                     |
+| pagingInfo.page | int           | 現在ページ番号                         |
+| pagingInfo.size | int           | ページリスト数                         |
+| pagingInfo.totalElements | long          | 総リスト数                           |
+| pagingInfo.totalPages | int           | 総ページ数                          |
+| userList | Array[Object] | 購読者情報                            |
+| userList[].appKey | String        | プロジェクトアプリケーションキー(Appkey)                |
+| userList[].userId | String        | ユーザーID                                |
+| userList[].nickname | String        | ユーザーニックネーム                            |
+| userList[].languageCode | String        | 言語コード                             |
+| userList[].valid | boolean       | ユーザー状態<br/>true(正常)、false(削除)        |
+| userList[].lastLoginDate | Date          | 最後のログイン日時。日付と時間はISO 8601に従う。 |
+| userList[].regDate | Date          | 購読日時。日付と時間はISO 8601に従う。      |
 
 ## Tag
 
 #### Get Tag List
 
-Retrieves the list of tags.
+タグリストを照会します。
 
 **[Method, URI]**
 
@@ -641,24 +641,24 @@ Retrieves the list of tags.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
+| appKey | String | NHN CloudプロジェクトAppKey |
 
 **[Request Parameter]**
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| page | int | optional | Page number (default is 0) |
-| size | int | mandatory | Number of lists on a page (maximum 10) |
+| page | int | optional | ページ番号(デフォルト値は0) |
+| size | int | mandatory | 1ページリスト数(最大100) |
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -686,9 +686,9 @@ None
       "name": "String",
       "description": "String",
       "regUser": "String",
-      "regDate": "2023-02-20T16:25:30+09:00",
+      "regDate": "2023-01-01T00:00:00+09:00",
       "modUser": "String",
-      "modDate": "2023-02-21T18:21:02+09:00"
+      "modDate": "2023-01-01T00:00:00+09:00"
     }
   ]
 }
@@ -696,27 +696,27 @@ None
 
 | Key | Type | Description |
 | --- | --- | --- |
-| pagingInfo | Object | Paging information |
-| pagingInfo.first | boolean | First page exists or not |
-| pagingInfo.last | boolean | Last page exists or not |
-| pagingInfo.numberOfElements | int | Number of retrieved lists on the page |
-| pagingInfo.page | int | Current page number |
-| pagingInfo.size | int | Number of page lists |
-| pagingInfo.totalElements | long | Number of total lists |
-| pagingInfo.totalPages | int  | Total number of pages |
-| tagList | Array[Object] | Tag list information |
-| tagList[].appKey | String | NHN Cloud Project AppKey |
-| tagList[].id | long | Tag ID |
-| tagList[].name | String | Tag name |
-| tagList[].description | String | Tag description |
-| tagList[].regUser | String | Creator |
-| tagList[].regDate | Date | Date of creation. Date and time compliant with ISO 8601. |
-| tagList[].modUser | String | Modifier |
-| tagList[].modDate | Date | Date of modification. Date and time compliant with ISO 8601. |
+| pagingInfo | Object | Paging情報 |
+| pagingInfo.first | boolean | 最初のページかどうか |
+| pagingInfo.last | boolean | 最後のページかどうか |
+| pagingInfo.numberOfElements | int | 照会されたページリスト数 |
+| pagingInfo.page | int | 現在ページの番号 |
+| pagingInfo.size | int | ページリスト数 |
+| pagingInfo.totalElements | long | リストの総数 |
+| pagingInfo.totalPages | int  | 総ページ数 |
+| tagList | Array[Object] | タグリスト情報 |
+| tagList[].appKey | String | NHN CloudプロジェクトAppKey |
+| tagList[].id | long | タグID |
+| tagList[].name | String | タグ名 |
+| tagList[].description | String | タグの説明 |
+| tagList[].regUser | String | コンストラクタ |
+| tagList[].regDate | Date | 作成日時。日付と時間はISO 8601に従う。|
+| tagList[].modUser | String | 修正者 |
+| tagList[].modDate | Date | 修正日時。日付と時間はISO 8601に従う。|
 
 #### Get Tag
 
-Retrieves a tag.
+タグを照会します。
 
 **[Method, URI]**
 
@@ -726,22 +726,22 @@ Retrieves a tag.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| tagId | long | Tag ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| tagId | long | タグID |
 
 **[Request Parameter]**
 
-None
+なし
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -759,30 +759,30 @@ None
     "name": "String",
     "description": "String",
     "regUser": "String",
-    "regDate": "2023-02-20T16:25:30+09:00",
+    "regDate": "2023-01-01T00:00:00+09:00",
     "modUser": "String",
-    "modDate": "2023-02-21T18:21:02+09:00"
+    "modDate": "2023-01-01T00:00:00+09:00"
   }
 }
 ```
 
 | Key | Type | Description |
 | --- | --- | --- |
-| result | Object | Tag information |
-| result.appKey | String | NHN Cloud Project AppKey |
-| result.id | long | Tag ID |
-| result.name | String | Tag name |
-| result.description | String | Tag description |
-| result.regUser | String | Creator |
-| result.regDate | Date | Date of creation. Date and time compliant with ISO 8601. |
-| result.modUser | String | Modifier |
-| result.modDate | Date | Date of modification. Date and time compliant with ISO 8601. |
+| result | Object | タグ情報 |
+| result.appKey | String | NHN CloudプロジェクトAppKey |
+| result.id | long | タグID |
+| result.name | String | タグ名 |
+| result.description | String | タグの説明 |
+| result.regUser | String | コンストラクタ |
+| result.regDate | Date | 作成日時。日付と時間はISO 8601に従う。|
+| result.modUser | String | 修正者 |
+| result.modDate | Date | 修正日時。日付と時間はISO 8601に従う。|
 
 ## User
 
 #### Get User
 
-Retrieves user information.
+ユーザー情報を照会します。
 
 **[Method, URI]**
 
@@ -792,22 +792,22 @@ Retrieves user information.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| userId | String | User ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| userId | String | ユーザーID |
 
 **[Request Parameter]**
 
-None
+なし
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -833,18 +833,18 @@ None
 
 | Key | Type    | Description                          |
 | --- |---------|--------------------------------------|
-| user | Object  | User information                                |
-| user.appKey | String  | Project Appkey                |
-| user.userId | String  | User ID                                |
-| user.nickname | String  | User nickname                               |
-| user.languageCode | String  | Language code                                |
-| user.valid | boolean | User status<br/>true (normal), false (delete)        |
-| user.lastLoginDate | Date    | Date of last login. Date and time compliant with ISO 8601. |
-| user.regDate | Date    | Date of subscription. Date and time compliant with ISO 8601.      |
+| user | Object  | ユーザー情報                             |
+| user.appKey | String  | プロジェクトアプリケーションキー(Appkey)                |
+| user.userId | String  | ユーザーID                                |
+| user.nickname | String  | ユーザーニックネーム                            |
+| user.languageCode | String  | 言語コード                             |
+| user.valid | boolean | ユーザー状態<br/>true(正常)、false(削除)        |
+| user.lastLoginDate | Date    | 最後のログイン日時。日付と時間はISO 8601に従う。 |
+| user.regDate | Date    | 購読日時。日付と時間はISO 8601に従う。      |
 
 #### Delete User Info
 
-Delete user information.
+ユーザー情報を削除します。
 
 **[Method, URI]**
 
@@ -854,22 +854,22 @@ Delete user information.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| userId | String | User ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| userId | String | ユーザーID |
 
 **[Request Parameter]**
 
-None
+なし
 
 **[Request Body]**
 
-None
+なし
 
 **[Response Body]**
 
@@ -886,7 +886,7 @@ None
 
 #### Update User
 
-Updates user information.
+ユーザー情報を修正します。
 
 **[Method, URI]**
 
@@ -896,18 +896,18 @@ Updates user information.
 
 **[Request Header]**
 
-Checks common items
+共通事項確認
 
 **[Path Variable]**
 
 | Name | Type | Value |
 | --- | --- | --- |
-| appKey | String | NHN Cloud Project AppKey |
-| userId | String | User ID |
+| appKey | String | NHN CloudプロジェクトAppKey |
+| userId | String | ユーザーID |
 
 **[Request Parameter]**
 
-None
+なし
 
 **[Request Body]**
 
@@ -920,8 +920,8 @@ None
 
 | Name | Type | Required | Value |
 | --- | --- | --- | --- |
-| languageCode | String | mandatory | Language code |
-| nickname | String | mandatory | User nickname |
+| languageCode | String | mandatory | 言語コード |
+| nickname | String | mandatory | ユーザーニックネーム |
 
 **[Response Body]**
 
