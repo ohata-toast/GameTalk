@@ -2,7 +2,7 @@
 
 ### 1.1.0(2023. 08. 17.)
 
-[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/GameTalkSDK_Unity.zip)
+[SDK Download](https://static.toastoven.net/toastcloud/sdk_download/gametalk/v1.1.0/GameTalkSDK_Unity.zip)
 
 * 기능 추가
     * 메시지 신고 API가 추가되었습니다.
